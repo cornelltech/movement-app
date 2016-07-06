@@ -2,7 +2,7 @@ import {Component} from '@angular/core'
 
 import {VenueListPage} from '../venue-list/venue-list';
 import {WelcomePage} from '../welcome/welcome'; 
-import {AboutPage} from '../about/about';
+import {SettingsPage} from '../settings/settings';
 import {ContactPage} from '../contact/contact';
 
 @Component({
@@ -19,6 +19,6 @@ export class TabsPage {
     // should be each tab's root Page
     this.tab1Root = VenueListPage;
     this.tab2Root = ContactPage;
-    this.tab3Root = AboutPage;
+    this.tab3Root = SettingsPage;
   }
 }

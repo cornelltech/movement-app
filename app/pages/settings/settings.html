@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="settings">
+
+  
+  <ion-list>
+    <ion-list-header>
+      Application
+    </ion-list-header>
+    
+    <ion-item>Version: {{APP_VERSION}}</ion-item>
+    <ion-item (click)="signout()">
+       Sign out
+      <ion-icon name="log-out" item-right></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
