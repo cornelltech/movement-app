@@ -6,6 +6,6 @@ import {NavController} from 'ionic-angular';
 })
 export class VenueListPage {
   constructor(private navController: NavController) {
-    console.log('yo yo')  
+  
   }
 }

@@ -1,13 +1,111 @@
-import {Component} from '@angular/core';
-import {Modal, NavController, ViewController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {NavController, Slides, Alert} from 'ionic-angular';
+
+import {AuthService} from '../../services/auth';
+
+import {TabsPage} from '../tabs/tabs';
+
 
 @Component({
   templateUrl: 'build/pages/welcome/welcome.html'
 })
 export class WelcomePage {
-  constructor(private viewCtrl: ViewController) { }
+  
+  @ViewChild('slider') slider: Slides;
+  slideOptions = {
+    initialSlide: 0
+  };
+  credentials:any = {
+    username: '',
+    email: '',
+    password: ''
+  };
 
-  close() {
-    this.viewCtrl.dismiss();
+  signupMode:boolean=true;
+
+  constructor(private nav: NavController,
+              public authService: AuthService) {
+                this.nav = nav;
+               }
+  
+  toggleMode(){
+    this.signupMode = !this.signupMode;
   }
+
+  submitForm(){
+    if(this.signupMode){
+      this.doSignup();
+    }else{
+      this.doLogin();
+    }
+  }
+
+  doLogin(){
+    if( this.credentials.username && this.credentials.password ){
+      this.authService.login({
+        username: this.credentials.username,
+        password: this.credentials.password
+      }).subscribe(
+        i => {
+          if(this.signupMode){
+            this.slider.slideNext();
+          }else{
+            this.goToApp()
+          }
+        },
+        e => this.presentAlert(),
+        () => { }
+      );
+    }else{
+      this.presentImpartialDataAlert();
+    }
+  }
+
+  doSignup(){
+    if(this.credentials.username && this.credentials.email && this.credentials.password){
+      
+      this.authService.createAccount(
+        this.credentials.username,
+        this.credentials.email,
+        this.credentials.password
+      ).subscribe(
+        i => this.doLogin(),
+        e => this.presentAlert(),
+        () => {}
+      );
+
+    }else{
+      this.presentImpartialDataAlert();
+    }
+  }
+
+  setZipCode(){
+    
+  }
+
+
+
+  goToApp(){
+    this.nav.setRoot(TabsPage);
+  }
+
+
+  presentAlert( ){
+    let alert = Alert.create({
+      title: 'Sorry',
+      subTitle: 'We were unable to sign you in, please try again.',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
+  }
+
+  presentImpartialDataAlert( ){
+    let alert = Alert.create({
+      title: 'Sorry',
+      subTitle: 'Please fill out all the fields.',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
+  }
+
 }

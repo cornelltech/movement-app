@@ -12,6 +12,7 @@ import {SettingsService} from './settings';
 @Injectable()
 export class AuthService {
     tokenUrl:string = '/api-token-auth/'
+    createAccountUrl:string = '/participants/add/'
 
     storage:Storage;
     token:string = '';
@@ -66,11 +67,11 @@ export class AuthService {
         return this.http.post(`${SettingsService.API_ENDPOINT}${this.tokenUrl}`, body, options)
                         .map(r => r.json())
                         .map(t => this.setToken(t.token))
-                        .catch(e => Observable.throw(e));
     }
-    createAccount(username:string, password:string){
+    createAccount(username:string, email:string, password:string):Observable<any>{
         let options = this.getUnprotectedHeader()
-        let body = JSON.stringify({ username: username, password: password });
+        let body = JSON.stringify({ username: username, email: email, password: password });
+        return this.http.post(`${SettingsService.API_ENDPOINT}${this.createAccountUrl}`, body, options)
     }
 
     
@@ -90,5 +91,5 @@ export class AuthService {
             );
         });
     }
-
+    
 }
