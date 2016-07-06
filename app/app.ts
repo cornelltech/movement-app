@@ -11,13 +11,16 @@ import {AuthService} from './services/auth';
 import {AccountService} from './services/account';
 import {VenueService} from './services/venues';
 
+import {Storage, SqlStorage} from 'ionic-angular';
+
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
 export class MyApp {
 
-  private rootPage:any;
+  rootPage:any;
+  storage:Storage;
 
   constructor(private platform:Platform,
               public authService:AuthService) {
@@ -32,12 +35,15 @@ export class MyApp {
   }
 
   routeToRootPage(){
-    let authenticated = this.authService.isAuthenticated;
-    if(authenticated){
-      this.rootPage = TabsPage;
-    }else{
-      this.rootPage = WelcomePage;
-    }
+    this.storage = new Storage(SqlStorage);
+    this.storage.get('token').then(t => {
+      let authenticated = t ? true:false;
+        if(authenticated){
+          this.rootPage = TabsPage;
+        }else{
+          this.rootPage = WelcomePage;
+        }
+      });
   }
 
 }
