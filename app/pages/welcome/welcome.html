@@ -37,7 +37,7 @@
             </ion-list>
 
             <div padding>
-              <button type="submit" block>Go</button>
+              <button type="submit" block clear>Next</button>
             </div>
           </form>
         </ion-card-content>
@@ -57,8 +57,40 @@
     </ion-slide>
 
     <ion-slide style="background-color: #40E0D0" padding text-wrap>
-      <h2>What is your zipcode?</h2>
+    
+      <ion-card>
+          
+          <ion-card-header>
+    	      <span>What is your zipcode?</span>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <ion-list>
+              <ion-item>
+                <ion-label floating>Zipcode</ion-label>
+                <ion-input [(ngModel)]="zipcode" type="text" value=""></ion-input>
+              </ion-item>
+            </ion-list>
+
+            <div padding>
+              <button type="submit" block clear (click)="setZipCode()">Next</button>
+            </div>
+
+          </ion-card-content>
+
+      </ion-card>
+
+    
     </ion-slide>
+
+    <ion-slide padding text-wrap>
+
+        <h2>Welcome to {{ cohort }}</h2>
+
+        <button clear (click)="goToApp()">Start!</button>
+
+      </ion-slide>
 
   </ion-slides>
 

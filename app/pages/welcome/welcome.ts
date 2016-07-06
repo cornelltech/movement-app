@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {NavController, Slides, Alert} from 'ionic-angular';
 
 import {AuthService} from '../../services/auth';
+import {AccountService} from '../../services/account';
 
 import {TabsPage} from '../tabs/tabs';
 
@@ -20,11 +21,14 @@ export class WelcomePage {
     email: '',
     password: ''
   };
+  zipcode:number;
+  cohort:string;
 
   signupMode:boolean=true;
 
   constructor(private nav: NavController,
-              public authService: AuthService) {
+              public authService: AuthService,
+              public accountService: AccountService) {
                 this.nav = nav;
                }
   
@@ -80,7 +84,18 @@ export class WelcomePage {
   }
 
   setZipCode(){
-    
+    if(this.zipcode){
+      this.accountService.associateZipcode(this.zipcode).subscribe(
+        i => {
+          this.cohort = i.cohort;
+          this.slider.slideNext();
+        },
+        e => console.log(e),
+        () => {}
+      )
+    }else{
+      this.presentImpartialDataAlert();
+    }
   }
 
 
