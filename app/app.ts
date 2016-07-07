@@ -4,7 +4,6 @@ import {StatusBar} from 'ionic-native';
 
 import {GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
 
-
 import {WelcomePage} from './pages/welcome/welcome';
 import {TabsPage} from './pages/tabs/tabs';
 

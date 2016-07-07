@@ -1,11 +1,41 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Cohort
+      {{ venueService.cohort }}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="cohort">
-  
+
+  <ion-item-group>
+
+      <ion-item-divider light>
+        Activity Map
+      </ion-item-divider>
+
+
+        <sebm-google-map [latitude]="40.740837" 
+                         [longitude]="-74.001806" 
+                         [zoom]="13" 
+                         [zoomControl]="false"
+                         [streetViewControl]="false"
+                         [scrollwheel]="false">
+          <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
+        </sebm-google-map>
+
+
+      <ion-item-divider light>
+        Venues
+        <p item-right># Reveals / # Checkins</p>
+      </ion-item-divider>
+      <ion-item *ngFor="let venue of venueService.cohortVenues">
+        <h2>{{venue.name}}</h2>
+        <h3>{{venue.category}}</h3>
+        <p item-right>{{venue.reveals}}/{{venue.checkins}}</p>
+      </ion-item>
+
+    </ion-item-group>
+
+
 </ion-content>

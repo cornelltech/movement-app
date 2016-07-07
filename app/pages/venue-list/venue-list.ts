@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, Alert} from 'ionic-angular';
 
-import { GOOGLE_MAPS_DIRECTIVES } from 'angular2-google-maps/core';
+import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';

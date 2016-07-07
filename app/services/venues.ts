@@ -15,11 +15,33 @@ import {AuthService} from './auth';
 @Injectable()
 export class VenueService {
     storage:Storage;
+    cohort:string = '';
+    cohortVenues:Venue[] = [];
     venues:Venue[] = [];
     
     constructor(public http: Http,
                 public authService:AuthService){
                     this.storage = new Storage(SqlStorage);
+    }
+
+    fetchCohortVenues():Observable<any>{
+        let options = this.authService.getProtectedHeader()
+        return this.http.get(`${SettingsService.API_ENDPOINT}/venues/logs/`, options)
+            .map(r => r.json() || []);
+    }
+
+    loadCohortVenues():void{
+
+        this.fetchCohortVenues().subscribe(
+            r => {
+                console.log(r);
+                this.cohort = r.cohort;
+                this.cohortVenues = r.results
+            },
+            e => console.log(e),
+            () => {}
+        );
+
     }
 
     fetchVenues(ids:any[]):Observable<any>{
