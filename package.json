@@ -42,12 +42,7 @@
     "cordova-plugin-mauron85-background-geolocation"
   ],
   "cordovaPlatforms": [
-    "ios",
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
-    }
+    "ios"
   ],
   "name": "movemeant",
   "description": "Movemeant: An Ionic project"

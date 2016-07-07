@@ -15,7 +15,6 @@ import {VenueService} from './services/venues';
 
 import {Storage, SqlStorage} from 'ionic-angular';
 
-
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
 })
@@ -31,21 +30,22 @@ export class MyApp {
     this.routeToRootPage();
 
     platform.ready().then(() => {
+      console.log("PLATFORM IS READY");
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
 
-
-
+   
       // BackgroundGeolocation is highly configurable. See platform specific configuration options
+      console.log("BackgroundGeo Configure");
       let config = {
-              desiredAccuracy: 10,
-              stationaryRadius: 20,
-              distanceFilter: 30,
-              debug: true, //  enable this hear sounds for background-geolocation life-cycle.
-              stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+            desiredAccuracy: 10,
+            stationaryRadius: 20,
+            distanceFilter: 30,
+            debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+            stopOnTerminate: false, // enable this to clear background location settings when the app terminates
       };
-
       BackgroundGeolocation.configure(config)
         .then((location) => {
               console.log('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
@@ -65,9 +65,11 @@ export class MyApp {
           })
         .catch((error) => {
               console.log('BackgroundGeolocation error');
+              console.log(JSON.stringify(error));
           });
 
-      // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
+      // Turn ON the background-geolocation system.  
+      // The user will be tracked whenever they suspend the app.
       BackgroundGeolocation.start();
 
 
