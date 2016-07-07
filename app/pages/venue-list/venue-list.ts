@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, Alert} from 'ionic-angular';
+import {NavController, ViewController, NavParams, Alert, Modal} from 'ionic-angular';
 
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
-
 
 
 @Component({
@@ -63,5 +62,10 @@ export class VenueListPage {
     });
     this.nav.present(alert);
   }
+
+  // showModal(venue:Venue) {
+  //   let modal = Modal.create(RevealedUsersModal);
+  //   this.nav.push(modal, { participants: venue.revealed_users });
+  // }
 
 }
