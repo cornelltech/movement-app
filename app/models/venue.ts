@@ -12,6 +12,8 @@ export class Venue{
     lat:number;
     lng:number;
     
+    revealed:boolean;
+    reveals:number;
     revealed_users:Account[];
     
     constructor(){}

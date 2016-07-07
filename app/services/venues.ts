@@ -62,6 +62,15 @@ export class VenueService {
             });
     }
 
+    signintoVenue(venue:Venue):Observable<any>{
+        let options = this.authService.getProtectedHeader()
+        let body = JSON.stringify({
+            'venue_id': venue.id
+        });
+        return this.http.post(`${SettingsService.API_ENDPOINT}/venues/reveal/`, body, options)
+            .map(r => r.json() || {});
+    }
+
     clearVenues():void{
         this.storage.get('ids').then(ids => {
             this.storage.set('ids', JSON.stringify([]));

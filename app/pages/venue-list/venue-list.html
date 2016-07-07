@@ -34,8 +34,8 @@
         </ion-item>
 
 
-        <ion-item>
-          <button primary clear item-right>
+        <ion-item *ngIf="!venue.revealed">
+          <button primary clear item-right (click)="signintoVenue(venue)">
             <ion-icon name="checkmark-circle"></ion-icon>
             Sign In
           </button>

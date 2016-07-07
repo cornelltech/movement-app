@@ -11,10 +11,8 @@
   
   <ion-list>
     <ion-list-header>
-      Application
+      Controls
     </ion-list-header>
-    
-    <ion-item>Version: {{APP_VERSION}}</ion-item>
     <ion-item (click)="clear()">
        Clear Logs
       <ion-icon name="trash" item-right></ion-icon>
@@ -23,6 +21,14 @@
        Sign out
       <ion-icon name="log-out" item-right></ion-icon>
     </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>
+      Application
+    </ion-list-header>
+    
+    <ion-item>Version: {{APP_VERSION}}</ion-item>
+    
   </ion-list>
 
 </ion-content>

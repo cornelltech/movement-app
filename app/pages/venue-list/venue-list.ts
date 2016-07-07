@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Alert} from 'ionic-angular';
 
 import { GOOGLE_MAPS_DIRECTIVES } from 'angular2-google-maps/core';
 
@@ -36,6 +36,32 @@ export class VenueListPage {
       e => console.log(e),
       () => console.log('done')
     );
+  }
+
+
+  signintoVenue(venue:Venue) {
+    let alert = Alert.create({
+      title: `Sign in to ${venue.name}`,
+      subTitle: 'You are going to reveal yourself here',
+      buttons: [{
+        text: 'Cancel',
+        handler: data => {
+          }
+      },{
+        text: 'Ok',
+        handler: data => {
+            this.venueService.signintoVenue(venue).subscribe(
+              i => {
+                venue.revealed = true;
+                venue.reveals += 1;
+              },
+              e => console.log(e),
+              () => {}
+            )
+          }
+      }]
+    });
+    this.nav.present(alert);
   }
 
 }
