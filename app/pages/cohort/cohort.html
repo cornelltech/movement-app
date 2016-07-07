@@ -15,15 +15,23 @@
       </ion-item-divider>
 
 
-        <sebm-google-map [latitude]="40.740837" 
-                         [longitude]="-74.001806" 
-                         [zoom]="13" 
-                         [zoomControl]="false"
-                         [streetViewControl]="false"
-                         [scrollwheel]="false">
-          <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
-        </sebm-google-map>
+      <sebm-google-map [latitude]="40.740837" 
+                        [longitude]="-74.001806" 
+                        [zoom]="13" 
+                        [zoomControl]="false"
+                        [streetViewControl]="false"
+                        [scrollwheel]="false">
+        <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
+      </sebm-google-map>
+      
+      <!--<ion-item-divider light>
+        Venue Types
+      </ion-item-divider>
 
+      <base-chart class="chart"
+           [data]="pieChartData"
+           [labels]="pieChartLabels"
+           [chartType]="pieChartType"></base-chart>-->
 
       <ion-item-divider light>
         Venues
