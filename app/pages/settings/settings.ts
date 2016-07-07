@@ -3,6 +3,7 @@ import {NavController} from 'ionic-angular';
 
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
+import {VenueService} from '../../services/venues';
 
 import {WelcomePage} from '../welcome/welcome';
 
@@ -13,7 +14,8 @@ export class SettingsPage {
   APP_VERSION:string;
 
   constructor(private nav: NavController,
-              public authService: AuthService) {
+              public authService: AuthService,
+              public venueService: VenueService) {
                 this.nav = nav;
                 this.APP_VERSION = SettingsService.APP_VERSION; 
   }
@@ -21,6 +23,10 @@ export class SettingsPage {
   signout(){
     this.authService.removeToken();
     this.nav.rootNav.setRoot(WelcomePage);
+  }
+
+  clear(){
+    this.venueService.clearVenues();
   }
 
 }

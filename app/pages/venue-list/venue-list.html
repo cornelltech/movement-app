@@ -1,9 +1,46 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Venue List</ion-title>
+    <ion-title>Your Logs</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="venue-list">
+  
+      <ion-card class="adv-map" *ngFor="let venue of venueService.venues">
+
+        <sebm-google-map [latitude]="venue.lat" 
+                         [longitude]="venue.lng" 
+                         [zoom]="15" 
+                         [zoomControl]="false"
+                         [streetViewControl]="false"
+                         [scrollwheel]="false">
+          <sebm-google-map-marker [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
+        </sebm-google-map>
+          
+        <ion-item>
+          <ion-icon primary name="navigate" item-left large></ion-icon>
+          <h2>{{venue.name}}</h2>
+          <p>{{venue.category}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon secondary name="at" item-left large ></ion-icon>
+          <h2>{{venue.checkins}} <span *ngIf="venue.checkins>1 || venue.checkins==0">people have</span> <span *ngIf="venue.checkins==1">person has</span> been here</h2>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon secondary name="checkmark-circle" item-left large ></ion-icon>
+          <h2>{{venue.reveals}} <span *ngIf="venue.reveals>1 || venue.reveals==0">people have</span> <span *ngIf="venue.reveals==1">person has</span> signed in</h2>
+        </ion-item>
+
+
+        <ion-item>
+          <button primary clear item-right>
+            <ion-icon name="checkmark-circle"></ion-icon>
+            Sign In
+          </button>
+        </ion-item>
+
+      </ion-card>
   
 </ion-content>
