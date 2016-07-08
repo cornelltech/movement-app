@@ -7,5 +7,22 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-card *ngIf="accountService.me">
+    <ion-card-header>
+      Hello {{accountService.me.username}}!
+    </ion-card-header>
+    <ion-card-content>
+      
+      <ion-item>
+        <p>Email</p>
+        <p item-right>{{accountService.me.email}}</p>
+      </ion-item>
+
+      <ion-item>
+        <p>Cohort</p>
+        <p item-right>{{accountService.me.cohort}}</p>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>  
 </ion-content>
