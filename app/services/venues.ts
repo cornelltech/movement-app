@@ -55,12 +55,13 @@ export class VenueService {
         console.log('Loading Venues:');
         this.storage.get('ids').then(ids=>{
             ids = ids? JSON.parse(ids) : [];
-            this.fetchVenues(ids).subscribe(
-                r => this.venues = r,
-                e => console.log(e),
-                () => {}
-            );
-
+            if(ids.length>0){
+                this.fetchVenues(ids).subscribe(
+                    r => this.venues = r,
+                    e => console.log(e),
+                    () => {}
+                );
+            }
         });
     }
 
