@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Alert} from 'ionic-angular';
 
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
@@ -27,6 +27,40 @@ export class SettingsPage {
 
   clear(){
     this.venueService.clearVenues();
+  }
+
+  confirmSignout( ){
+    let alert = Alert.create({
+      title: 'Are you sure?',
+      subTitle: 'Are you sure you want to sign out?',
+      buttons: [{
+        text: 'Cancel',
+        handler: data => {} 
+      },{
+        text: 'Confirm',
+        handler: data => {
+          this.signout();
+        }
+      }]
+    });
+    this.nav.present(alert);
+  }
+
+  confirmLogsClear( ){
+    let alert = Alert.create({
+      title: 'Are you sure?',
+      subTitle: `If you erase your local logs, you won't be able to recover them.`,
+      buttons: [{
+        text: 'Cancel',
+        handler: data => {} 
+      },{
+        text: 'Confirm',
+        handler: data => {
+          this.clear();
+        }
+      }]
+    });
+    this.nav.present(alert);
   }
 
 }
