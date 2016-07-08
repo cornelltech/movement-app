@@ -1,16 +1,48 @@
 import {Injectable} from '@angular/core';
+import {Platform} from 'ionic-angular';
 
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import {SettingsService} from './settings';
+declare var window: any;
 
 @Injectable()
 export class GeoService {
     
-    constructor(){
+    constructor(private platform:Platform){ }
 
+    initBackgroundGeo2(isActivate) {
+        this.platform.ready().then(() => {
+            console.log('geoService ready')
+            let config = {
+                desiredAccuracy: 10,
+                stationaryRadius: 20,
+                distanceFilter: 30,
+                debug: true,
+                stopOnTerminate: false
+                // interval: 30 * 60 * 1000    //30 min
+            }
+
+            var callbackFn = function(location){
+                console.log('Location => ' + location.latitude + ',' + location.longitude);
+                
+                window.backgroundGeolocation.finish();
+            }
+
+            var errorFn = function(error) {
+                console.log('BackgroundGeolocation error');
+            }
+
+            window.backgroundGeolocation.configure(callbackFn, errorFn, config);
+            if(isActivate=="true"){
+                window.backgroundGeolocation.start();
+            }
+            else{
+                window.backgroundGeolocation.stop();
+            }
+        });
     }
 
     public mapStyle:any = [
