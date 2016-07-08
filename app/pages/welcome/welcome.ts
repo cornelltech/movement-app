@@ -15,6 +15,7 @@ export class WelcomePage {
   @ViewChild('slider') slider: Slides;
   slideOptions = {
     initialSlide: 0
+    // TODO - figure out how to prevent swipes, but only button nav
   };
   credentials:any = {
     username: '',
@@ -29,9 +30,17 @@ export class WelcomePage {
   constructor(private nav: NavController,
               public authService: AuthService,
               public accountService: AccountService) {
-                this.nav = nav;
+                this.nav = nav;                
                }
   
+  slideNext(){
+    console.log('next');
+    // this.slider.slideNext();
+    this.slider.slideNext();
+    // let swiper = this.slider.getSlider();
+    // swiper.slideNext(true, 100);
+  }
+
   toggleMode(){
     this.signupMode = !this.signupMode;
   }
@@ -90,7 +99,7 @@ export class WelcomePage {
           this.cohort = i.cohort;
           this.slider.slideNext();
         },
-        e => console.log(e),
+        e => this.presentInvalidZipcodeAlert(),
         () => {}
       )
     }else{
@@ -109,6 +118,15 @@ export class WelcomePage {
     let alert = Alert.create({
       title: 'Sorry',
       subTitle: 'We were unable to sign you in, please try again.',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
+  }
+
+  presentInvalidZipcodeAlert(){
+    let alert = Alert.create({
+      title: 'Sorry',
+      subTitle: 'Movemeant is not availible in your region at the moment',
       buttons: ['OK']
     });
     this.nav.present(alert);
