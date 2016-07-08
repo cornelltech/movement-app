@@ -5,6 +5,7 @@ import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
+import {GeoService} from '../../services/geo';
 
 
 @Component({
@@ -13,7 +14,8 @@ import {VenueService} from '../../services/venues';
 })
 export class VenueListPage {
   constructor(private nav: NavController,
-              public venueService:VenueService) {
+              public venueService:VenueService,
+              public geoService:GeoService) {
                 this.nav = nav;
                 this.loadVenues();                
   }

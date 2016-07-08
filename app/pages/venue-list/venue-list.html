@@ -23,7 +23,8 @@
                          [zoom]="15" 
                          [zoomControl]="false"
                          [streetViewControl]="false"
-                         [scrollwheel]="false">
+                         [scrollwheel]="false"
+                         [styles]="geoService.mapStyle">
           <sebm-google-map-marker [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
         </sebm-google-map>
           

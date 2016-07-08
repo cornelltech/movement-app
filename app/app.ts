@@ -12,6 +12,7 @@ import {SettingsService} from './services/settings';
 import {AuthService} from './services/auth';
 import {AccountService} from './services/account';
 import {VenueService} from './services/venues';
+import {GeoService} from './services/geo';
 
 import {Storage, SqlStorage} from 'ionic-angular';
 
@@ -96,4 +97,5 @@ ionicBootstrap(MyApp, [GOOGLE_MAPS_PROVIDERS,
   SettingsService, 
   AuthService, 
   AccountService, 
-  VenueService])
+  VenueService,
+  GeoService])
