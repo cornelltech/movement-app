@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform, ionicBootstrap, Modal, NavController} from 'ionic-angular';
-import {StatusBar, BackgroundGeolocation} from 'ionic-native';
+import {StatusBar, Keyboard, BackgroundGeolocation} from 'ionic-native';
 
 
 import {provideLazyMapsAPILoaderConfig, GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
@@ -37,6 +37,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleLightContent();
 
+      // Disable scroll on keyboard
+      Keyboard.disableScroll(true);
    
       // BackgroundGeolocation is highly configurable. See platform specific configuration options
       console.log("BackgroundGeo Configure");
@@ -98,4 +100,8 @@ ionicBootstrap(MyApp, [GOOGLE_MAPS_PROVIDERS,
   AuthService, 
   AccountService, 
   VenueService,
-  GeoService])
+  GeoService],
+  {
+    scrollAssist: false,
+    autoFocusAssist: false
+});
