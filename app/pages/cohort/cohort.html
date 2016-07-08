@@ -10,9 +10,9 @@
 
   <ion-item-group>
 
-      <ion-item-divider light>
+      <ion-list-header>
         Activity Map
-      </ion-item-divider>
+      </ion-list-header>
 
 
       <sebm-google-map [latitude]="coords.lat" 
@@ -28,19 +28,19 @@
                                 (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
       </sebm-google-map>
       
-      <!--<ion-item-divider light>
+      <!--<ion-list-header>
         Venue Types
-      </ion-item-divider>
+      </ion-list-header>
 
       <base-chart class="chart"
            [data]="pieChartData"
            [labels]="pieChartLabels"
            [chartType]="pieChartType"></base-chart>-->
 
-      <ion-item-divider light>
+      <ion-list-header>
         Venues
         <p item-right># Reveals / # Checkins</p>
-      </ion-item-divider>
+      </ion-list-header>
       <ion-item *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
         <h2>{{venue.name}}</h2>
         <h3>{{venue.category}}</h3>
