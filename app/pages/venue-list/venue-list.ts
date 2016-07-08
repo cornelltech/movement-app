@@ -15,11 +15,8 @@ export class VenueListPage {
   constructor(private nav: NavController,
               public venueService:VenueService) {
                 this.nav = nav;
-                this.loadVenues();
-                
+                this.loadVenues();                
   }
-
-
 
   loadVenues(){
     this.venueService.loadVenues()

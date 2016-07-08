@@ -1,9 +1,9 @@
 .welcome{
     color: white;
-    background-color: #40E0D0;
+    background-color: color($colors, primary);
 
     ion-slide{
-        background-color: #40E0D0;
+        background-color: color($colors, primary);
     }
     .swiper-pagination-bullet{
         background-color:white !important;
