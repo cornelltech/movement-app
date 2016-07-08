@@ -63,6 +63,5 @@ export class VenueListPage {
   // showModal(venue:Venue) {
   //   let modal = Modal.create(RevealedUsersModal);
   //   this.nav.push(modal, { participants: venue.revealed_users });
-  // }
-
+  // } 
 }
