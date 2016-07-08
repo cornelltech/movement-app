@@ -6,7 +6,7 @@ import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
 import {GeoService} from '../../services/geo';
-
+import {RevealedUserListModal} from './venue-revealed-users';
 
 @Component({
   templateUrl: 'build/pages/venue-list/venue-list.html',
@@ -61,8 +61,8 @@ export class VenueListPage {
     );
   }
 
-  // showModal(venue:Venue) {
-  //   let modal = Modal.create(RevealedUsersModal);
-  //   this.nav.push(modal, { participants: venue.revealed_users });
-  // } 
+  showModal(venue:Venue) {
+    let modal = Modal.create(RevealedUserListModal, { venue: venue });
+    this.nav.present(modal);
+  } 
 }

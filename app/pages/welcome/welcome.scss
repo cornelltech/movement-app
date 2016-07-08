@@ -2,6 +2,9 @@
     color: white;
     background-color: color($colors, primary);
 
+    input:focus { color: white; }
+
+
     ion-slide{
         background-color: color($colors, primary);
     }

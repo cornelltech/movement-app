@@ -1,20 +1,38 @@
 import {Component} from '@angular/core';
 import {ViewController, NavParams} from 'ionic-angular';
+import {Venue} from '../../models/venue';
 
+// <ion-item *ngFor="let participant in venue.revealed_users">
+//   {{ participant.username }}
+// </ion-item>
 
 @Component({
   template: `
-  <ion-content padding>
-    <h2>I'm a modal!</h2>
-    <button (click)="close()">Close</button>
+  <ion-toolbar primary>
+    <ion-title>{{venue.name}}</ion-title>
+    <ion-buttons end>
+      <button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    
+  </ion-toolbar>
+
+  <ion-content>
+    <ion-list>
+      
+    </ion-list>
   </ion-content>`
 })
-export class RevealedUsersModal {
-  participants:string[]=[];
+export class RevealedUserListModal {
+  venue:Venue;
 
   constructor(private viewCtrl: ViewController,
              public params: NavParams) {
-                 this.participants = params.data.participants;
+                 console.log(params.data.venue);
+                 this.venue = params.data.venue;
+
   }
 
   close() {
