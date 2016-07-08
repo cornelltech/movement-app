@@ -22,7 +22,10 @@
                         [streetViewControl]="false"
                         [scrollwheel]="false"
                         [styles]="geoService.mapStyle">
-        <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
+        <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues" 
+                                [latitude]="venue.lat" 
+                                [longitude]="venue.lng"
+                                (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
       </sebm-google-map>
       
       <!--<ion-item-divider light>

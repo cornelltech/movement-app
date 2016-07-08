@@ -36,6 +36,7 @@ export class CohortPage {
   }
 
   clickedMarker(venue:Venue){
+    console.log('clicked it')
     console.log(venue);
   }
 
