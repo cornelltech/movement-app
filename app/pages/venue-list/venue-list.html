@@ -1,13 +1,13 @@
 <ion-header>
   <ion-navbar primary>
-    <ion-title>Your Logs</ion-title>
+    <ion-title>Your Private Logs</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="venue-list">
+<ion-content class="venue-list">
 
 
-      <div *ngIf="venueService.venues" class="placeholder-container">
+      <div *ngIf="venueService.venues == []" class="placeholder-container">
           <h3>
             Looks like we havn't logged any places yet, bummer :(
           </h3>

@@ -24,19 +24,6 @@ export class VenueListPage {
     this.venueService.loadVenues()
   }
 
-  test(){
-    console.log('test')
-    this.venueService.checkintoVenue({
-      lat: 41.447519,
-      lng: -72.496730
-    }).subscribe(
-      i => console.log(i),
-      e => console.log(e),
-      () => console.log('done')
-    );
-  }
-
-
   signintoVenue(venue:Venue) {
     let alert = Alert.create({
       title: `Sign in to ${venue.name}`,
@@ -60,6 +47,18 @@ export class VenueListPage {
       }]
     });
     this.nav.present(alert);
+  }
+
+  test(){
+    console.log('test')
+    this.venueService.checkintoVenue({
+      lat: 40.741118, 
+      lng: -74.002972
+    }).subscribe(
+      i => console.log(i),
+      e => console.log(e),
+      () => console.log('done')
+    );
   }
 
   // showModal(venue:Venue) {

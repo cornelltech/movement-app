@@ -15,8 +15,8 @@
       </ion-item-divider>
 
 
-      <sebm-google-map [latitude]="40.740837" 
-                        [longitude]="-74.001806" 
+      <sebm-google-map [latitude]="coords.lat" 
+                        [longitude]="coords.lng" 
                         [zoom]="13" 
                         [zoomControl]="false"
                         [streetViewControl]="false"
@@ -38,7 +38,7 @@
         Venues
         <p item-right># Reveals / # Checkins</p>
       </ion-item-divider>
-      <ion-item *ngFor="let venue of venueService.cohortVenues">
+      <ion-item *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
         <h2>{{venue.name}}</h2>
         <h3>{{venue.category}}</h3>
         <p item-right>{{venue.reveals}}/{{venue.checkins}}</p>

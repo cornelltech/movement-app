@@ -13,6 +13,11 @@ import {GeoService} from '../../services/geo';
 })
 export class CohortPage {
 
+  coords = {
+    lat: 40.740837,
+    lng: -74.001806
+  }
+
   public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
   public pieChartData:number[] = [300, 500, 100];
   public pieChartType:string = 'pie';
@@ -32,6 +37,11 @@ export class CohortPage {
 
   clickedMarker(venue:Venue){
     console.log(venue);
+  }
+
+  centerMap(venue:Venue){
+    this.coords.lat = venue.lat;
+    this.coords.lng = venue.lng;
   }
 
 }
