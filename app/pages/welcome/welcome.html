@@ -2,63 +2,67 @@
 
   <ion-slides #slider pager [options]="slideOptions">
 
-    <ion-slide style="background-color: #40E0D0" padding text-wrap>
+    <ion-slide padding text-wrap>
       <h2>Welcome to Movemeant!</h2>
-      <p>Movemeant is an app that helps you...</p>
+      <p>
+        PLACE SOME WELCOME MESSAGE / DESCRIPTION HERE
+      </p>
     </ion-slide>
 
-    <ion-slide style="background-color: #40E0D0" padding text-wrap>
-      <ion-card>
 
+
+
+
+    <ion-slide padding text-wrap>
+
+
+      <form (ngSubmit)="submitForm()" #loginForm="ngForm">
+        <ion-list class="welcome-form">
+
+          <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input [(ngModel)]="credentials.username" type="text" value=""></ion-input>
+          </ion-item>
+          <ion-item *ngIf="signupMode">
+            <ion-label floating>Email</ion-label>
+            <ion-input [(ngModel)]="credentials.email" type="email" value=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input [(ngModel)]="credentials.password" type="password" value=""></ion-input>
+          </ion-item>
+
+        </ion-list>
       
-        <ion-card-content>
-          
-          <ion-card-header>
-    	      <span *ngIf="signupMode">Sign up</span>
-            <span *ngIf="!signupMode">Sign in</span>
-          </ion-card-header>
-
-          <form (ngSubmit)="submitForm()" #loginForm="ngForm">
-            <ion-list>
-
-              <ion-item>
-                <ion-label floating>Username</ion-label>
-                <ion-input [(ngModel)]="credentials.username" type="text" value=""></ion-input>
-              </ion-item>
-              <ion-item *ngIf="signupMode">
-                <ion-label floating>Email</ion-label>
-                <ion-input [(ngModel)]="credentials.email" type="email" value=""></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label floating>Password</ion-label>
-                <ion-input [(ngModel)]="credentials.password" type="password" value=""></ion-input>
-              </ion-item>
-    
-            </ion-list>
-
-            <div padding>
-              <button type="submit" block clear>Next</button>
-            </div>
-          </form>
-        </ion-card-content>
-
-        <ion-row>
-          <ion-col>
-            <button primary clear small (click)="toggleMode()">
-              <div *ngIf="signupMode">Sign in</div>
-              <div *ngIf="!signupMode">Sign up</div>
-            </button>
-          </ion-col>
-        </ion-row>
-
-      </ion-card>
-
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <button type="submit" outline light>Next</button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button clear light small (click)="toggleMode()">
+                <span *ngIf="signupMode">Or, sign in</span>
+                <span *ngIf="!signupMode">Or, sign up</span>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button clear light small>Terms of Use</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
 
     </ion-slide>
 
-    <ion-slide style="background-color: #40E0D0" padding text-wrap>
+
+
+
+
+    <ion-slide padding text-wrap>
     
-      <ion-card>
+      <!--<ion-card>
           
           <ion-card-header>
     	      <span>What is your zipcode?</span>
@@ -79,16 +83,45 @@
 
           </ion-card-content>
 
-      </ion-card>
+      </ion-card>-->
+
+      <ion-list class="welcome-form">
+        <ion-list>
+            <ion-item class="zipcode">
+              <ion-input [(ngModel)]="zipcode" type="text" value="" placeholder="Zipcode"></ion-input>
+            </ion-item>
+          </ion-list>
+      </ion-list>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <button type="submit" (click)="setZipCode()" outline light>Next</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     
     </ion-slide>
 
+
+
+
+
+
     <ion-slide padding text-wrap>
 
-        <h2>Welcome to {{ cohort }}</h2>
+      <h2>Location Permissions</h2>
+      <p>To make sure Movemeant works, please allow us to location</p>
+      <button outline light>Turn on Location</button>
 
-        <button clear light (click)="goToApp()">Start!</button>
+    </ion-slide>
+
+    <ion-slide padding text-wrap>
+
+        <h2>Welcome to <span *ngIf="cohort">{{ cohort }}</span> <span *ngIf="!cohort">your neighborhood</span>!</h2>
+        <p>Some other message can go here</p>
+        <button outline light (click)="goToApp()">Start using Movemeant</button>
 
       </ion-slide>
 
