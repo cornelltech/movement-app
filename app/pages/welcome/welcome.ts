@@ -110,7 +110,8 @@ export class WelcomePage {
   }
 
   enableVisitTracking(){
-    this.geoService.initVisitsListener();
+    // this.geoService.initVisitsListener();
+    this.geoService.initBackgroundGeo2(true);
     this.slideNext();
   }
 

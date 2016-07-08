@@ -18,17 +18,20 @@ export class CohortPage {
     lng: -74.001806
   }
 
-  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData:number[] = [300, 500, 100];
-  public pieChartType:string = 'pie';
-
-
   constructor(private nav: NavController,
               public venueService:VenueService,
               public geoService:GeoService) {
                 this.nav = nav;
                 this.loadData();
+
+                this.geoService.getCurrentCoords();
+
+                this.coords = this.geoService.currentCoords;
   }
+
+  onPageWillEnter() {
+        this.geoService.getCurrentCoords();
+    }
   
   loadData(){
     console.log('load');

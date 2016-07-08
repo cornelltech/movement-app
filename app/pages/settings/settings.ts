@@ -4,6 +4,7 @@ import {NavController, Alert} from 'ionic-angular';
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
 import {VenueService} from '../../services/venues';
+import {GeoService} from '../../services/geo';
 
 import {WelcomePage} from '../welcome/welcome';
 
@@ -12,12 +13,28 @@ import {WelcomePage} from '../welcome/welcome';
 })
 export class SettingsPage {
   APP_VERSION:string;
+  enabled:boolean = true;
 
   constructor(private nav: NavController,
               public authService: AuthService,
-              public venueService: VenueService) {
+              public venueService: VenueService,
+              public geoService:GeoService) {
                 this.nav = nav;
-                this.APP_VERSION = SettingsService.APP_VERSION; 
+                this.APP_VERSION = SettingsService.APP_VERSION;
+
+                this.checkGeoPermissions();
+  }
+
+  checkGeoPermissions(){
+    // this.geoService.backgroundGeo.isLocationEnabled(function(enabled){
+    //   this.enabled = enabled;
+    //   console.log(enabled);
+    // }, function(){
+    //   this.enabled = false;
+    // });
+  }
+  toggleGeoPermissions(){
+    // this.geoService.initBackgroundGeo2(this.enabled)
   }
 
   signout(){

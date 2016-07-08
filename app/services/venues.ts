@@ -51,9 +51,10 @@ export class VenueService {
     }
 
     loadVenues():void{
-        console.log('Loading Venues:');
+        console.log('==========>Loading Venues');
         this.storage.get('ids').then(ids=>{
             ids = ids? JSON.parse(ids) : [];
+            console.log(ids);
             if(ids.length>0){
                 this.fetchVenues(ids).subscribe(
                     r => this.venues = r,
@@ -65,6 +66,8 @@ export class VenueService {
     }
 
     checkintoVenue(coords:any):Observable<any>{
+        console.log("==========> About to CHECK INTO VENUE")
+        console.log(`==========> ${coords.lat} : ${coords.lng}`);
         let options = this.authService.getProtectedHeader()
         let body = JSON.stringify({
             'lat': coords.lat,
@@ -73,9 +76,11 @@ export class VenueService {
         return this.http.post(`${SettingsService.API_ENDPOINT}/venues/checkin/`, body, options)
             .map(r => r.json() || {})
             .map(r => {
+                console.log("==========>LOOKEDUP THE PLACE");
                 this.storage.get('ids').then(ids => {
                     ids = ids ? JSON.parse(ids) : [];
                     if( ids.indexOf(r.id) == -1 ){
+                        console.log("==========>SAVING DA PLACE");
                         ids.push(r.id);
                         this.storage.set('ids', JSON.stringify(ids));
                         this.loadVenues();
