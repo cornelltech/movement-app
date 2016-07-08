@@ -6,43 +6,87 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import {SettingsService} from './settings';
+import {VenueService} from './venues';
+
 declare var window: any;
 
 @Injectable()
 export class GeoService {
     
-    constructor(private platform:Platform){ }
+    constructor(private platform:Platform,
+                public venueService:VenueService){ }
+
+    initVisitsListener(){
+        if( window.plugins.visit ){
+            // use startMonitoring and provide success, failure callbacks
+            window.plugins.visit.startMonitoring( function( visit ){
+                console.log( 'Visit: ', JSON.stringify(visit) );
+                if( visit.departureDate ){
+                     // we know this is a departure visit
+                     console.log("DEPARTURE");
+                }else{
+                     // this is an arrival visit
+                     console.log("ARRIVAL");
+                     this.venueService.checkintoVenue({
+                        lat: visit.latitude,
+                        lng: visit.longitude,
+                    }).subscribe(
+                        i=>{},
+                        e=>console.log(e),
+                        ()=>{}
+                    );
+                }
+            }, function(  ){
+                console.log("IT ALL BROKE")
+            });
+        }
+    }
 
     initBackgroundGeo2(isActivate) {
-        this.platform.ready().then(() => {
-            console.log('geoService ready')
-            let config = {
-                desiredAccuracy: 10,
-                stationaryRadius: 20,
-                distanceFilter: 30,
-                debug: true,
-                stopOnTerminate: false
-                // interval: 30 * 60 * 1000    //30 min
-            }
+        // this.platform.ready().then(() => {
+        //     console.log('geoService ready')
+        //     let config = {
+        //         desiredAccuracy: 10,
+        //         stationaryRadius: 10,
+        //         distanceFilter: 30,
+        //         activityType: 'AutomotiveNavigation',
+        //         debug: true,
+        //         stopOnTerminate: false,
+        //         // interval: 30 * 60 * 1000    //30 min
+        //     }
 
-            var callbackFn = function(location){
-                console.log('Location => ' + location.latitude + ',' + location.longitude);
-                
-                window.backgroundGeolocation.finish();
-            }
+        //     var callbackFn = function(location){
+        //         console.log('Location => ' + location.latitude + ',' + location.longitude);
+        //     }
 
-            var errorFn = function(error) {
-                console.log('BackgroundGeolocation error');
-            }
+        //     var errorFn = function(error) {
+        //         console.log('BackgroundGeolocation error');
+        //         console.log(JSON.stringify(error));
+        //     }
 
-            window.backgroundGeolocation.configure(callbackFn, errorFn, config);
-            if(isActivate=="true"){
-                window.backgroundGeolocation.start();
-            }
-            else{
-                window.backgroundGeolocation.stop();
-            }
-        });
+        //     window.backgroundGeolocation.configure(callbackFn, errorFn, config);
+        //     if(isActivate){
+        //         window.backgroundGeolocation.start();
+
+        //         window.backgroundGeolocation.onStationary(function(location){
+        //             console.log("========================> on stationary yo")
+        //             this.venueService.checkintoVenue({
+        //                 lat: location.latitude,
+        //                 lng: location.longitude,
+        //             }).subscribe(
+        //                 i=>{},
+        //                 e=>console.log(e),
+        //                 ()=>window.backgroundGeolocation.finish()
+        //             );
+        //         },function(err){
+        //             console.log('ON STATIONARY ERROR');
+        //             console.log(err);
+        //         });
+        //     }
+        //     else{
+        //         window.backgroundGeolocation.stop();
+        //     }
+        // });
     }
 
     public mapStyle:any = [

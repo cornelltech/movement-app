@@ -3,6 +3,7 @@ import {NavController, Slides, Alert} from 'ionic-angular';
 
 import {AuthService} from '../../services/auth';
 import {AccountService} from '../../services/account';
+import {GeoService} from '../../services/geo';
 
 import {TabsPage} from '../tabs/tabs';
 
@@ -29,7 +30,8 @@ export class WelcomePage {
 
   constructor(private nav: NavController,
               public authService: AuthService,
-              public accountService: AccountService) {
+              public accountService: AccountService,
+              public geoService: GeoService) {
                 this.nav = nav;                
                }
   
@@ -107,7 +109,10 @@ export class WelcomePage {
     }
   }
 
-
+  enableVisitTracking(){
+    this.geoService.initVisitsListener();
+    this.slideNext();
+  }
 
   goToApp(){
     this.nav.setRoot(TabsPage);
