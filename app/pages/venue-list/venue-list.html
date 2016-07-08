@@ -38,17 +38,13 @@
           <h2>{{venue.checkins}} <span *ngIf="venue.checkins>1 || venue.checkins==0">people have</span> <span *ngIf="venue.checkins==1">person has</span> been here</h2>
         </ion-item>
 
-        <ion-item (click)="showModal(venue)">
+        <ion-item>
           <ion-icon secondary name="checkmark-circle" item-left large ></ion-icon>
           <h2>{{venue.reveals}} <span *ngIf="venue.reveals>1 || venue.reveals==0">people have</span> <span *ngIf="venue.reveals==1">person has</span> signed in</h2>
-        </ion-item>
+          
+          <button *ngIf="venue.revealed" item-right clear (click)="showModal(venue)">View</button>
+          <button *ngIf="!venue.revealed" item-right clear (click)="signintoVenue(venue)">Reveal</button>
 
-
-        <ion-item *ngIf="!venue.revealed">
-          <button primary clear item-right (click)="signintoVenue(venue)">
-            <ion-icon name="checkmark-circle"></ion-icon>
-            Sign In
-          </button>
         </ion-item>
 
       </ion-card>
