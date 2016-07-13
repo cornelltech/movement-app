@@ -39,7 +39,8 @@
       "locator": "https://github.com/oursiberia/cordova-plugin-visit.git",
       "id": "com.siberia.cordova.visit"
     },
-    "cordova-plugin-mauron85-background-geolocation"
+    "cordova-plugin-mauron85-background-geolocation",
+    "de.appplant.cordova.plugin.local-notification"
   ],
   "cordovaPlatforms": [
     "ios"

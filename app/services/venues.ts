@@ -66,7 +66,7 @@ export class VenueService {
     }
 
     checkintoVenue(coords:any):Observable<any>{
-        console.log("==========> About to CHECK INTO VENUE")
+        console.log("==========> [js] About to CHECK INTO VENUE")
         console.log(`==========> ${coords.lat} : ${coords.lng}`);
         let options = this.authService.getProtectedHeader()
         let body = JSON.stringify({
