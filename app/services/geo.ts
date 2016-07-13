@@ -23,78 +23,100 @@ export class GeoService {
                 public venueService:VenueService){ }
 
     initVisitsListener(){
-        if( window.plugins.visit ){
-            // use startMonitoring and provide success, failure callbacks
-            window.plugins.visit.startMonitoring( function( visit ){
-                console.log("==========> GOT THE VISIT");
-                if( visit.departureDate ){
-                     // we know this is a departure visit
-                     console.log("==========> DEPARTURE");
-                }else{
-                     // this is an arrival visit
-                     console.log("==========> ARRIVAL");
-                     this.venueService.checkintoVenue({
-                        lat: visit.latitude,
-                        lng: visit.longitude,
-                    }).subscribe(
-                        i=>{},
-                        e=>console.log(e),
-                        ()=>{}
-                    );
-                }
-            }, function(  ){
-                console.log("==========> IT ALL BROKE")
-            });
-        }
+        // if( window.plugins.visit ){
+        //     // use startMonitoring and provide success, failure callbacks
+        //     window.plugins.visit.startMonitoring( function( visit ){
+        //         console.log("==========> GOT THE VISIT");
+        //         if( visit.departureDate ){
+        //              // we know this is a departure visit
+        //              console.log("==========> DEPARTURE");
+        //         }else{
+        //              // this is an arrival visit
+        //              console.log("==========> ARRIVAL");
+        //              this.venueService.checkintoVenue({
+        //                 lat: visit.latitude,
+        //                 lng: visit.longitude,
+        //             }).subscribe(
+        //                 i=>{},
+        //                 e=>console.log(e),
+        //                 ()=>{}
+        //             );
+        //         }
+        //     }, function(  ){
+        //         console.log("==========> IT ALL BROKE")
+        //     });
+        // }
     }
 
     initBackgroundGeo2(isActivate) {
-        this.platform.ready().then(() => {
-            console.log('geoService ready')
-            let config = {
-                desiredAccuracy: 10,
-                stationaryRadius: 10,
-                distanceFilter: 30,
-                activityType: 'AutomotiveNavigation',
-                debug: true,
-                stopOnTerminate: false,
-                // interval: 30 * 60 * 1000    //30 min
-            }
+        // this.platform.ready().then(() => {
+        //     console.log('geoService ready')
+        //     // https://github.com/mauron85/cordova-plugin-background-geolocation
+        //     let config = {
+        //         desiredAccuracy: 10,
+        //         stationaryRadius: 10,
+        //         distanceFilter: 30,
+        //         activityType: 'Fitness',
+        //         stopOnTerminate: false,
+        //         startOnBoot: true,
+        //         saveBatteryOnBackground: true,
 
-            var callbackFn = function(location){
-                console.log('Location => ' + location.latitude + ',' + location.longitude);
-                console.log(JSON.stringify(location));
-                window.backgroundGeolocation.finish();
-            }
+        //         debug: true,
+        //         // interval: 30 * 60 * 1000    //30 min
+        //     }
 
-            var errorFn = function(error) {
-                console.log('BackgroundGeolocation error');
-                console.log(JSON.stringify(error));
-            }
+        //     var callbackFn = function(location){
+        //         console.log('Location => ' + location.latitude + ',' + location.longitude);
+        //         console.log(JSON.stringify(location));
 
-            window.backgroundGeolocation.configure(callbackFn, errorFn, config);
-            if(isActivate){
-                window.backgroundGeolocation.start();
+                
 
-                window.backgroundGeolocation.onStationary(function(location){
-                    console.log("========================> on stationary yo")
-                    this.venueService.checkintoVenue({
-                        lat: location.latitude,
-                        lng: location.longitude,
-                    }).subscribe(
-                        i=>{},
-                        e=>console.log(e),
-                        ()=>{}
-                    );
-                },function(err){
-                    console.log('ON STATIONARY ERROR');
-                    console.log(err);
-                });
-            }
-            else{
-                window.backgroundGeolocation.stop();
-            }
-        });
+        //         // this.venueService.checkintoVenue({
+        //         //         lat: location.latitude,
+        //         //         lng: location.longitude,
+        //         //     }).subscribe(
+        //         //         i=>{},
+        //         //         e=>console.log(e),
+        //         //         ()=>{ 
+        //         //             window.backgroundGeolocation.finish(); 
+        //         //         }
+        //         //     );
+
+                
+        //     }
+
+        //     var errorFn = function(error) {
+        //         console.log('BackgroundGeolocation error');
+        //         console.log(JSON.stringify(error));
+        //     }
+
+        //     window.backgroundGeolocation.configure(callbackFn, errorFn, config);
+        //     if(isActivate){
+        //         window.backgroundGeolocation.start();
+
+
+        //         // https://github.com/mauron85/cordova-plugin-background-geolocation/blob/master/www/backgroundGeolocation.js#L107
+        //         window.backgroundGeolocation.onStationary(function(location){
+        //             console.log("========================> on stationary yo")
+        //             this.venueService.checkintoVenue({
+        //                 lat: location.latitude,
+        //                 lng: location.longitude,
+        //             }).subscribe(
+        //                 i=>{},
+        //                 e=>console.log(e),
+        //                 ()=>{}
+        //             );
+
+
+        //         },function(err){
+        //             console.log('ON STATIONARY ERROR');
+        //             console.log(err);
+        //         });
+        //     }
+        //     else{
+        //         window.backgroundGeolocation.stop();
+        //     }
+        // });
     }
 
     getCurrentCoords(){
