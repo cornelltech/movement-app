@@ -38,9 +38,12 @@
     {
       "locator": "https://github.com/oursiberia/cordova-plugin-visit.git",
       "id": "com.siberia.cordova.visit"
-    }
+    },
+    "cordova-plugin-mauron85-background-geolocation"
   ],
-  "cordovaPlatforms": [],
+  "cordovaPlatforms": [
+    "ios"
+  ],
   "name": "movemeant",
   "description": "Movemeant: An Ionic project"
 }

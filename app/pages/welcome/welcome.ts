@@ -111,7 +111,8 @@ export class WelcomePage {
 
   enableVisitTracking(){
     // this.geoService.initVisitsListener();
-    this.geoService.initBackgroundGeo2(true);
+    // this.geoService.initBackgroundGeo2(true);
+    this.geoService.initBackgroundLocation();
     this.slideNext();
   }
 
