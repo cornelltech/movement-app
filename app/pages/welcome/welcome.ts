@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController, Slides, Alert} from 'ionic-angular';
+import {LocalNotifications} from 'ionic-native';
 
 import {AuthService} from '../../services/auth';
 import {AccountService} from '../../services/account';
@@ -35,6 +36,13 @@ export class WelcomePage {
                 this.nav = nav;                
                }
   
+  enableNotificaiton(){
+    LocalNotifications.schedule({
+        id: 1,
+        text: "Push Enabled"
+    });
+  }
+
   slideNext(){
     console.log('next');
     // this.slider.slideNext();
@@ -110,9 +118,8 @@ export class WelcomePage {
   }
 
   enableVisitTracking(){
-    // this.geoService.initVisitsListener();
-    // this.geoService.initBackgroundGeo2(true);
     this.geoService.initBackgroundLocation();
+    // this.geoService.startMonitoringVisits();
     this.slideNext();
   }
 

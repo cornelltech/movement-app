@@ -28,10 +28,10 @@ export class GeoService {
     initBackgroundLocation(){
         let config = {
             desiredAccuracy: 10,
-            stationaryRadius: 20,
-            distanceFilter: 30,
+            stationaryRadius: 10,
+            distanceFilter: 5,
+            activityType: 'Other', // https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/occ/instp/CLLocationManager/activityType 
             stopOnTerminate: false, // enable this to clear background location settings when the app terminates
-            startOnBoot: true,
 
             debug: true, //  enable this hear sounds for background-geolocation life-cycle.
         };
@@ -41,59 +41,44 @@ export class GeoService {
                 console.log('====================================')
                 console.log("[js] BackgroundGeolocation")
                 console.log('[js] BackgroundGeolocation callback:  ' + location.latitude + ',' + location.longitude);
+                console.log(location)
 
-                // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
-                // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
-                // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-                // this.venueService.checkintoVenue({
-                //     lat: location.latitude,
-                //     lng: location.longitude
-                // }).subscribe(
-                //     i => {},
-                //     e => console.log(e),
-                //     () => BackgroundGeolocation.finish()
-                // );
-                BackgroundGeolocation.finish(); // FOR IOS ONLY
+                if(location.speed < 1.0){
+                    this.venueService.checkintoVenue({
+                        lat: location.latitude,
+                        lng: location.longitude
+                    }).subscribe(
+                        i => {
+                            LocalNotifications.schedule({
+                                id: 1,
+                                title: "Visit Succesfully Logged"
+                            });
+                        },
+                        e => {
+                            LocalNotifications.schedule({
+                                id: 1,
+                                title: "Visit Failed to Log",
+                                text: JSON.stringify(e)
+                            });
+                        },
+                        () => BackgroundGeolocation.finish()
+                    );
+                }else{
+                    BackgroundGeolocation.finish(); // FOR IOS ONLY
+                }
+
+                
             })
             .catch((error) => {
                 console.log('[js] BackgroundGeolocation error');
                 console.log(error);
             });
 
-        // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-        BackgroundGeolocation.start();
-
-
-        BackgroundGeolocation.onStationary()
-            .then((location)=>{
-                console.log('====================================');
-                console.log("[js] BackgroundGeolocation.onStationary()");
-                console.log('[js] ' + location.latitude + ',' + location.longitude);
-                console.log('====================================');
-
-                LocalNotifications.schedule({
-                    id: 1,
-                    text: "[mvm] BackgroundGeolocation.onStationary() fired"
-                });
-
-                this.venueService.checkintoVenue({
-                    lat: location.latitude,
-                    lng: location.longitude
-                }).subscribe(
-                    i => {},
-                    e => console.log(e),
-                    () => BackgroundGeolocation.finish()
-                );
-            })
-            .catch((error)=>{
-                console.log('BackgroundGeolocation error');
-                console.log(error);
-            });
-        
-        
-
     }
 
+    startMonitoringVisits(){
+        
+    }
 
 
     initVisitsListener(){

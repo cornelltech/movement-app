@@ -52,6 +52,7 @@ export class VenueListPage {
 
   test(){
     console.log('test')
+    
     // this.venueService.checkintoVenue({
     //   lat: 40.741118, 
     //   lng: -74.002972
