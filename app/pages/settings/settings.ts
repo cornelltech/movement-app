@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, Alert} from 'ionic-angular';
+import {BackgroundGeolocation} from 'ionic-native';
 
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
@@ -13,7 +14,7 @@ import {WelcomePage} from '../welcome/welcome';
 })
 export class SettingsPage {
   APP_VERSION:string;
-  enabled:boolean = true;
+  enabled:boolean = false;
 
   constructor(private nav: NavController,
               public authService: AuthService,
@@ -26,15 +27,24 @@ export class SettingsPage {
   }
 
   checkGeoPermissions(){
-    // this.geoService.backgroundGeo.isLocationEnabled(function(enabled){
-    //   this.enabled = enabled;
-    //   console.log(enabled);
-    // }, function(){
-    //   this.enabled = false;
-    // });
+    this.geoService.isEnabled()
+      .then((enabled)=>{
+        this.enabled = enabled ? true:false;
+      });
   }
   toggleGeoPermissions(){
-    // this.geoService.initBackgroundGeo2(this.enabled)
+    this.geoService.isEnabled()
+      .then((enabled)=>{
+        this.enabled = enabled ? true:false;
+
+        if(this.enabled){
+          console.log("TURN OFFO")
+
+        }else{
+          console.log("TURN ON")
+        }
+
+      });
   }
 
   signout(){

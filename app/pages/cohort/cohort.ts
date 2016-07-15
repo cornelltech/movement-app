@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+// import * as c3 from 'c3';
+
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
@@ -27,6 +29,16 @@ export class CohortPage {
                 this.geoService.getCurrentCoords();
 
                 this.coords = this.geoService.currentCoords;
+
+                // var chart = c3.generate({
+                //     bindto: '#chart',
+                //     data: {
+                //       columns: [
+                //         ['data1', 30, 200, 100, 400, 150, 250],
+                //         ['data2', 50, 20, 10, 40, 15, 25]
+                //       ]
+                //     }
+                // });
   }
 
   onPageWillEnter() {

@@ -15,8 +15,6 @@ declare var window: any;
 
 @Injectable()
 export class GeoService {
-    backgroundGeo:any;
-
     currentCoords = {
         lat: 40.740837,
         lng: -74.001806
@@ -24,13 +22,16 @@ export class GeoService {
     constructor(private platform:Platform,
                 public venueService:VenueService){ }
 
+    isEnabled(){
+        return BackgroundGeolocation.isLocationEnabled();
+    }
 
     initBackgroundLocation(){
         let config = {
             desiredAccuracy: 10,
             stationaryRadius: 10,
             distanceFilter: 5,
-            activityType: 'Other', // https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/occ/instp/CLLocationManager/activityType 
+            // activityType: 'Other', // https://developer.apple.com/library/ios/documentation/CoreLocation/Reference/CLLocationManager_Class/index.html#//apple_ref/occ/instp/CLLocationManager/activityType 
             stopOnTerminate: false, // enable this to clear background location settings when the app terminates
 
             debug: true, //  enable this hear sounds for background-geolocation life-cycle.
@@ -67,14 +68,16 @@ export class GeoService {
                     BackgroundGeolocation.finish(); // FOR IOS ONLY
                 }
 
-                
             })
             .catch((error) => {
                 console.log('[js] BackgroundGeolocation error');
                 console.log(error);
             });
+        
+        BackgroundGeolocation.start();
 
     }
+
 
     startMonitoringVisits(){
         
