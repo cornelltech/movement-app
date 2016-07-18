@@ -38,13 +38,16 @@ export class VenueService {
 
         this.fetchCohortVenues().subscribe(
             r => {
+                
                 this.cohort = r.cohort;
                 this.cohortVenues = r.results
+
+                console.log(this.cohortVenues)
 
                 this.cohortVenues.map(v=>{
                     let pos = this.categories.indexOf(v.category);
                     if( pos > -1 ){
-                        this.data[pos] += 1;
+                        this.data[pos] += v.checkins;
                     }else{
                         this.categories.push(v.category);
                         this.data.push(1);

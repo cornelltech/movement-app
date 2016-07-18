@@ -2,6 +2,10 @@
     .sebm-google-map-container {
        height: 300px;
     }
+    .chart-container{
+        display: block;
+        height: 150px;
+    }
     chart {
         display: block;
         width: 100%;
@@ -13,5 +17,14 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        
     }
 }

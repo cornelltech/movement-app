@@ -33,12 +33,13 @@
         Venue Types
       </ion-list-header>
 
-      <base-chart *ngIf="dataLoaded" class="chart animated fadeIn"
-                [data]="chartData"
-                [labels]="chartLabels"
-                [chartType]="chartType"
-                [options]="chartOptions"></base-chart>
-      
+      <div class="chart-container">
+        <base-chart *ngIf="dataLoaded" class="chart"
+                  [data]="chartData"
+                  [labels]="chartLabels"
+                  [chartType]="chartType"
+                  [options]="chartOptions"></base-chart>
+      </div>
       <ion-list-header>
         Venues
         <p item-right># Reveals / # Checkins</p>
