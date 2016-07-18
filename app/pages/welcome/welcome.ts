@@ -76,7 +76,10 @@ export class WelcomePage {
             this.goToApp()
           }
         },
-        e => this.presentAlert(),
+        e => {
+          console.log(e)
+          this.presentAlert()
+        },
         () => { }
       );
     }else{
@@ -93,7 +96,10 @@ export class WelcomePage {
         this.credentials.password
       ).subscribe(
         i => this.doLogin(),
-        e => this.presentAlert(),
+        e => {
+          console.log(e)
+          this.presentAlert()
+        },
         () => {}
       );
 

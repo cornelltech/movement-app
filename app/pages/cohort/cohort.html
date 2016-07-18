@@ -22,6 +22,10 @@
                         [streetViewControl]="false"
                         [scrollwheel]="false"
                         [styles]="geoService.mapStyle">
+        <!--I am here marker-->
+        <sebm-google-map-marker [latitude]="coords.lat" [longitude]="coords.lng"></sebm-google-map-marker>
+
+        <!--Venue Markers-->
         <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues" 
                                 [latitude]="venue.lat" 
                                 [longitude]="venue.lng"

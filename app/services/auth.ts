@@ -83,7 +83,10 @@ export class AuthService {
                     observer.next();
                     observer.complete(); 
                 },
-                e => { 
+                e => {
+                    console.log('=============')
+                    console.log(e) 
+                    console.log('=============')
                     observer.error(e);
                     observer.complete(); 
                 },
