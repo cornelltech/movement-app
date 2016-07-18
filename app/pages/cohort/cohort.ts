@@ -8,6 +8,7 @@ import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
 import {GeoService} from '../../services/geo';
 
+declare var window: any;
 
 @Component({
   templateUrl: 'build/pages/cohort/cohort.html',
@@ -15,10 +16,10 @@ import {GeoService} from '../../services/geo';
 })
 export class CohortPage {
 
-  coords = {
-    lat: 40.740837,
-    lng: -74.001806
-  }
+  coords ={
+            lat: 40.740837,
+            lng: -74.001806
+          };
 
   constructor(private nav: NavController,
               public venueService:VenueService,
@@ -26,24 +27,49 @@ export class CohortPage {
                 this.nav = nav;
                 this.loadData();
 
-                this.geoService.getCurrentCoords();
+                // this.getCurrentCoords();
 
-                this.coords = this.geoService.currentCoords;
-
-                // var chart = c3.generate({
-                //     bindto: '#chart',
-                //     data: {
-                //       columns: [
-                //         ['data1', 30, 200, 100, 400, 150, 250],
-                //         ['data2', 50, 20, 10, 40, 15, 25]
-                //       ]
-                //     }
-                // });
   }
 
   onPageWillEnter() {
-        this.geoService.getCurrentCoords();
-    }
+        // this.getCurrentCoords();
+  }
+
+  getCurrentCoords(){
+
+      let bgGeo = window.BackgroundGeolocation;
+  
+      bgGeo.getState((state)=>{
+        console.log(state);
+        if(state.enabled){
+          
+          bgGeo.getCurrentPosition(
+            (location, taskId)=>{
+              let coords = location.coords;
+              let lat    = coords.latitude;
+              let lng    = coords.longitude;
+              
+              this.coords = {
+                lat: lat,
+                lng: lng
+              };
+
+              console.log("================>HERE<================")
+              console.log(this.coords);
+              console.log("================>HERE<================")
+            
+              bgGeo.finish(taskId);
+          })
+        }else{
+          this.coords ={
+            lat: 40.740837,
+            lng: -74.001806
+          };
+        }
+      });
+
+
+  }
   
   loadData(){
     console.log('load');
