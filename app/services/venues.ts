@@ -42,7 +42,7 @@ export class VenueService {
                 this.cohort = r.cohort;
                 this.cohortVenues = r.results
 
-                console.log(this.cohortVenues)
+                // console.log(this.cohortVenues)
 
                 this.cohortVenues.map(v=>{
                     let pos = this.categories.indexOf(v.category);

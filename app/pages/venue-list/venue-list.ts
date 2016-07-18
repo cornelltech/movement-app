@@ -7,6 +7,7 @@ import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
 import {GeoService} from '../../services/geo';
+import {AccountService} from '../../services/account';
 import {RevealedUserListModal} from './venue-revealed-users';
 
 @Component({
@@ -16,6 +17,7 @@ import {RevealedUserListModal} from './venue-revealed-users';
 export class VenueListPage {
   constructor(private nav: NavController,
               public venueService:VenueService,
+              public accountService: AccountService,
               public geoService:GeoService) {
                 this.nav = nav;
                 this.loadVenues();                
@@ -40,6 +42,7 @@ export class VenueListPage {
               i => {
                 venue.revealed = true;
                 venue.reveals += 1;
+                venue.revealed_users.push(this.accountService.me.username);
               },
               e => console.log(e),
               () => {}

@@ -6,6 +6,7 @@ import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
+import {AccountService} from '../../services/account';
 import {GeoService} from '../../services/geo';
 
 declare var window: any;
@@ -32,9 +33,11 @@ export class CohortPage {
 
   constructor(private nav: NavController,
               public venueService:VenueService,
+              public accountService: AccountService,
               public geoService:GeoService) {
                 this.nav = nav;
                 this.loadData();
+                this.accountService.loadLoggedInUser();
 
   }
 

@@ -14,7 +14,7 @@ export class Venue{
     
     revealed:boolean;
     reveals:number;
-    revealed_users:Account[];
+    revealed_users:string[];
     
     constructor(){}
 }

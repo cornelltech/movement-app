@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
 import {ViewController, NavParams} from 'ionic-angular';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
-import {Venue} from '../../models/venue';
 
-// <ion-item *ngFor="let participant in venue.revealed_users">
-//   {{ participant.username }}
-// </ion-item>
+import {Venue} from '../../models/venue';
 
 @Component({
   template: `
