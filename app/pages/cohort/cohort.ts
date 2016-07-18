@@ -22,6 +22,7 @@ export class CohortPage {
             lng: -74.001806
           };
   
+  youUrl:string = "imgs/location.png";
   iconUrl:string ="imgs/venue.png";
     
   chartType:string = 'doughnut';

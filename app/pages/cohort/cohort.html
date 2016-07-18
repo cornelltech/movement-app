@@ -17,7 +17,7 @@
       
       <sebm-google-map  [latitude]="coords.lat" 
                         [longitude]="coords.lng" 
-                        [zoom]="13" 
+                        [zoom]="15" 
                         [zoomControl]="false"
                         [usePanning]="true"
                         [disableDefaultUI]="true"
@@ -25,8 +25,11 @@
                         [scrollwheel]="false"
                         [styles]="geoService.mapStyle">
         
+        <sebm-google-map-marker [iconUrl]="youUrl"
+                                [latitude]="coords.lat"  
+                                [longitude]="coords.lng"></sebm-google-map-marker>
         <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues"
-                                 
+                                [iconUrl]="iconUrl"
                                 [latitude]="venue.lat" 
                                 [longitude]="venue.lng"
                                 (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
