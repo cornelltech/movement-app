@@ -14,11 +14,13 @@
         Activity Map
       </ion-list-header>
 
-      <!--
-      <sebm-google-map [latitude]="coords.lat" 
+      
+      <sebm-google-map  [latitude]="coords.lat" 
                         [longitude]="coords.lng" 
                         [zoom]="13" 
                         [zoomControl]="false"
+                        [usePanning]="true"
+                        [disableDefaultUI]="true"
                         [streetViewControl]="false"
                         [scrollwheel]="false"
                         [styles]="geoService.mapStyle">
@@ -27,7 +29,7 @@
                                 [longitude]="venue.lng"
                                 (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
       </sebm-google-map>
-      -->
+      
 
       <ion-list-header>
         Venue Types

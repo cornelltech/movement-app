@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController, NavParams, Alert, Modal} from 'ionic-angular';
 import {LocalNotifications} from 'ionic-native';
-// import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 
 import {Venue} from '../../models/venue';
@@ -11,7 +11,7 @@ import {RevealedUserListModal} from './venue-revealed-users';
 
 @Component({
   templateUrl: 'build/pages/venue-list/venue-list.html',
-  // directives: [GOOGLE_MAPS_DIRECTIVES]
+  directives: [GOOGLE_MAPS_DIRECTIVES]
 })
 export class VenueListPage {
   constructor(private nav: NavController,
@@ -51,16 +51,6 @@ export class VenueListPage {
   }
 
   test(){
-    console.log('test')
-    
-    // this.venueService.checkintoVenue({
-    //   lat: 40.741118, 
-    //   lng: -74.002972
-    // }).subscribe(
-    //   i => console.log(i),
-    //   e => console.log(e),
-    //   () => console.log('done')
-    // );
 
     LocalNotifications.schedule({
         id: 1,

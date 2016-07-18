@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
-// import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
@@ -13,7 +13,7 @@ declare var Chart: any;
 
 @Component({
   templateUrl: 'build/pages/cohort/cohort.html',
-  directives: [CHART_DIRECTIVES]
+  directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class CohortPage {
   coords ={
