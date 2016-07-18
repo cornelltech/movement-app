@@ -39,9 +39,7 @@
     "de.appplant.cordova.plugin.local-notification",
     "cordova-plugin-mauron85-background-geolocation"
   ],
-  "cordovaPlatforms": [
-    "ios"
-  ],
+  "cordovaPlatforms": [],
   "name": "movemeant",
   "description": "Movemeant: An Ionic project"
 }

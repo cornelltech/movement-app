@@ -5,6 +5,8 @@
   <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-navigation href="https://maps.googleapis.com/*" />
+  <allow-navigation href="about:blank" />
 
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
