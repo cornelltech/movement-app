@@ -22,10 +22,13 @@ export class VenueListPage {
                 this.nav = nav;
                 this.loadVenues();                
   }
+  
+  iconUrl:string ="imgs/venue.png";
 
   loadVenues(){
     this.venueService.loadVenues()
   }
+
 
   signintoVenue(venue:Venue) {
     let alert = Alert.create({
