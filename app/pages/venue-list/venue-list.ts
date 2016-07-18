@@ -43,6 +43,9 @@ export class VenueListPage {
                 venue.revealed = true;
                 venue.reveals += 1;
                 venue.revealed_users.push(this.accountService.me.username);
+
+                this.showModal(venue);
+
               },
               e => console.log(e),
               () => {}

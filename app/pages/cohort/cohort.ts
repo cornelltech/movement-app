@@ -21,6 +21,9 @@ export class CohortPage {
             lat: 40.740837,
             lng: -74.001806
           };
+  
+  iconUrl:string ="imgs/venue.png";
+    
   chartType:string = 'doughnut';
   chartLabels:string[] =[];
   chartData:number[] = [];
@@ -36,7 +39,7 @@ export class CohortPage {
               public accountService: AccountService,
               public geoService:GeoService) {
                 this.nav = nav;
-                this.loadData();
+                
                 this.accountService.loadLoggedInUser();
 
   }
@@ -45,6 +48,7 @@ export class CohortPage {
   onPageWillEnter() {
     console.log("onPageWillEnter");
     this.getCurrentCoords();
+    this.loadData();
   }
 
   getCurrentCoords(){
@@ -91,11 +95,12 @@ export class CohortPage {
   }
   
   loadData(){
+    this.dataLoaded = false;
     this.venueService.loadCohortVenues();
     this.chartLabels = this.venueService.categories;
     this.chartData = this.venueService.data;
-    
 
+    // PATCH-JOB
     setTimeout(()=>{
       this.dataLoaded = true;
     }, 1000)

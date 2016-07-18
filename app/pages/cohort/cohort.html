@@ -40,6 +40,7 @@
 
       <div class="chart-container">
         <base-chart *ngIf="dataLoaded" class="chart"
+                  [iconUrl]="iconUrl"
                   [data]="chartData"
                   [labels]="chartLabels"
                   [chartType]="chartType"

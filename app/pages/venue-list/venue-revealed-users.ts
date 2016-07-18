@@ -6,13 +6,17 @@ import {Venue} from '../../models/venue';
 
 @Component({
   template: `
-  <ion-toolbar primary>
-    <ion-title>{{venue.name}}</ion-title>
+  
+  
+  <ion-toolbar primary style="padding-top:20px">
+    <ion-title style="padding-top:20px">{{venue.name}}</ion-title>
+    
     <ion-buttons end>
       <button (click)="close()">
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
+
   </ion-toolbar>
 
   <ion-content style="margin-top:44px;">
