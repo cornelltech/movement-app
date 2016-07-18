@@ -26,12 +26,15 @@ export class GeoService {
     initBackgroundLocation(){
         this.platform.ready().then(()=>{
             
-                console.log("================>initBackgroundLocation<================")
-                console.log("STARTING");
-                console.log("================>/initBackgroundLocation<================")
-        
-                // Get a reference to the plugin.
-                let bgGeo = window.BackgroundGeolocation;
+            console.log("================>initBackgroundLocation<================")
+            console.log("STARTING");
+            console.log("================>/initBackgroundLocation<================")
+    
+            // Get a reference to the plugin.
+            let bgGeo = window.BackgroundGeolocation;
+                
+            if(bgGeo){
+
                 
                 // Listen to location events & errors.
                 bgGeo.on('location', 
@@ -209,8 +212,10 @@ export class GeoService {
                     console.log(error);
                 }
 
-                
-            
+            }else{
+                console.log("Plugin not installed");
+            }    
+
         });
 
         
