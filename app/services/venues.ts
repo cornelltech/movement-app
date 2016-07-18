@@ -18,6 +18,10 @@ export class VenueService {
     cohort:string = '';
     cohortVenues:Venue[] = [];
     venues:Venue[] = [];
+
+    categories:string[] = [];
+    data:number[] = [];
+
     
     constructor(public http: Http,
                 public authService:AuthService){
@@ -36,6 +40,16 @@ export class VenueService {
             r => {
                 this.cohort = r.cohort;
                 this.cohortVenues = r.results
+
+                this.cohortVenues.map(v=>{
+                    let pos = this.categories.indexOf(v.category);
+                    if( pos > -1 ){
+                        this.data[pos] += 1;
+                    }else{
+                        this.categories.push(v.category);
+                        this.data.push(1);
+                    }
+                })
             },
             e => console.log(e),
             () => {}

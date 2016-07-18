@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Platform, ionicBootstrap, Modal, NavController} from 'ionic-angular';
 import {StatusBar, Keyboard, BackgroundGeolocation} from 'ionic-native';
 
-import {provideLazyMapsAPILoaderConfig, GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
+// import {provideLazyMapsAPILoaderConfig, GOOGLE_MAPS_PROVIDERS} from 'angular2-google-maps/core';
 
 import {WelcomePage} from './pages/welcome/welcome';
 import {TabsPage} from './pages/tabs/tabs';
@@ -57,8 +57,9 @@ export class MyApp {
 
 }
 
-ionicBootstrap(MyApp, [GOOGLE_MAPS_PROVIDERS,
-  provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyBa7UgG0KAlZShxva2Dyhg1Hhu7lh0BLSc' }), 
+ionicBootstrap(MyApp, [
+  // GOOGLE_MAPS_PROVIDERS,
+  // provideLazyMapsAPILoaderConfig({ apiKey: 'AIzaSyBa7UgG0KAlZShxva2Dyhg1Hhu7lh0BLSc' }),
   SettingsService, 
   AuthService, 
   AccountService, 

@@ -1,25 +1,34 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
-// import * as c3 from 'c3';
+import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
+// import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
 import {GeoService} from '../../services/geo';
 
 declare var window: any;
+declare var Chart: any;
 
 @Component({
   templateUrl: 'build/pages/cohort/cohort.html',
-  directives: [GOOGLE_MAPS_DIRECTIVES]
+  directives: [CHART_DIRECTIVES]
 })
 export class CohortPage {
-
   coords ={
             lat: 40.740837,
             lng: -74.001806
           };
+  chartType:string = 'doughnut';
+  chartLabels:string[] =[];
+  chartData:number[] = [];
+  chartOptions:any = {
+    animation: false,
+    responsive: false,
+    legend: false
+  };
+  dataLoaded:boolean = false
 
   constructor(private nav: NavController,
               public venueService:VenueService,
@@ -27,18 +36,20 @@ export class CohortPage {
                 this.nav = nav;
                 this.loadData();
 
-                // this.getCurrentCoords();
-
   }
 
+
   onPageWillEnter() {
-        // this.getCurrentCoords();
+    console.log("onPageWillEnter");
+    this.getCurrentCoords();
   }
 
   getCurrentCoords(){
+    console.log("getCurrentCoords()");
+    let bgGeo = window.BackgroundGeolocation;
 
-      let bgGeo = window.BackgroundGeolocation;
-  
+    if(bgGeo){
+
       bgGeo.getState((state)=>{
         console.log(state);
         if(state.enabled){
@@ -68,12 +79,23 @@ export class CohortPage {
         }
       });
 
+    }else{
+      console.log("Plugin not installed");
+    }
+    ;
+
 
   }
   
   loadData(){
-    console.log('load');
     this.venueService.loadCohortVenues();
+    this.chartLabels = this.venueService.categories;
+    this.chartData = this.venueService.data;
+    
+
+    setTimeout(()=>{
+      this.dataLoaded = true;
+    }, 1000)
   }
 
   clickedMarker(venue:Venue){

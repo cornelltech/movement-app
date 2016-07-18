@@ -14,7 +14,7 @@
         Activity Map
       </ion-list-header>
 
-
+      <!--
       <sebm-google-map [latitude]="coords.lat" 
                         [longitude]="coords.lng" 
                         [zoom]="13" 
@@ -27,18 +27,18 @@
                                 [longitude]="venue.lng"
                                 (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
       </sebm-google-map>
-      
+      -->
+
       <ion-list-header>
         Venue Types
       </ion-list-header>
 
-      <!--<base-chart class="chart"
-           [data]="pieChartData"
-           [labels]="pieChartLabels"
-           [chartType]="pieChartType"></base-chart>-->
+      <base-chart *ngIf="dataLoaded" class="chart animated fadeIn"
+                [data]="chartData"
+                [labels]="chartLabels"
+                [chartType]="chartType"
+                [options]="chartOptions"></base-chart>
       
-      <div id="chart"></div>
-
       <ion-list-header>
         Venues
         <p item-right># Reveals / # Checkins</p>
