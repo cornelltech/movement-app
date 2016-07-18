@@ -15,13 +15,15 @@
           </h3>
       </div>
 
-      <ion-card class="adv-map" *ngFor="let venue of venueService.venues">
+      <ion-card class="adv-map animated fadeIn" *ngFor="let venue of venueService.venues">
 
         <sebm-google-map [latitude]="venue.lat" 
                          [longitude]="venue.lng" 
                          [zoom]="15" 
                          [zoomControl]="false"
                          [streetViewControl]="false"
+                         [disableDefaultUI]="true"
+                         [disableDoubleClickZoom]="true"
                          [scrollwheel]="false"
                          [styles]="geoService.mapStyle">
           <sebm-google-map-marker [iconUrl]="iconUrl" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
