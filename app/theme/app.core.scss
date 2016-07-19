@@ -27,6 +27,10 @@ chart {
 }
 
 canvas {
+
+    pointer-events: none;
+    touch-action: none;
+
     padding-top: 5px;
     padding-left: 0;
     padding-right: 0;
