@@ -19,6 +19,7 @@ export class GeoService {
         lat: 40.740837,
         lng: -74.001806
     }
+    bgGeo:any=undefined;
     config:any = {
         // Geolocation config
         desiredAccuracy: 0,
@@ -33,7 +34,7 @@ export class GeoService {
         stopTimeout: 5,
 
         // Application config
-        debug: true,
+        debug: false,
         stopOnTerminate: false,
         startOnBoot: true
 
@@ -43,10 +44,6 @@ export class GeoService {
     constructor(private platform:Platform,
                 public venueService:VenueService){ }
 
-    test(){
-        // console.log("HERE IS WINDOW")
-        // console.log(window);
-    }
 
     initBackgroundLocation(){
         this.platform.ready().then(()=>{
@@ -56,12 +53,12 @@ export class GeoService {
             console.log("================>/initBackgroundLocation<================")
     
             // Get a reference to the plugin.
-            let bgGeo = window.BackgroundGeolocation;
+            this.bgGeo = window.BackgroundGeolocation;
                 
-            if(bgGeo){
+            if(this.bgGeo){
 
                 // Listen to location events & errors.
-                bgGeo.on('location', 
+                this.bgGeo.on('location', 
                     (location, taskId)=>{
 
                         try {
@@ -69,29 +66,32 @@ export class GeoService {
                             let coords = location.coords;
                             let lat    = coords.latitude;
                             let lng    = coords.longitude;
-                            // this.currentCoords.lat = lat;
-                            // this.currentCoords.lng = lng;
+
+                            this.currentCoords.lat = lat;
+                            this.currentCoords.lng = lng;
+
                             console.log("================>:location<================")
                             console.log("LOCATION");
                             console.log(location);
                             console.log("================>/:location<================")
 
-                            bgGeo.finish(taskId);
+                            this.bgGeo.finish(taskId);
 
                         } catch (error) {
                             
-                            console.log("ERROR => bgGeo.on('location)");
+                            console.log("ERROR => this.bgGeo.on('location)");
                             console.log(error);
-                            bgGeo.finish(taskId);
+                            this.bgGeo.finish(taskId);
                         }
   
                     },
                     (error)=>{
+                        console.log('error');
                         console.log(error)
                     });
                 
                 // Fired whenever state changes from moving->stationary or vice-versa.
-                bgGeo.on('motionchange', 
+                this.bgGeo.on('motionchange', 
                     (isMoving, location, taskId)=>{
                         try {
                             console.log("================>:motionchange<================")
@@ -115,18 +115,18 @@ export class GeoService {
                                         console.log(e);
                                     },
                                     ()=>{
-                                        bgGeo.finish(taskId);
+                                        this.bgGeo.finish(taskId);
                                     }
                                 );
                             }else{
-                                bgGeo.finish(taskId);
+                                this.bgGeo.finish(taskId);
                             }
                             
                         } catch (error) {
 
-                            console.log("ERROR => bgGeo.on('motionchange')");
+                            console.log("ERROR => this.bgGeo.on('motionchange')");
                             console.log(error);
-                            bgGeo.finish(taskId);
+                            this.bgGeo.finish(taskId);
 
                         }
 
@@ -153,18 +153,18 @@ export class GeoService {
                     }
                     
 
-                    bgGeo.configure(this.config, (state)=>{
+                    this.bgGeo.configure(this.config, (state)=>{
                         // This callback is executed when the plugin is ready to use.
-                        console.log("=============bgGeo.configure==============");
+                        console.log("=============this.bgGeo.configure==============");
                         console.log('BackgroundGeolocation ready: ', JSON.stringify(state));
                         this.state = state;
                         if (!state.enabled) {
-                            bgGeo.start();
+                            this.bgGeo.start();
                         }
                     });
 
                 } catch (error) {
-                    console.log("ERROR => bgGeo.configure");
+                    console.log("ERROR => this.bgGeo.configure");
                     console.log(error);
                 }
 

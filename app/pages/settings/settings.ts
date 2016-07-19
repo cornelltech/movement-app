@@ -38,59 +38,27 @@ export class SettingsPage {
       console.log("Plugin is initiated so get the coords");
       this.enabled = this.geoService.state.enabled;
     }else{
-      console.log("Plugin is not initiated so intiate it")
-      this.geoService.initBackgroundLocation();
+      console.log("Plugin is not initiated");
     }
-
-      // console.log("===========checkGeoPermissions===========");
-      // let bgGeo = window.BackgroundGeolocation;
-      // if(bgGeo){
-      //   bgGeo.getState((state)=>{
-      //     console.log("=============>state:");
-      //     console.log(state);
-      //     this.enabled = state.enabled;
-      //     console.log("=============>enabled:");
-      //     console.log(this.enabled);
-      //     console.log("===========/checkGeoPermissions===========");
-      //   });
-      // }else{
-      //   console.log("cant find plugin");
-      // }
   }
 
   toggleGeoPermissions(){
-
-    this.geoService.test()
 
     this.platform.ready().then(()=>{
       console.log("===========toggleGeoPermissions===========");
 
       if(this.geoService.state){
-        console.log("Plugin is initiated so get the coords");
-        
-      }else{
-        console.log("Plugin is not initiated so intiate it")
-        // this.geoService.initBackgroundLocation();
 
+        if(this.geoService.state.enabled){
+          this.geoService.bgGeo.stop();
+        }else{
+          this.geoService.bgGeo.start();
+        }
+
+      }else{
+        console.log("Plugin is not initiated");
       }
 
-      // let bgGeo = window.BackgroundGeolocation;
-      // if(bgGeo){
-
-
-      //   // bgGeo.getState((state)=>{
-      //   //   console.log(state);
-      //   //   if(state.enabled){
-      //   //     console.log("===========>STOP TRACKING");
-      //   //     bgGeo.stop();
-      //   //   }else{
-      //   //     console.log("===========>START TRACKING");
-      //   //     bgGeo.start();
-      //   //   }
-      //   // });
-      // }else{
-      //   console.log("cant find plugin");
-      // }
     });
   }
 

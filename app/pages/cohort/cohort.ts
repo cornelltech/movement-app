@@ -54,10 +54,17 @@ export class CohortPage {
 
   getCurrentCoords(){
     console.log("getCurrentCoords()");
-
     if(this.geoService.state){
       console.log("Plugin is initiated so get the coords");
-      this.coords = this.geoService.currentCoords;
+      this.geoService.bgGeo.getCurrentPosition((location,taskId)=>{
+        
+        this.coords.lat = location.coords.latitude;
+        this.coords.lng = location.coords.longitude;
+
+        this.geoService.bgGeo.finish(taskId);
+        
+      }, (error)=>{console.log(error);})
+
     }else{
       console.log("Plugin is not initiated so intiate it")
       this.geoService.initBackgroundLocation();
