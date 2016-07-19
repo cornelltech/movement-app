@@ -118,9 +118,13 @@ export class WelcomePage {
   }
 
   enableVisitTracking(){
-    this.geoService.initBackgroundLocation();
-    // this.geoService.startMonitoringVisits();
-    this.slideNext();
+    this.geoService.initBackgroundLocation()
+      .then(()=>{
+        this.slideNext();
+      }, ()=>{
+        alert("Something broke");
+      })
+    
   }
 
   goToApp(){

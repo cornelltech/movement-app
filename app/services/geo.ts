@@ -11,8 +11,6 @@ import {VenueService} from './venues';
 
 declare var window: any;
 
-
-
 @Injectable()
 export class GeoService {
     currentCoords = {
