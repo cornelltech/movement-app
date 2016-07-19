@@ -85,7 +85,7 @@ export class WelcomePage {
             this.goToApp()
           }
         },
-        e => this.presentAlert(),
+        e => this.presentLoginAlert(),
         () => { }
       );
     }else{
@@ -102,7 +102,7 @@ export class WelcomePage {
         this.credentials.password
       ).subscribe(
         i => this.doLogin(),
-        e => this.presentAlert(),
+        e => this.presentSignupAlert(),
         () => {}
       );
 
@@ -131,7 +131,7 @@ export class WelcomePage {
       .then(()=>{
         this.slideNext();
       }, ()=>{
-        alert("Something broke");
+        alert("Movemeant won't work well without this.");
       })
     
   }
@@ -140,7 +140,7 @@ export class WelcomePage {
     this.nav.setRoot(TabsPage);
   }
 
-  presentAlert( ){
+  presentLoginAlert( ){
     let alert = Alert.create({
       title: 'Sorry',
       subTitle: 'We were unable to sign you in, please try again.',
@@ -148,6 +148,16 @@ export class WelcomePage {
     });
     this.nav.present(alert);
   }
+
+  presentSignupAlert( ){
+    let alert = Alert.create({
+      title: 'Sorry',
+      subTitle: 'This username seems to be taken.',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
+  }
+  
 
   presentInvalidZipcodeAlert(){
     let alert = Alert.create({
