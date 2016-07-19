@@ -67,7 +67,9 @@ export class SettingsPage {
       this.geoService.bgGeo.stop();
     }
     this.authService.removeToken();
-    this.nav.rootNav.setRoot(WelcomePage);
+    
+    this.nav.rootNav.setRoot(WelcomePage)
+      .then(()=>{ this.nav.popToRoot(); });
   }
 
   clear(){
