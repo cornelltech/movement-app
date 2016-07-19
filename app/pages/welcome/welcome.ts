@@ -75,7 +75,7 @@ export class WelcomePage {
   doLogin(){
     if( this.credentials.username && this.credentials.password ){
       this.authService.login({
-        username: this.credentials.username,
+        username: this.credentials.username.toLowerCase().replace(' ', '_'),
         password: this.credentials.password
       }).subscribe(
         i => {
@@ -97,8 +97,8 @@ export class WelcomePage {
     if(this.credentials.username && this.credentials.email && this.credentials.password){
       
       this.authService.createAccount(
-        this.credentials.username,
-        this.credentials.email,
+        this.credentials.username.toLowerCase().replace(' ', '_'),
+        this.credentials.email.toLowerCase(),
         this.credentials.password
       ).subscribe(
         i => this.doLogin(),

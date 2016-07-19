@@ -6,7 +6,7 @@
     (ionDidChange)="onSlideDidChange($event)" 
     [options]="slidesOptions">
 
-
+    <!--Welcome-->
     <ion-slide padding text-wrap>
       <h2>Welcome to Movemeant!</h2>
       <p>
@@ -15,7 +15,7 @@
       <button outline light (click)="slideNext()">Start</button>
     </ion-slide>
 
-
+    <!--Authenticate-->
     <ion-slide padding text-wrap>
 
       <form (ngSubmit)="submitForm()" #loginForm="ngForm">
@@ -58,7 +58,7 @@
 
     </ion-slide>
 
-
+    <!--Zipcode-->
     <ion-slide padding text-wrap>
     
       <ion-list class="welcome-form">
@@ -80,7 +80,7 @@
     
     </ion-slide>
 
-
+    <!--Premissions-->
     <ion-slide padding text-wrap>
 
       <h2>Location Permissions</h2>
@@ -89,7 +89,7 @@
 
     </ion-slide>
 
-
+    <!--Start-->
     <ion-slide padding text-wrap>
 
         <h2>Welcome to <span *ngIf="cohort">{{ cohort }}</span> <span *ngIf="!cohort">your neighborhood</span>!</h2>
