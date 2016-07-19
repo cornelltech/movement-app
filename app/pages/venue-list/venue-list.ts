@@ -61,11 +61,15 @@ export class VenueListPage {
 
   test(){
 
-    LocalNotifications.schedule({
-        id: 1,
-        text: "[mvm] TEST TEST",
-        at: new Date(new Date().getTime() + 3600),
-    });
+    this.venueService.checkintoVenue({
+      lat: 40.72417, 
+      lng: -73.978871
+    }).subscribe(
+      i=>{},
+      e=>{},
+      ()=>{}
+    )
+
   }
 
   showModal(venue:Venue) {

@@ -26,9 +26,12 @@
                          [disableDoubleClickZoom]="true"
                          [scrollwheel]="false"
                          [styles]="geoService.mapStyle">
+
           <sebm-google-map-marker [iconUrl]="iconUrl" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
+
         </sebm-google-map>
-          
+        
+
         <ion-item>
           <ion-icon primary name="navigate" item-left large></ion-icon>
           <h2>{{venue.name}}</h2>

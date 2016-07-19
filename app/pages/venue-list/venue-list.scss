@@ -30,6 +30,9 @@
             color: #6d6d6d;
         }
     }
-    
 
+    sebm-google-map{
+        pointer-events: none;
+        touch-action: none;
+    }
 }
