@@ -41,6 +41,13 @@
     {
       "locator": "https://github.com/transistorsoft/cordova-background-geolocation.git",
       "id": "com.transistorsoft.cordova.background-geolocation"
+    },
+    {
+      "variables": {
+        "SENDER_ID": "GCM_PROJECT_NUMBER"
+      },
+      "locator": "phonegap-plugin-push",
+      "id": "phonegap-plugin-push"
     }
   ],
   "cordovaPlatforms": [
