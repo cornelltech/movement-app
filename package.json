@@ -39,7 +39,7 @@
     "de.appplant.cordova.plugin.local-notification",
     "cordova-plugin-mauron85-background-geolocation",
     {
-      "locator": "https://github.com/transistorsoft/cordova-background-geolocation-lt.git",
+      "locator": "https://github.com/transistorsoft/cordova-background-geolocation.git",
       "id": "com.transistorsoft.cordova.background-geolocation"
     }
   ],

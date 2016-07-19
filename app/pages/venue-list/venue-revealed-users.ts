@@ -51,7 +51,7 @@ export class RevealedUserListModal {
 
   constructor(private viewCtrl: ViewController,
              public params: NavParams) {
-                 console.log(params.data.venue);
+                //  console.log(params.data.venue);
                  this.venue = params.data.venue;
 
                  this.chartLabels = ['Revealed', 'Visited'];

@@ -19,13 +19,38 @@ export class GeoService {
         lat: 40.740837,
         lng: -74.001806
     }
+    config:any = {
+        // Geolocation config
+        desiredAccuracy: 0,
+        distanceFilter: 10,
+        stationaryRadius: 25,
+        locationUpdateInterval: 1000,
+        fastestLocationUpdateInterval: 5000,
+
+        // Activity Recognition config
+        activityType: 'Other',
+        activityRecognitionInterval: 5000,
+        stopTimeout: 5,
+
+        // Application config
+        debug: true,
+        stopOnTerminate: false,
+        startOnBoot: true
+
+    };
+    state:any = undefined;
 
     constructor(private platform:Platform,
                 public venueService:VenueService){ }
 
+    test(){
+        // console.log("HERE IS WINDOW")
+        // console.log(window);
+    }
+
     initBackgroundLocation(){
         this.platform.ready().then(()=>{
-            
+  
             console.log("================>initBackgroundLocation<================")
             console.log("STARTING");
             console.log("================>/initBackgroundLocation<================")
@@ -35,7 +60,6 @@ export class GeoService {
                 
             if(bgGeo){
 
-                
                 // Listen to location events & errors.
                 bgGeo.on('location', 
                     (location, taskId)=>{
@@ -45,17 +69,12 @@ export class GeoService {
                             let coords = location.coords;
                             let lat    = coords.latitude;
                             let lng    = coords.longitude;
-
-                            console.log("================>HERE<================")
+                            // this.currentCoords.lat = lat;
+                            // this.currentCoords.lng = lng;
+                            console.log("================>:location<================")
                             console.log("LOCATION");
                             console.log(location);
-                            console.log("================>/HERE<================")
-
-                            // LocalNotifications.schedule({
-                            //     id: Math.floor(Math.random()*1000000),
-                            //     title: "BackgroundGeolocation:location PASS",
-                            //     text: lat + ' ' + lng
-                            // });
+                            console.log("================>/:location<================")
 
                             bgGeo.finish(taskId);
 
@@ -63,110 +82,53 @@ export class GeoService {
                             
                             console.log("ERROR => bgGeo.on('location)");
                             console.log(error);
+                            bgGeo.finish(taskId);
                         }
-
-                          
-                        
+  
                     },
                     (error)=>{
                         console.log(error)
-                        // LocalNotifications.schedule({
-                        //     id: Math.floor(Math.random()*1000000),
-                        //     title: "BackgroundGeolocation:location ERROR",
-                        //     text: error
-                        // });
                     });
                 
                 // Fired whenever state changes from moving->stationary or vice-versa.
                 bgGeo.on('motionchange', 
-                    (isMoving)=>{
-
+                    (isMoving, location, taskId)=>{
                         try {
-
-
-                            console.log("================>motionchange<================")
+                            console.log("================>:motionchange<================")
                             console.log("MOTION CHANGE");
                             console.log(isMoving);
-                            console.log("================>/motionchange<================")
+                            console.log("================>/:motionchange<================")
 
-                            // LocalNotifications.schedule({
-                            //     id: Math.floor(Math.random()*1000000),
-                            //     title: "BackgroundGeolocation:motionchange",
-                            //     text: isMoving
-                            // });
+                            if(!isMoving){
+                                let coords = location.coords;
+                                let lat    = coords.latitude;
+                                let lng    = coords.longitude;
 
-                            // POST
-                            bgGeo.getCurrentPosition(
-                                (location, taskId)=>{
-
-                                    try {
-
-                                        let coords = location.coords;
-                                        let lat    = coords.latitude;
-                                        let lng    = coords.longitude;
-
-                                        console.log("================>getCurrentPosition<================")
-                                        console.log("Got Location");
-                                        console.log(location);
-                                        console.log("================>/getCurrentPosition<================")
-
-
-                                        // LocalNotifications.schedule({
-                                        //     id: Math.floor(Math.random()*1000000),
-                                        //     title: "BackgroundGeolocation:checkintoVenue:SUCCESS",
-                                        //     text: "Logged into venue"
-                                        // });
-
-
-                                        this.venueService.checkintoVenue({
-                                            lat: lat,
-                                            lng: lng
-                                        }).subscribe(
-                                            i=>{
-                                                console.log(i)
-                                                // LocalNotifications.schedule({
-                                                //     id: Math.floor(Math.random()*1000000),
-                                                //     title: "BackgroundGeolocation:checkintoVenue:SUCCESS",
-                                                //     text: "Logged into venue"
-                                                // });
-                                            },
-                                            e=>{
-                                                console.log(e)
-                                                // LocalNotifications.schedule({
-                                                //     id: Math.floor(Math.random()*1000000),
-                                                //     title: "BackgroundGeolocation:checkintoVenue:FAILURE",
-                                                //     text: "Failed to logged into venue"
-                                                // });
-                                            },
-                                            ()=>{
-                                                bgGeo.finish(taskId)
-                                            }
-                                        );
-
-                                        // bgGeo.finish(taskId)
-
-                                    } catch (error) {
-                                        
-                                        console.log("ERROR => bgGeo.getCurrentPosition");
-                                        console.log(error);
-
+                                this.venueService.checkintoVenue({
+                                    lat: lat,
+                                    lng: lng
+                                }).subscribe(
+                                    i=>{
+                                        console.log(i);
+                                    },
+                                    e=>{
+                                        console.log(e);
+                                    },
+                                    ()=>{
+                                        bgGeo.finish(taskId);
                                     }
-
-                                    
-                                });
-
-
-
-
-
-                        } catch (error) {
+                                );
+                            }else{
+                                bgGeo.finish(taskId);
+                            }
                             
+                        } catch (error) {
+
                             console.log("ERROR => bgGeo.on('motionchange')");
                             console.log(error);
+                            bgGeo.finish(taskId);
 
                         }
-
-                        
 
                     });
             
@@ -174,35 +136,29 @@ export class GeoService {
                 // https://github.com/transistorsoft/cordova-background-geolocation/tree/master/docs
 
                 console.log("++++++++++ABOUT TO CONFIGURE PLUGIN++++++++++")
-                let config = {
-                    // Geolocation config
-                    desiredAccuracy: 0,
-                    distanceFilter: 10,
-                    stationaryRadius: 25,
-                    locationUpdateInterval: 1000,
-                    fastestLocationUpdateInterval: 5000,
-
-                    // Activity Recognition config
-                    activityType: 'Other',
-                    activityRecognitionInterval: 5000,
-                    stopTimeout: 5,
-
-                    // Application config
-                    debug: false,
-                    stopOnTerminate: false,
-                    startOnBoot: true
-
-                };
-                console.log(config);
-
                 try {
+                    let Fetcher = window.BackgroundFetch;
+                    if(Fetcher) {
+                        Fetcher.configure(()=>{
+                            console.log("Fetcher Initiated");
+                            Fetcher.finish();
+                        },
+                        ()=>{
+                            console.log("Fetcher Failed");
+                        }, { 
+                            stopOnTerminate: false 
+                        });
+                    }else{
+                        console.log("window.BackgroundFetch Not found")
+                    }
+                    
 
-                    bgGeo.configure(config, function(state) {
+                    bgGeo.configure(this.config, (state)=>{
                         // This callback is executed when the plugin is ready to use.
                         console.log("=============bgGeo.configure==============");
                         console.log('BackgroundGeolocation ready: ', JSON.stringify(state));
+                        this.state = state;
                         if (!state.enabled) {
-
                             bgGeo.start();
                         }
                     });
@@ -220,7 +176,6 @@ export class GeoService {
 
         
     }
-
 
     public mapStyle:any = [
       {

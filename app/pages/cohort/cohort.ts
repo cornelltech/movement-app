@@ -54,44 +54,14 @@ export class CohortPage {
 
   getCurrentCoords(){
     console.log("getCurrentCoords()");
-    let bgGeo = window.BackgroundGeolocation;
 
-    if(bgGeo){
-
-      bgGeo.getState((state)=>{
-        console.log(state);
-        if(state.enabled){
-          
-          bgGeo.getCurrentPosition(
-            (location, taskId)=>{
-              let coords = location.coords;
-              let lat    = coords.latitude;
-              let lng    = coords.longitude;
-              
-              this.coords = {
-                lat: lat,
-                lng: lng
-              };
-
-              console.log("================>HERE<================")
-              console.log(this.coords);
-              console.log("================>HERE<================")
-            
-              bgGeo.finish(taskId);
-          })
-        }else{
-          this.coords ={
-            lat: 40.740837,
-            lng: -74.001806
-          };
-        }
-      });
-
+    if(this.geoService.state){
+      console.log("Plugin is initiated so get the coords");
+      this.coords = this.geoService.currentCoords;
     }else{
-      console.log("Plugin not installed");
+      console.log("Plugin is not initiated so intiate it")
+      this.geoService.initBackgroundLocation();
     }
-    ;
-
 
   }
   

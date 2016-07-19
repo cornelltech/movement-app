@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Alert} from 'ionic-angular';
+import {Platform, NavController, Alert} from 'ionic-angular';
 import {LocalNotifications} from 'ionic-native';
 
 import {SettingsService} from '../../services/settings';
@@ -19,63 +19,79 @@ export class SettingsPage {
   enabled:boolean = false;
 
   constructor(private nav: NavController,
+              private platform:Platform,
               public authService: AuthService,
               public venueService: VenueService,
               public geoService:GeoService) {
                 this.nav = nav;
                 this.APP_VERSION = SettingsService.APP_VERSION;
-
-                this.checkGeoPermissions();
   }
 
   onPageWillEnter() {
+    this.platform.ready().then(()=>{
         this.checkGeoPermissions();
+    });
   }
 
   checkGeoPermissions(){
-      console.log("===========checkGeoPermissions===========");
-      let bgGeo = window.BackgroundGeolocation;
-      if(bgGeo){
-        bgGeo.getState((state)=>{
-          console.log("=============>state:");
-          console.log(state);
-          this.enabled = state.enabled;
-          console.log("=============>enabled:");
-          console.log(this.enabled);
-          console.log("===========/checkGeoPermissions===========");
-        });
-      }else{
-        console.log("cant find plugin");
-      }
-      
-    
+    if(this.geoService.state){
+      console.log("Plugin is initiated so get the coords");
+      this.enabled = this.geoService.state.enabled;
+    }else{
+      console.log("Plugin is not initiated so intiate it")
+      this.geoService.initBackgroundLocation();
+    }
+
+      // console.log("===========checkGeoPermissions===========");
+      // let bgGeo = window.BackgroundGeolocation;
+      // if(bgGeo){
+      //   bgGeo.getState((state)=>{
+      //     console.log("=============>state:");
+      //     console.log(state);
+      //     this.enabled = state.enabled;
+      //     console.log("=============>enabled:");
+      //     console.log(this.enabled);
+      //     console.log("===========/checkGeoPermissions===========");
+      //   });
+      // }else{
+      //   console.log("cant find plugin");
+      // }
   }
 
   toggleGeoPermissions(){
+
+    this.geoService.test()
+
+    this.platform.ready().then(()=>{
       console.log("===========toggleGeoPermissions===========");
-      let bgGeo = window.BackgroundGeolocation;
-      if(bgGeo){
-        bgGeo.getState((state)=>{
-          console.log(state);
-          if(state.enabled){
-            console.log("===========>STOP TRACKING");
-            bgGeo.stop()
-              .then(()=>{
-                // LocalNotifications.schedule({
-                //   id: Math.floor(Math.random()*1000000),
-                //   title: "Notifications Turned Off",
-                // });
-              });
-            
-          }else{
-            console.log("===========>START TRACKING");
-            this.geoService.initBackgroundLocation();
-          }
-        });
+
+      if(this.geoService.state){
+        console.log("Plugin is initiated so get the coords");
+        
       }else{
-        console.log("cant find plugin");
+        console.log("Plugin is not initiated so intiate it")
+        // this.geoService.initBackgroundLocation();
+
       }
-      
+
+      // let bgGeo = window.BackgroundGeolocation;
+      // if(bgGeo){
+
+
+      //   // bgGeo.getState((state)=>{
+      //   //   console.log(state);
+      //   //   if(state.enabled){
+      //   //     console.log("===========>STOP TRACKING");
+      //   //     bgGeo.stop();
+      //   //   }else{
+      //   //     console.log("===========>START TRACKING");
+      //   //     bgGeo.start();
+      //   //   }
+      //   // });
+      // }else{
+      //   console.log("cant find plugin");
+      // }
+    });
   }
 
   signout(){
