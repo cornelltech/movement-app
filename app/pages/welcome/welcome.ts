@@ -16,8 +16,9 @@ export class WelcomePage {
   
   @ViewChild('slider') slider: Slides;
   slideOptions = {
-    initialSlide: 0
+    initialSlide: 0,
     // TODO - figure out how to prevent swipes, but only button nav
+    onlyExternal: false
   };
   credentials:any = {
     username: '',
@@ -44,11 +45,7 @@ export class WelcomePage {
   }
 
   slideNext(){
-    console.log('next');
-    // this.slider.slideNext();
     this.slider.slideNext();
-    // let swiper = this.slider.getSlider();
-    // swiper.slideNext(true, 100);
   }
 
   toggleMode(){
