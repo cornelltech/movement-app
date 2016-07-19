@@ -63,6 +63,9 @@ export class SettingsPage {
   }
 
   signout(){
+    if(this.geoService.state){
+      this.geoService.bgGeo.stop();
+    }
     this.authService.removeToken();
     this.nav.rootNav.setRoot(WelcomePage);
   }
