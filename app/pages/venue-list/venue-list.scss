@@ -12,6 +12,11 @@
         z-index: 1000;
     }
 
+    .ios .guestbook-button {
+        text-transform: uppercase;
+        display: block;  
+    }
+
     .item-bold {
         font-weight: bold;
     }
