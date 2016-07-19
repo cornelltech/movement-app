@@ -31,6 +31,14 @@
 
         </sebm-google-map>
         
+        <button *ngIf="venue.revealed" (click)="showModal(venue)" fab fab-right class="guestbook-button item-bold">
+          <!--<ion-icon name="log-in"></ion-icon>-->
+          View
+        </button>
+        <button *ngIf="!venue.revealed" (click)="signintoVenue(venue)" fab fab-right class="guestbook-button item-bold">
+          <!--<ion-icon name="log-in"></ion-icon>-->
+          Sign
+        </button>
 
         <ion-item>
           <ion-icon primary name="navigate" item-left large></ion-icon>
@@ -48,10 +56,10 @@
           <h2>{{venue.reveals}} <span *ngIf="venue.reveals>1 || venue.reveals==0">people have</span> <span *ngIf="venue.reveals==1">person has</span> signed in</h2>
           
         </ion-item>
-        <div padding>
+        <!--<div padding>
           <button *ngIf="venue.revealed" small block outline (click)="showModal(venue)">View Guestbook</button>
           <button *ngIf="!venue.revealed" small block outline (click)="signintoVenue(venue)">Sign Guestbook</button>
-        </div>
+        </div>-->
 
       </ion-card>
   

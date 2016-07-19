@@ -7,11 +7,9 @@
         font-size: 0.7em !important;
     }
 
-    button[fab].fab-map {
-        position: relative;
-        top:-35px;
-        right:10px;
-        z-index: 50;
+    
+    .guestbook-button{
+        z-index: 1000;
     }
 
     .item-bold {

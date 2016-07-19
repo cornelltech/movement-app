@@ -62,8 +62,8 @@ export class VenueListPage {
   test(){
 
     this.venueService.checkintoVenue({
-      lat: 40.72417, 
-      lng: -73.978871
+      lat: 40.7328149968, 
+      lng: -73.9980934256
     }).subscribe(
       i=>{},
       e=>{},
