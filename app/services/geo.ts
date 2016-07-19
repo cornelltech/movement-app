@@ -46,135 +46,141 @@ export class GeoService {
 
 
     initBackgroundLocation(){
-        this.platform.ready().then(()=>{
+        return new Promise((resolve, reject) => {
+
+            this.platform.ready().then(()=>{
   
-            console.log("================>initBackgroundLocation<================")
-            console.log("STARTING");
-            console.log("================>/initBackgroundLocation<================")
-    
-            // Get a reference to the plugin.
-            this.bgGeo = window.BackgroundGeolocation;
-                
-            if(this.bgGeo){
+                console.log("================>initBackgroundLocation<================")
+                console.log("STARTING");
+                console.log("================>/initBackgroundLocation<================")
+        
+                // Get a reference to the plugin.
+                this.bgGeo = window.BackgroundGeolocation;
+                    
+                if(this.bgGeo){
 
-                // Listen to location events & errors.
-                this.bgGeo.on('location', 
-                    (location, taskId)=>{
+                    // Listen to location events & errors.
+                    this.bgGeo.on('location', 
+                        (location, taskId)=>{
 
-                        try {
+                            try {
 
-                            let coords = location.coords;
-                            let lat    = coords.latitude;
-                            let lng    = coords.longitude;
-
-                            this.currentCoords.lat = lat;
-                            this.currentCoords.lng = lng;
-
-                            console.log("================>:location<================")
-                            console.log("LOCATION");
-                            console.log(location);
-                            console.log("================>/:location<================")
-
-                            this.bgGeo.finish(taskId);
-
-                        } catch (error) {
-                            
-                            console.log("ERROR => this.bgGeo.on('location)");
-                            console.log(error);
-                            this.bgGeo.finish(taskId);
-                        }
-  
-                    },
-                    (error)=>{
-                        console.log('error');
-                        console.log(error)
-                    });
-                
-                // Fired whenever state changes from moving->stationary or vice-versa.
-                this.bgGeo.on('motionchange', 
-                    (isMoving, location, taskId)=>{
-                        try {
-                            console.log("================>:motionchange<================")
-                            console.log("MOTION CHANGE");
-                            console.log(isMoving);
-                            console.log("================>/:motionchange<================")
-
-                            if(!isMoving){
                                 let coords = location.coords;
                                 let lat    = coords.latitude;
                                 let lng    = coords.longitude;
 
-                                this.venueService.checkintoVenue({
-                                    lat: lat,
-                                    lng: lng
-                                }).subscribe(
-                                    i=>{
-                                        console.log(i);
-                                    },
-                                    e=>{
-                                        console.log(e);
-                                    },
-                                    ()=>{
-                                        this.bgGeo.finish(taskId);
-                                    }
-                                );
-                            }else{
+                                this.currentCoords.lat = lat;
+                                this.currentCoords.lng = lng;
+
+                                console.log("================>:location<================")
+                                console.log("LOCATION");
+                                console.log(location);
+                                console.log("================>/:location<================")
+
+                                this.bgGeo.finish(taskId);
+
+                            } catch (error) {
+                                
+                                console.log("ERROR => this.bgGeo.on('location)");
+                                console.log(error);
                                 this.bgGeo.finish(taskId);
                             }
-                            
-                        } catch (error) {
-
-                            console.log("ERROR => this.bgGeo.on('motionchange')");
-                            console.log(error);
-                            this.bgGeo.finish(taskId);
-
-                        }
-
-                    });
-            
-                // BackgroundGeoLocation is highly configurable.
-                // https://github.com/transistorsoft/cordova-background-geolocation/tree/master/docs
-
-                console.log("++++++++++ABOUT TO CONFIGURE PLUGIN++++++++++")
-                try {
-                    let Fetcher = window.BackgroundFetch;
-                    if(Fetcher) {
-                        Fetcher.configure(()=>{
-                            console.log("Fetcher Initiated");
-                            Fetcher.finish();
+    
                         },
-                        ()=>{
-                            console.log("Fetcher Failed");
-                        }, { 
-                            stopOnTerminate: false 
+                        (error)=>{
+                            console.log('error');
+                            console.log(error)
                         });
-                    }else{
-                        console.log("window.BackgroundFetch Not found")
-                    }
                     
+                    // Fired whenever state changes from moving->stationary or vice-versa.
+                    this.bgGeo.on('motionchange', 
+                        (isMoving, location, taskId)=>{
+                            try {
+                                console.log("================>:motionchange<================")
+                                console.log("MOTION CHANGE");
+                                console.log(isMoving);
+                                console.log("================>/:motionchange<================")
 
-                    this.bgGeo.configure(this.config, (state)=>{
-                        // This callback is executed when the plugin is ready to use.
-                        console.log("=============this.bgGeo.configure==============");
-                        console.log('BackgroundGeolocation ready: ', JSON.stringify(state));
-                        this.state = state;
-                        if (!state.enabled) {
-                            this.bgGeo.start();
+                                if(!isMoving){
+                                    let coords = location.coords;
+                                    let lat    = coords.latitude;
+                                    let lng    = coords.longitude;
+
+                                    this.venueService.checkintoVenue({
+                                        lat: lat,
+                                        lng: lng
+                                    }).subscribe(
+                                        i=>{
+                                            console.log(i);
+                                        },
+                                        e=>{
+                                            console.log(e);
+                                        },
+                                        ()=>{
+                                            this.bgGeo.finish(taskId);
+                                        }
+                                    );
+                                }else{
+                                    this.bgGeo.finish(taskId);
+                                }
+                                
+                            } catch (error) {
+
+                                console.log("ERROR => this.bgGeo.on('motionchange')");
+                                console.log(error);
+                                this.bgGeo.finish(taskId);
+
+                            }
+
+                        });
+                
+                    // BackgroundGeoLocation is highly configurable.
+                    // https://github.com/transistorsoft/cordova-background-geolocation/tree/master/docs
+
+                    console.log("++++++++++ABOUT TO CONFIGURE PLUGIN++++++++++")
+                    try {
+                        let Fetcher = window.BackgroundFetch;
+                        if(Fetcher) {
+                            Fetcher.configure(()=>{
+                                console.log("Fetcher Initiated");
+                                Fetcher.finish();
+                            },
+                            ()=>{
+                                console.log("Fetcher Failed");
+                            }, { 
+                                stopOnTerminate: false 
+                            });
+                        }else{
+                            console.log("window.BackgroundFetch Not found")
                         }
-                    });
+                        
+                        this.bgGeo.configure(this.config, (state)=>{
+                            // This callback is executed when the plugin is ready to use.
+                            console.log("=============this.bgGeo.configure==============");
+                            console.log('BackgroundGeolocation ready: ', JSON.stringify(state));
+                            this.state = state;
+                            if (!state.enabled) {
+                                this.bgGeo.start();
+                            }
 
-                } catch (error) {
-                    console.log("ERROR => this.bgGeo.configure");
-                    console.log(error);
-                }
+                            resolve();
 
-            }else{
-                console.log("Plugin not installed");
-            }    
+                        });
 
-        });
+                    } catch (error) {
+                        console.log("ERROR => this.bgGeo.configure");
+                        console.log(error);
+                        reject();
+                    }
 
-        
+                }else{
+                    console.log("Plugin not installed");
+                    reject();
+                }    
+
+            });
+            
+        });        
     }
 
     public mapStyle:any = [

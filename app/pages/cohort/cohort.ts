@@ -52,24 +52,32 @@ export class CohortPage {
     this.loadData();
   }
 
+
+  syncCoords(){
+    this.geoService.bgGeo.getCurrentPosition((location,taskId)=>{
+      
+      this.coords.lat = location.coords.latitude;
+      this.coords.lng = location.coords.longitude;
+
+      this.geoService.bgGeo.finish(taskId);
+
+    }, (error)=>{console.log(error);});
+  }
+
   getCurrentCoords(){
     console.log("getCurrentCoords()");
     if(this.geoService.state){
       console.log("Plugin is initiated so get the coords");
-      this.geoService.bgGeo.getCurrentPosition((location,taskId)=>{
-        
-        this.coords.lat = location.coords.latitude;
-        this.coords.lng = location.coords.longitude;
-
-        this.geoService.bgGeo.finish(taskId);
-        
-      }, (error)=>{console.log(error);})
-
+      this.syncCoords();
     }else{
       console.log("Plugin is not initiated so intiate it")
-      this.geoService.initBackgroundLocation();
+      this.geoService.initBackgroundLocation().then(()=>{
+        this.syncCoords();
+        console.log("Plugin configured and initialized");
+      }, ()=>{
+        console.log("There was an error");
+      });
     }
-
   }
   
   loadData(){
