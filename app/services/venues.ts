@@ -90,7 +90,7 @@ export class VenueService {
             'lat': coords.lat,
             'lng': coords.lng
         });
-        return this.http.post(`${SettingsService.API_ENDPOINT}/venues/checkin/`, body, options)
+        return this.http.post(`${SettingsService.API_ENDPOINT}/venues/search/`, body, options)
             .map(r => r.json() || {})
             .map(r => {
                 console.log("==========>LOOKEDUP THE PLACE");
@@ -100,6 +100,17 @@ export class VenueService {
                         console.log("==========>SAVING DA PLACE");
                         ids.push(r.id);
                         this.storage.set('ids', JSON.stringify(ids));
+
+                        // checkin to place
+                        this.http.post(`${SettingsService.API_ENDPOINT}/venues/checkin/`, JSON.stringify({'venue_id': r.id}), options)
+                            .subscribe(i=>{
+                                console.log("checked in")
+                            },e=>{
+                                console.log("error in ")
+                                console.log(e);
+                            }, ()=>{
+                                console.log('done');
+                            })
                         this.loadVenues();
                     }
                 });
