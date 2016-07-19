@@ -13,11 +13,12 @@ import {TabsPage} from '../tabs/tabs';
   templateUrl: 'build/pages/welcome/welcome.html'
 })
 export class WelcomePage {
-  
+  currentSlide = 0;
+  swiper:any;
+
   @ViewChild('slider') slider: Slides;
-  slideOptions = {
+  slidesOptions = {
     initialSlide: 0,
-    // TODO - figure out how to prevent swipes, but only button nav
     onlyExternal: false
   };
   credentials:any = {
@@ -34,19 +35,30 @@ export class WelcomePage {
               public authService: AuthService,
               public accountService: AccountService,
               public geoService: GeoService) {
-                this.nav = nav;                
+                this.nav = nav;
                }
   
-  enableNotificaiton(){
-    LocalNotifications.schedule({
-        id: 1,
-        text: "Push Enabled"
-    });
+    
+  
+  onSlideWillChange(event){
+    
+  }
+  onSlideDidChange(event){
+
+  }
+
+  onIonDrag(event){
+    this.swiper = event;
+    this.swiper.lockSwipes();
   }
 
   slideNext(){
+    if(this.swiper){
+      this.swiper.unlockSwipes();
+    }
     this.slider.slideNext();
   }
+
 
   toggleMode(){
     this.signupMode = !this.signupMode;
@@ -68,7 +80,7 @@ export class WelcomePage {
       }).subscribe(
         i => {
           if(this.signupMode){
-            this.slider.slideNext();
+            this.slideNext();
           }else{
             this.goToApp()
           }
@@ -104,7 +116,7 @@ export class WelcomePage {
       this.accountService.associateZipcode(this.zipcode).subscribe(
         i => {
           this.cohort = i.cohort;
-          this.slider.slideNext();
+          this.slideNext();
         },
         e => this.presentInvalidZipcodeAlert(),
         () => {}
@@ -127,7 +139,6 @@ export class WelcomePage {
   goToApp(){
     this.nav.setRoot(TabsPage);
   }
-
 
   presentAlert( ){
     let alert = Alert.create({

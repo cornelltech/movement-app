@@ -1,6 +1,10 @@
 <ion-content class="welcome">
 
-  <ion-slides #slider pager [options]="slideOptions">
+  <ion-slides #slider pager 
+    (ionDrag)="onIonDrag($event)" 
+    (ionWillChange)="onSlideWillChange($event)" 
+    (ionDidChange)="onSlideDidChange($event)" 
+    [options]="slidesOptions">
 
 
     <ion-slide padding text-wrap>
