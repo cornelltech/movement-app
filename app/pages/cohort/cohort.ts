@@ -34,13 +34,11 @@ export class CohortPage {
       animateScale: true,
     },
     responsive: false,
-    legend: false
-    // legend: {
-    //     labels: ((l)=>{
-    //       console.log(l);
-    //       return l;
-    //     })
-    //   }
+    legend: {
+        display: true,
+        position: 'bottom',
+        fullWidth: true
+      }
   };
   dataLoaded:boolean = false
 
@@ -63,14 +61,17 @@ export class CohortPage {
 
 
   syncCoords(){
-    this.geoService.bgGeo.getCurrentPosition((location,taskId)=>{
+    if(this.geoService.bgGeo){
+      this.geoService.bgGeo.getCurrentPosition((location,taskId)=>{
       
-      this.coords.lat = location.coords.latitude;
-      this.coords.lng = location.coords.longitude;
+        this.coords.lat = location.coords.latitude;
+        this.coords.lng = location.coords.longitude;
 
-      this.geoService.bgGeo.finish(taskId);
+        this.geoService.bgGeo.finish(taskId);
 
-    }, (error)=>{console.log(error);});
+      }, (error)=>{console.log(error);});
+    }
+    
   }
 
   getCurrentCoords(){
@@ -83,8 +84,9 @@ export class CohortPage {
       this.geoService.initBackgroundLocation().then(()=>{
         this.syncCoords();
         console.log("Plugin configured and initialized");
-      }, ()=>{
-        console.log("There was an error");
+      }, 
+      ()=>{
+        console.log("Unable to initializing the plugin");
       });
     }
   }

@@ -21,12 +21,14 @@ import {Venue} from '../../models/venue';
 
   <ion-content style="margin-top:44px;">
     
+    <div padding>
     <base-chart class="chart"
                   [data]="chartData"
                   [labels]="chartLabels"
                   [chartType]="chartType"
                   [options]="chartOptions"></base-chart>
-    
+    </div>
+
     <ion-list>
       <ion-list-header>
         Revealed Users
@@ -44,9 +46,18 @@ export class RevealedUserListModal {
   chartLabels:string[] =[];
   chartData:number[] = [];
   chartOptions:any = {
-    animation: false,
+    animation: {
+      animateRotate: true,
+      animateScale: true,
+    },
     responsive: false,
+    legend: {
+      display: true,
+      position: 'bottom',
+      fullWidth: true
+    }
   };
+
   dataLoaded:boolean = false
 
   constructor(private viewCtrl: ViewController,
@@ -56,6 +67,7 @@ export class RevealedUserListModal {
 
                  this.chartLabels = ['Revealed', 'Visited'];
                  this.chartData = [this.venue.reveals, this.venue.checkins];
+                 
   }
 
   
