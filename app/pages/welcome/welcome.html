@@ -44,10 +44,15 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <button clear light small (click)="toggleMode()">
+              <button clear light (click)="toggleMode()">
                 <span *ngIf="signupMode">Or, sign in</span>
                 <span *ngIf="!signupMode">Or, sign up</span>
               </button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button clear light small>Privacy Policy</button>
             </ion-col>
             <ion-col>
               <button clear light small>Terms of Use</button>
@@ -60,23 +65,23 @@
 
     <!--Zipcode-->
     <ion-slide padding text-wrap>
-    
-      <ion-list class="welcome-form">
-        <ion-list>
-            <ion-item class="zipcode">
-              <ion-input [(ngModel)]="zipcode" type="text" value="" placeholder="Zipcode"></ion-input>
-            </ion-item>
-          </ion-list>
-      </ion-list>
+      <form (ngSubmit)="setZipCode()" #zipForm="ngForm">
+        <ion-list class="welcome-form">
+          <ion-list>
+              <ion-item class="zipcode">
+                <ion-input [(ngModel)]="zipcode" type="text" value="" placeholder="Zipcode"></ion-input>
+              </ion-item>
+            </ion-list>
+        </ion-list>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <button type="submit" (click)="setZipCode()" outline light>Next</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <button type="submit" outline light>Next</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
     
     </ion-slide>
 

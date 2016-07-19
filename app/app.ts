@@ -67,5 +67,5 @@ ionicBootstrap(MyApp, [
   GeoService],
   {
     scrollAssist: false,
-    autoFocusAssist: false
+    autoFocusAssist: true
 });
