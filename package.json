@@ -37,7 +37,11 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "de.appplant.cordova.plugin.local-notification",
-    "cordova-plugin-mauron85-background-geolocation"
+    "cordova-plugin-mauron85-background-geolocation",
+    {
+      "locator": "https://github.com/transistorsoft/cordova-background-geolocation-lt.git",
+      "id": "com.transistorsoft.cordova.background-geolocation"
+    }
   ],
   "cordovaPlatforms": [
     "ios"
