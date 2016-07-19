@@ -29,9 +29,18 @@ export class CohortPage {
   chartLabels:string[] =[];
   chartData:number[] = [];
   chartOptions:any = {
-    animation: false,
+    animation: {
+      animateRotate: true,
+      animateScale: true,
+    },
     responsive: false,
     legend: false
+    // legend: {
+    //     labels: ((l)=>{
+    //       console.log(l);
+    //       return l;
+    //     })
+    //   }
   };
   dataLoaded:boolean = false
 
