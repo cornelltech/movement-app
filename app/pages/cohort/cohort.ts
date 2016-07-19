@@ -33,6 +33,8 @@ export class CohortPage {
       animateRotate: true,
       animateScale: true,
     },
+    height: 300,
+    width: 300,
     responsive: false,
     legend: {
         display: true,

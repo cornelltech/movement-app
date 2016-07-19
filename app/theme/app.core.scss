@@ -18,12 +18,13 @@
 
 .chart-container{
     display: block;
-    height: 150px;
+    height: 300px;
     
 }
 chart {
     display: block;
     width: 100%;
+    height: 300px !important;
 }
 
 canvas {
