@@ -42,9 +42,10 @@ export class VenueService {
                 console.log(r)
 
                 this.cohort = r.cohort;
-                this.cohortVenues = r.results
+                this.cohortVenues = r.results.filter(v=>{
+                    return v.checkins > 1
+                });
 
-                // console.log(this.cohortVenues)
 
                 this.cohortVenues.map(v=>{
                     let pos = this.categories.indexOf(v.category);
