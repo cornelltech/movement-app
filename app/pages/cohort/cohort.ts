@@ -77,7 +77,7 @@ export class CohortPage {
   }
 
   getFill(venue:Venue):string{
-    return this.venueService.calculateFillPercent(venue, 40) + 'px';
+    return this.venueService.calculateFillPercent(venue, 30) + 'px';
   }
 
   getCurrentCoords(){
