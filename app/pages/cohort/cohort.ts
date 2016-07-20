@@ -37,7 +37,7 @@ export class CohortPage {
 
 
   onPageWillEnter() {
-    console.log("onPageWillEnter");
+    // console.log("onPageWillEnter");
     this.getCurrentCoords();
     this.loadData();
   }
@@ -83,7 +83,7 @@ export class CohortPage {
 
   clickedMarker(venue:Venue){
     console.log('clicked it')
-    console.log(venue);
+    // console.log(venue);
   }
 
   centerMap(venue:Venue){
