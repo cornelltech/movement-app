@@ -6,10 +6,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cohort">
+<ion-content class="cohort" scroll="false">
 
-  <ion-item-group>
-
+  <ion-list style="margin-bottom:0px; height: 40vh;">
       <ion-list-header>
         Activity Map
       </ion-list-header>
@@ -35,27 +34,19 @@
                                 (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
 
       </sebm-google-map>
-      
-      <!--<ion-list-header>
-        Venue Types
-      </ion-list-header>
+  </ion-list>
 
-      <div class="chart-container">
-        <base-chart *ngIf="dataLoaded" class="chart"
-                  [iconUrl]="iconUrl"
-                  [data]="chartData"
-                  [labels]="chartLabels"
-                  [chartType]="chartType"
-                  [options]="chartOptions"></base-chart>
-      </div>-->
-      <ion-list-header>
-        Venues
-      </ion-list-header>
-
+  
+  <ion-list-header>
+    Venues
+  </ion-list-header>
+  
+  <ion-scroll scrollY="true" style="height:41vh;">
+    <ion-list>
       <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
         
         <div item-left class="progress-container">
-          <div class="progress-indicator animated fadeIn">
+          <div class="progress-indicator">
             <div class="progress-filled" 
               [style.height]="getFill(venue)"></div>
           </div>
@@ -65,8 +56,8 @@
         <h3>{{venue.category}}</h3>
         <p item-right>{{venue.checkins}} ppl</p>
       </ion-item>
-
-    </ion-item-group>
+    </ion-list>
+  </ion-scroll>    
 
 
 </ion-content>

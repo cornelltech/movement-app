@@ -43,7 +43,7 @@ export class VenueService {
 
                 this.cohort = r.cohort;
                 this.cohortVenues = r.results.filter(v=>{
-                    return v.checkins > 1
+                    return v.checkins > 1;
                 });
 
 
