@@ -38,7 +38,9 @@ export class VenueService {
 
         this.fetchCohortVenues().subscribe(
             r => {
-                
+
+                console.log(r)
+
                 this.cohort = r.cohort;
                 this.cohortVenues = r.results
 

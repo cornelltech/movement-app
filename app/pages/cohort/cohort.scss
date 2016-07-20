@@ -2,4 +2,9 @@
     .sebm-google-map-container {
        height: 300px;
     }
+
+    .chart-container{
+        pointer-events: none;
+        touch-action: none;
+    }
 }
