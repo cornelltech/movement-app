@@ -62,19 +62,22 @@ export class SettingsPage {
     });
   }
 
+  clear(){
+    this.venueService.clearVenues();
+  }
+
   signout(){
     if(this.geoService.state){
       this.geoService.bgGeo.stop();
     }
+    // this.clear()
     this.authService.removeToken();
     
-    this.nav.rootNav.setRoot(WelcomePage)
-      .then(()=>{ this.nav.popToRoot(); });
+    this.nav.rootNav.setRoot(WelcomePage);
+    
   }
 
-  clear(){
-    this.venueService.clearVenues();
-  }
+  
 
   confirmSignout( ){
     let alert = Alert.create({
