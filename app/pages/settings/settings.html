@@ -10,6 +10,24 @@
 
   <ion-list>
     <ion-list-header>
+      Me
+    </ion-list-header>
+    <ion-item>
+      Username
+      <p item-right>{{accountService.me.username}}</p>
+    </ion-item>
+    <ion-item>
+      Email
+      <p item-right>{{accountService.me.email}}</p>
+    </ion-item>
+    <ion-item>
+      Neighborhood
+      <p item-right>{{accountService.me.cohort}}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
       Location Services
     </ion-list-header>
     <ion-item>

@@ -15,15 +15,16 @@
           </h3>
       </div>
 
-      <ion-list>
-
-        <ion-item *ngFor="let venue of venueService.venues">
+      <ion-list no-lines>
+        <ion-card *ngFor="let venue of venueService.venues">
+        <ion-item>
+          
           <h2>{{venue.name}}</h2>
           <p>{{venue.category}}</p>
 
           <button *ngIf="venue.revealed" (click)="showModal(venue)" clear item-right>
             <ion-icon name="globe"></ion-icon>
-            Public 
+            <span style="color:black;">Public</span>
           </button>
           <button *ngIf="!venue.revealed" (click)="signintoVenue(venue)" ouline item-right>
             <ion-icon name="navigate"></ion-icon>
@@ -31,7 +32,7 @@
           </button>
 
         </ion-item>
-
+        </ion-card>
       </ion-list>
 
 </ion-content>

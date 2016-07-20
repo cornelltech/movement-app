@@ -6,6 +6,7 @@ import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
 import {VenueService} from '../../services/venues';
 import {GeoService} from '../../services/geo';
+import {AccountService} from '../../services/account';
 
 import {WelcomePage} from '../welcome/welcome';
 
@@ -22,9 +23,11 @@ export class SettingsPage {
               private platform:Platform,
               public authService: AuthService,
               public venueService: VenueService,
+              public accountService:AccountService,
               public geoService:GeoService) {
                 this.nav = nav;
                 this.APP_VERSION = SettingsService.APP_VERSION;
+                this.accountService.loadLoggedInUser();
   }
 
   onPageWillEnter() {

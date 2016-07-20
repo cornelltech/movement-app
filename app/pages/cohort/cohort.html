@@ -52,15 +52,13 @@
       </div>
       <ion-list-header>
         Venues
-        <p item-right># Reveals / # Checkins</p>
+        <!--<p item-right># Reveals / # Checkins</p>-->
       </ion-list-header>
-
-      <div id="bar" style="width:100px; height:100px;"></div>
 
       <ion-item *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
         <h2>{{venue.name}}</h2>
         <h3>{{venue.category}}</h3>
-        <p item-right>{{venue.reveals}}/{{venue.checkins}}</p>
+        <p item-right>{{venue.checkins}} ppl</p>
       </ion-item>
 
     </ion-item-group>
