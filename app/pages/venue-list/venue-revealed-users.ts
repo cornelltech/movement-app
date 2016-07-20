@@ -4,6 +4,7 @@ import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {GeoService} from '../../services/geo';
 
+import {VenueService} from '../../services/venues';
 import {Venue} from '../../models/venue';
 
 @Component({
@@ -39,12 +40,17 @@ import {Venue} from '../../models/venue';
         
       </sebm-google-map>
 
-    <div padding>
-    <base-chart class="chart"
-                  [data]="chartData"
-                  [labels]="chartLabels"
-                  [chartType]="chartType"
-                  [options]="chartOptions"></base-chart>
+    <div padding style="display: flex;
+    align-items: center;
+    justify-content: center;">
+      
+      <div item-center class="progress-container" style="height:120px; width:120px; border-radius:60px;">
+        <div class="progress-indicator animated fadeIn" style="height:100px; width:100px; border-radius:60px;">
+          <div class="progress-filled" [style.height]="getFill(venue)" style="border-top-right-radius:60px; border-top-left-radius:60px;"></div>
+        </div>
+      </div>  
+
+
     </div>
 
     <ion-list>
@@ -87,6 +93,7 @@ export class RevealedUserListModal {
 
   constructor(private viewCtrl: ViewController,
               public params: NavParams,
+              public venueService: VenueService,
               public geoService:GeoService) {
                 //  console.log(params.data.venue);
                  this.venue = params.data.venue;
@@ -96,6 +103,10 @@ export class RevealedUserListModal {
                  
   }
 
+
+  getFill(venue:Venue):string{
+    return this.venueService.calculateFillPercent(venue, 100) + 'px';
+  }
   
 
   close() {
