@@ -37,6 +37,7 @@
       </sebm-google-map>
       
 
+      <div class="progress" id="progress"></div>
       <ion-list-header>
         Venue Types
       </ion-list-header>
@@ -53,6 +54,9 @@
         Venues
         <p item-right># Reveals / # Checkins</p>
       </ion-list-header>
+
+      <div id="bar" style="width:100px; height:100px;"></div>
+
       <ion-item *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
         <h2>{{venue.name}}</h2>
         <h3>{{venue.category}}</h3>

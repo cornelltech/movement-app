@@ -6,7 +6,7 @@
 
 <ion-content class="venue-list">
 
-      <div *ngIf="venueService.venues.length==0" class="placeholder-container" (click)="test()">
+      <div *ngIf="venueService.venues.length==0" class="placeholder-container">
           <h3>
             Looks like we havn't logged any places yet, bummer :(
           </h3>
@@ -15,52 +15,23 @@
           </h3>
       </div>
 
-      <ion-card class="adv-map animated fadeIn" *ngFor="let venue of venueService.venues">
+      <ion-list>
 
-        <sebm-google-map [latitude]="venue.lat" 
-                         [longitude]="venue.lng" 
-                         [zoom]="15" 
-                         [zoomControl]="false"
-                         [streetViewControl]="false"
-                         [disableDefaultUI]="true"
-                         [disableDoubleClickZoom]="true"
-                         [scrollwheel]="false"
-                         [styles]="geoService.mapStyle">
-
-          <sebm-google-map-marker [iconUrl]="iconUrl" [latitude]="venue.lat" [longitude]="venue.lng"></sebm-google-map-marker>
-
-        </sebm-google-map>
-        
-        <button *ngIf="venue.revealed" (click)="showModal(venue)" fab fab-right class="guestbook-button item-bold">
-          <!--<ion-icon name="log-in"></ion-icon>-->
-          View
-        </button>
-        <button *ngIf="!venue.revealed" (click)="signintoVenue(venue)" fab fab-right class="guestbook-button item-bold">
-          <!--<ion-icon name="log-in"></ion-icon>-->
-          Sign
-        </button>
-
-        <ion-item>
-          <ion-icon primary name="navigate" item-left large></ion-icon>
+        <ion-item *ngFor="let venue of venueService.venues">
           <h2>{{venue.name}}</h2>
           <p>{{venue.category}}</p>
+
+          <button *ngIf="venue.revealed" (click)="showModal(venue)" clear item-right>
+            <ion-icon name="globe"></ion-icon>
+            Public 
+          </button>
+          <button *ngIf="!venue.revealed" (click)="signintoVenue(venue)" ouline item-right>
+            <ion-icon name="navigate"></ion-icon>
+            Reveal
+          </button>
+
         </ion-item>
 
-        <ion-item>
-          <ion-icon secondary name="at" item-left large ></ion-icon>
-          <h2>{{venue.checkins}} <span *ngIf="venue.checkins>1 || venue.checkins==0">people have</span> <span *ngIf="venue.checkins==1">person has</span> been here</h2>
-        </ion-item>
+      </ion-list>
 
-        <ion-item>
-          <ion-icon secondary name="checkmark-circle" item-left large ></ion-icon>
-          <h2>{{venue.reveals}} <span *ngIf="venue.reveals>1 || venue.reveals==0">people have</span> <span *ngIf="venue.reveals==1">person has</span> signed in</h2>
-          
-        </ion-item>
-        <!--<div padding>
-          <button *ngIf="venue.revealed" small block outline (click)="showModal(venue)">View Guestbook</button>
-          <button *ngIf="!venue.revealed" small block outline (click)="signintoVenue(venue)">Sign Guestbook</button>
-        </div>-->
-
-      </ion-card>
-  
 </ion-content>

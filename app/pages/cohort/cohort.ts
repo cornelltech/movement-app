@@ -9,8 +9,8 @@ import {VenueService} from '../../services/venues';
 import {AccountService} from '../../services/account';
 import {GeoService} from '../../services/geo';
 
+
 declare var window: any;
-declare var Chart: any;
 
 @Component({
   templateUrl: 'build/pages/cohort/cohort.html',
@@ -51,6 +51,7 @@ export class CohortPage {
                 this.nav = nav;
                 
                 this.accountService.loadLoggedInUser();
+
 
   }
 

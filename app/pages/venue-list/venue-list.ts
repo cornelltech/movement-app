@@ -29,7 +29,6 @@ export class VenueListPage {
     this.venueService.loadVenues()
   }
 
-
   signintoVenue(venue:Venue) {
     let alert = Alert.create({
       title: `Sign in to ${venue.name}`,
@@ -57,19 +56,6 @@ export class VenueListPage {
       }]
     });
     this.nav.present(alert);
-  }
-
-  test(){
-
-    this.venueService.checkintoVenue({
-      lat: 40.7328149968, 
-      lng: -73.9980934256
-    }).subscribe(
-      i=>{},
-      e=>{},
-      ()=>{}
-    )
-
   }
 
   showModal(venue:Venue) {

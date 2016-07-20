@@ -4,7 +4,6 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     argv = process.argv;
 
-
 /**
  * Ionic hooks
  * Add ':before' or ':after' to any Ionic project command name to run the specified
@@ -34,6 +33,7 @@ var copyFonts = require('ionic-gulp-fonts-copy');
 var copyScripts = require('ionic-gulp-scripts-copy');
 
 var isRelease = argv.indexOf('--release') > -1;
+
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
