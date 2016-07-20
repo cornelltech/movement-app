@@ -70,10 +70,10 @@ export class GeoService {
                                 this.currentCoords.lat = lat;
                                 this.currentCoords.lng = lng;
 
-                                console.log("================>:location<================")
-                                console.log("LOCATION");
-                                console.log(location);
-                                console.log("================>/:location<================")
+                                // console.log("================>:location<================")
+                                // console.log("LOCATION");
+                                // console.log(location);
+                                // console.log("================>/:location<================")
 
                                 this.bgGeo.finish(taskId);
 
@@ -94,10 +94,10 @@ export class GeoService {
                     this.bgGeo.on('motionchange', 
                         (isMoving, location, taskId)=>{
                             try {
-                                console.log("================>:motionchange<================")
-                                console.log("MOTION CHANGE");
-                                console.log(isMoving);
-                                console.log("================>/:motionchange<================")
+                                // console.log("================>:motionchange<================")
+                                // console.log("MOTION CHANGE");
+                                // console.log(isMoving);
+                                // console.log("================>/:motionchange<================")
 
                                 if(!isMoving){
                                     let coords = location.coords;
@@ -154,8 +154,8 @@ export class GeoService {
                         
                         this.bgGeo.configure(this.config, (state)=>{
                             // This callback is executed when the plugin is ready to use.
-                            console.log("=============this.bgGeo.configure==============");
-                            console.log('BackgroundGeolocation ready: ', JSON.stringify(state));
+                            // console.log("=============this.bgGeo.configure==============");
+                            // console.log('BackgroundGeolocation ready: ', JSON.stringify(state));
                             this.state = state;
                             if (!state.enabled) {
                                 this.bgGeo.start();
