@@ -14,6 +14,16 @@
 
 @import "../pages/welcome/welcome";
 
+// https://forum.ionicframework.com/t/ionic2-beta10-tab-with-scroll-content-scroll-not-working-in-ios/56691/16
+ion-tab {
+  transform: translateY(-200%);
+}
+
+ion-tab.show-tab {
+  transform: translateY(0);
+}
+
+
 
 .progress-container{
     display: flex;
