@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {ViewController, NavParams} from 'ionic-angular';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
+import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import {GeoService} from '../../services/geo';
 
 import {Venue} from '../../models/venue';
 
@@ -21,6 +23,22 @@ import {Venue} from '../../models/venue';
 
   <ion-content style="margin-top:44px;">
     
+    <sebm-google-map    [latitude]="venue.lat" 
+                        [longitude]="venue.lng" 
+                        [zoom]="15" 
+                        [zoomControl]="false"
+                        [usePanning]="true"
+                        [disableDefaultUI]="true"
+                        [streetViewControl]="false"
+                        [scrollwheel]="false"
+                        [styles]="geoService.mapStyle">
+        
+        <sebm-google-map-marker [iconUrl]="iconUrl"
+                                [latitude]="venue.lat"  
+                                [longitude]="venue.lng"></sebm-google-map-marker>
+        
+      </sebm-google-map>
+
     <div padding>
     <base-chart class="chart"
                   [data]="chartData"
@@ -38,10 +56,17 @@ import {Venue} from '../../models/venue';
       </ion-item>
     </ion-list>
   </ion-content>`,
-  directives: [CHART_DIRECTIVES]
+  styles: [`
+  .sebm-google-map-container {
+       height: 150px;
+       touch-action: none;
+       pointer-events: none;
+    }`],
+  directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class RevealedUserListModal {
   venue:Venue;
+  iconUrl:string ="imgs/venue.png";
   chartType:string = 'pie';
   chartLabels:string[] =[];
   chartData:number[] = [];
@@ -61,7 +86,8 @@ export class RevealedUserListModal {
   dataLoaded:boolean = false
 
   constructor(private viewCtrl: ViewController,
-             public params: NavParams) {
+              public params: NavParams,
+              public geoService:GeoService) {
                 //  console.log(params.data.venue);
                  this.venue = params.data.venue;
 
