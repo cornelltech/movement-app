@@ -141,7 +141,7 @@ export class VenueService {
         let checkins = venue.checkins;
         let reveals = venue.reveals;
 
-        return Math.ceil( (reveals / checkins) * normalize )
+        return normalize - Math.ceil( (reveals / checkins) * normalize )
     }
 
 }
