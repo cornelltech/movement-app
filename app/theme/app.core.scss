@@ -10,16 +10,37 @@
 
 @import "../pages/cohort/cohort";
 @import "../pages/venue-list/venue-list";
-@import "../pages/profile/profile";
 @import "../pages/settings/settings";
 
 @import "../pages/welcome/welcome";
 
 
+.progress-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    border: 1px solid;
+    border-color: color($colors, secondary);
+}
+.progress-indicator{
+    background-color: color($colors, secondary);
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+.progress-filled{
+    background-color:white;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
 .chart-container{
     display: block;
     height: 300px;
-    
 }
 chart {
     display: block;

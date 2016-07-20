@@ -29,6 +29,10 @@ export class VenueListPage {
     this.venueService.loadVenues()
   }
 
+  getFill(venue:Venue):string{
+    return this.venueService.calculateFillPercent(venue, 40) + 'px';
+  }
+
   signintoVenue(venue:Venue) {
     let alert = Alert.create({
       title: `Sign in to ${venue.name}`,

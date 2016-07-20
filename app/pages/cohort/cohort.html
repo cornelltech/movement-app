@@ -52,10 +52,16 @@
       </div>
       <ion-list-header>
         Venues
-        <!--<p item-right># Reveals / # Checkins</p>-->
       </ion-list-header>
 
       <ion-item *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
+        
+        <div item-left class="progress-container">
+          <div class="progress-indicator">
+            <div class="progress-filled" [style.height]="getFill(venue)"></div>
+          </div>
+        </div>
+
         <h2>{{venue.name}}</h2>
         <h3>{{venue.category}}</h3>
         <p item-right>{{venue.checkins}} ppl</p>

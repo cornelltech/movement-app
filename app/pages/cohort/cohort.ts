@@ -62,7 +62,6 @@ export class CohortPage {
     this.loadData();
   }
 
-
   syncCoords(){
     if(this.geoService.bgGeo){
       this.geoService.bgGeo.getCurrentPosition((location,taskId)=>{
@@ -75,6 +74,10 @@ export class CohortPage {
       }, (error)=>{console.log(error);});
     }
     
+  }
+
+  getFill(venue:Venue):string{
+    return this.venueService.calculateFillPercent(venue, 40) + 'px';
   }
 
   getCurrentCoords(){

@@ -31,7 +31,7 @@ import {Venue} from '../../models/venue';
 
     <ion-list>
       <ion-list-header>
-        Revealed Users
+        {{venue.reveals}} out of {{venue.checkins}} have revealed themselves
       </ion-list-header>
       <ion-item *ngFor="let user of venue.revealed_users">
         {{user}}

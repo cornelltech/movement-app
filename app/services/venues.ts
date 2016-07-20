@@ -136,4 +136,12 @@ export class VenueService {
             this.venues = [];
         })
     }
+
+    calculateFillPercent(venue:Venue, normalize:number){
+        let checkins = venue.checkins;
+        let reveals = venue.reveals;
+
+        return Math.ceil( (reveals / checkins) * normalize )
+    }
+
 }

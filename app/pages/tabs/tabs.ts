@@ -4,7 +4,6 @@ import {CohortPage} from '../cohort/cohort';
 import {VenueListPage} from '../venue-list/venue-list';
 import {WelcomePage} from '../welcome/welcome'; 
 import {SettingsPage} from '../settings/settings';
-import {ProfilePage} from '../profile/profile';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
