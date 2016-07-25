@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cohort" scroll="false" style="overflow-y:hidden;">
+<ion-content class="cohort" scroll="false">
 
   <ion-list style="margin-bottom:0px; height: 38vh;">
       <ion-list-header style="text-align:center;" text-wrap >
@@ -52,7 +52,8 @@
     
 
     <div [ngSwitch]="view_type">
-      <div *ngSwitchCase="'chart'">
+      
+      <div padding *ngSwitchCase="'chart'">
 
         <div class="chart-container">
          <base-chart *ngIf="dataLoaded" class="chart"  
