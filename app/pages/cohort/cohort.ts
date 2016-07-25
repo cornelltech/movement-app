@@ -21,7 +21,10 @@ export class CohortPage {
             lat: 40.740837,
             lng: -74.001806
           };
-  
+  meCoords = {
+            lat: 40.740837,
+            lng: -74.001806
+          }; 
   youUrl:string = "imgs/location.png";
   iconUrl:string ="imgs/venue.png";
   view_type:string = 'list';
@@ -67,6 +70,9 @@ export class CohortPage {
       
         this.coords.lat = location.coords.latitude;
         this.coords.lng = location.coords.longitude;
+
+        this.meCoords.lat = location.coords.latitude;
+        this.meCoords.lng = location.coords.longitude;
 
         this.geoService.bgGeo.finish(taskId);
 

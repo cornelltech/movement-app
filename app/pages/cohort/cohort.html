@@ -26,8 +26,8 @@
                         [styles]="geoService.mapStyle">
         
         <sebm-google-map-marker [iconUrl]="youUrl"
-                                [latitude]="coords.lat"  
-                                [longitude]="coords.lng"></sebm-google-map-marker>
+                                [latitude]="meCoords.lat"  
+                                [longitude]="meCoords.lng"></sebm-google-map-marker>
         <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues"
                                 [iconUrl]="iconUrl"
                                 [latitude]="venue.lat" 
