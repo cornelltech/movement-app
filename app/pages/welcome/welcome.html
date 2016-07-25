@@ -8,11 +8,27 @@
 
     <!--Welcome-->
     <ion-slide padding text-wrap>
-      <h2>Welcome to Movemeant!</h2>
+      <h2>Welcome to MoveMeant!</h2>
       <p>
-        PLACE SOME WELCOME MESSAGE / DESCRIPTION HERE
+        Building community anonymously 
       </p>
+      <div>
+        <!--<p>Brought to you by</p>-->
+        <img src="imgs/cornell_wt.png" style="width:55%; padding-bottom:15px;" />
+      </div>
       <button outline light (click)="slideNext()">Start</button>
+    </ion-slide>
+
+    <!--About-->
+    <ion-slide padding text-wrap>
+      <h2>What is MoveMeant?</h2>
+      <p>
+        MoveMeant uses automatically generated location data to increase local community awareness and connect people through shared location histories.
+      </p>
+
+      <button outline light (click)="slideNext()">Next</button>
+      
+
     </ion-slide>
 
     <!--Authenticate-->
@@ -63,8 +79,15 @@
 
     </ion-slide>
 
+    
+
     <!--Zipcode-->
     <ion-slide padding text-wrap>
+      <h2>Connect</h2>
+      <p>
+         MoveMeant connects with people who live near you, please enter your zip code.
+      </p>
+
       <form (ngSubmit)="setZipCode()" #zipForm="ngForm">
         <ion-list class="welcome-form">
           <ion-list>
@@ -89,7 +112,7 @@
     <ion-slide padding text-wrap>
 
       <h2>Location Permissions</h2>
-      <p>To make sure Movemeant works and records venue visits, please give us location permissions</p>
+      <p>To make sure MoveMeant works and records venue visits, please give us location permissions</p>
       <button outline light (click)="enableVisitTracking()">Turn on Location</button>
 
     </ion-slide>
@@ -98,9 +121,8 @@
     <ion-slide padding text-wrap>
 
         <!--<h2>Welcome to <span *ngIf="cohort">{{ cohort }}</span> <span *ngIf="!cohort">your neighborhood</span>!</h2>-->
-        <h2>Welcome to ...!</h2>
-        <p>Some other message can go here</p>
-        <button outline light (click)="goToApp()">Start using Movemeant</button>
+        <h2>All set!</h2>
+        <button outline light (click)="goToApp()">Start using MoveMeant</button>
 
     </ion-slide>
 

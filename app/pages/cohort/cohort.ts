@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
+import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
@@ -13,7 +14,7 @@ declare var window: any;
 
 @Component({
   templateUrl: 'build/pages/cohort/cohort.html',
-  directives: [GOOGLE_MAPS_DIRECTIVES]
+  directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class CohortPage {
   coords ={
@@ -23,6 +24,26 @@ export class CohortPage {
   
   youUrl:string = "imgs/location.png";
   iconUrl:string ="imgs/venue.png";
+  view_type:string = 'list';
+
+  chartType:string = 'doughnut';		
+   chartLabels:string[] =[];		
+   chartData:number[] = [];		
+   chartOptions:any = {		
+     animation: {		
+       animateRotate: true,		
+       animateScale: true,		
+     },		
+     height: 300,		
+     width: 300,		
+     responsive: false,		
+     legend: {		
+         display: true,		
+         position: 'bottom',		
+         fullWidth: true		
+       }		
+   };		
+   dataLoaded:boolean = false
 
   constructor(private nav: NavController,
               public venueService:VenueService,
@@ -31,8 +52,6 @@ export class CohortPage {
                 this.nav = nav;
                 
                 this.accountService.loadLoggedInUser();
-
-
   }
 
 
@@ -78,7 +97,16 @@ export class CohortPage {
   }
   
   loadData(){
+    this.dataLoaded = false;
     this.venueService.loadCohortVenues();
+    this.chartLabels = this.venueService.categories;		
+     this.chartData = this.venueService.data;		
+ 		
+     // PATCH-JOB		
+     setTimeout(()=>{		
+       this.dataLoaded = true;		
+     }, 1000)
+    
   }
 
   clickedMarker(venue:Venue){

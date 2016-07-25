@@ -20,9 +20,15 @@
       Email
       <p item-right>{{accountService.me.email}}</p>
     </ion-item>
-    <ion-item>
+    <!--<ion-item>
+      
       Neighborhood
       <p item-right>{{accountService.me.cohort}}</p>
+    </ion-item>-->
+
+    <ion-item>
+      Feedback
+      <button secondary outline item-right>Send Feedback</button>
     </ion-item>
   </ion-list>
 
@@ -57,6 +63,30 @@
     
     <ion-item>Version: {{APP_VERSION}}</ion-item>
     
+  </ion-list>
+
+  <ion-list>
+
+    <ion-list-header>
+      Contributors
+    </ion-list-header>
+
+    <ion-item>
+      Brought to you by
+      <img item-right src="imgs/cornell.png" style="width:45%;" />
+    </ion-item>
+
+    <ion-item>
+      Made by
+      <img item-right src="imgs/foundry.png" style="width:15%;" />
+    </ion-item>
+
+    <ion-item>
+      Supported by
+      <img item-right src="imgs/aol.png" style="width:15%;" />
+    </ion-item>
+
+
   </ion-list>
 
 </ion-content>

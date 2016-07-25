@@ -1,16 +1,17 @@
 <ion-header>
   <ion-navbar primary>
     <ion-title>
-      {{ venueService.cohort }}
+      <!--{{ venueService.cohort }}-->
+      Venue Overlaps
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cohort" scroll="false">
+<ion-content class="cohort" scroll="false" style="overflow-y:hidden;">
 
-  <ion-list style="margin-bottom:0px; height: 40vh;">
-      <ion-list-header>
-        Activity Map
+  <ion-list style="margin-bottom:0px; height: 38vh;">
+      <ion-list-header style="text-align:center;" text-wrap >
+        These are the places you and your neighbors hangout
       </ion-list-header>
 
       
@@ -36,27 +37,56 @@
       </sebm-google-map>
   </ion-list>
 
-  
-  <ion-list-header>
-    Venues
-  </ion-list-header>
-  
-  <ion-scroll scrollY="true" style="height:43vh;">
-    <ion-list>
-      <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
-        
-        <div item-left class="progress-container">
-          <div class="progress-indicator">
-            <div class="progress-filled" 
-              [style.height]="getFill(venue)"></div>
-          </div>
+  <div padding>
+    <ion-segment [(ngModel)]="view_type">
+      <ion-segment-button value="list">
+        Venue List
+      </ion-segment-button>
+      <ion-segment-button value="chart">
+        Overview
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <ion-scroll scrollY="true" style="height:42vh;">
+
+    
+
+    <div [ngSwitch]="view_type">
+      <div *ngSwitchCase="'chart'">
+
+        <div class="chart-container">
+         <base-chart *ngIf="dataLoaded" class="chart"  
+                   [iconUrl]="iconUrl"
+                   [data]="chartData"
+                   [labels]="chartLabels"		
+                   [chartType]="chartType"		
+                   [options]="chartOptions"></base-chart>		
         </div>
 
-        <h2>{{venue.name}}</h2>
-        <h3>{{venue.category}}</h3>
-        <p item-right>{{venue.checkins}} ppl</p>
-      </ion-item>
-    </ion-list>
+      </div>
+
+      <div *ngSwitchCase="'list'">
+
+        <ion-list>
+          <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
+            
+            <div item-left class="progress-container">
+              <div class="progress-indicator">
+                <div class="progress-filled" 
+                  [style.height]="getFill(venue)"></div>
+              </div>
+            </div>
+
+            <h2>{{venue.name}}</h2>
+            <h3>{{venue.category}}</h3>
+            <p item-right>{{venue.checkins}} ppl</p>
+          </ion-item>
+        </ion-list>
+
+      </div>
+    </div>
+
+    
   </ion-scroll>    
 
 
