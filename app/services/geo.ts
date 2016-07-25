@@ -159,6 +159,7 @@ export class GeoService {
                             this.state = state;
                             if (!state.enabled) {
                                 this.bgGeo.start();
+                                this.state.enabled = true;
                             }
 
                             resolve();
