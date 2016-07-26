@@ -16,7 +16,7 @@
       </div>
 
       <ion-list no-lines>
-        <ion-card *ngFor="let venue of venueService.venues">
+        <ion-card *ngFor="let venue of venueService.venues" (click)="showModal(venue)">
         <ion-item text-wrap>
           
           <div item-left class="progress-container">
@@ -28,11 +28,11 @@
           <h2>{{venue.name}}</h2>
           <p>{{venue.category}}</p>
 
-          <button *ngIf="venue.revealed" (click)="showModal(venue)" clear item-right>
+          <button *ngIf="venue.revealed" clear item-right>
             <ion-icon name="globe"></ion-icon>
             <span style="color:black;">Public</span>
           </button>
-          <button *ngIf="!venue.revealed" (click)="signintoVenue(venue)" ouline item-right>
+          <button *ngIf="!venue.revealed" ouline item-right>
             <ion-icon name="navigate"></ion-icon>
             Reveal
           </button>

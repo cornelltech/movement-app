@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, Modal} from 'ionic-angular';
 
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
@@ -8,6 +8,7 @@ import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
 import {AccountService} from '../../services/account';
 import {GeoService} from '../../services/geo';
+import {RevealedUserListModal} from '../venue-list/venue-revealed-users';
 
 
 declare var window: any;
@@ -105,6 +106,7 @@ export class CohortPage {
   loadData(){
     this.dataLoaded = false;
     this.venueService.loadCohortVenues();
+    this.venueService.loadVenues();
     this.chartLabels = this.venueService.categories;		
      this.chartData = this.venueService.data;		
  		
@@ -124,5 +126,10 @@ export class CohortPage {
     this.coords.lat = venue.lat;
     this.coords.lng = venue.lng;
   }
+
+  showModal(venue:Venue) {
+    let modal = Modal.create(RevealedUserListModal, { venue: venue });
+    this.nav.present(modal);
+  } 
 
 }

@@ -74,13 +74,11 @@ export class VenueService {
         console.log('==========>Loading Venues');
         this.storage.get('ids').then(ids=>{
             ids = ids? JSON.parse(ids) : [];
-            // console.log(ids);
             if(ids.length>0){
 
                 this.fetchVenues(ids).subscribe(
                     r => {
                         this.venues = r;
-                        // console.log(r);
                     },
                     e => console.log(e),
                     () => { }

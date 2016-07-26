@@ -69,7 +69,7 @@
       <div *ngSwitchCase="'list'">
 
         <ion-list>
-          <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="centerMap(venue)">
+          <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="showModal(venue)">
             
             <div item-left class="progress-container">
               <div class="progress-indicator">

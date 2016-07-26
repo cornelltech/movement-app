@@ -33,37 +33,18 @@ export class VenueListPage {
     return this.venueService.calculateFillPercent(venue, 30) + 'px';
   }
 
-  signintoVenue(venue:Venue) {
-    let alert = Alert.create({
-      title: `Sign in to ${venue.name}`,
-      subTitle: 'You are going to reveal yourself here',
-      buttons: [{
-        text: 'Cancel',
-        handler: data => {
-          }
-      },{
-        text: 'Ok',
-        handler: data => {
-            this.venueService.signintoVenue(venue).subscribe(
-              i => {
-                venue.revealed = true;
-                venue.reveals += 1;
-                venue.revealed_users.push(this.accountService.me.username);
-
-                this.showModal(venue);
-
-              },
-              e => console.log(e),
-              () => {}
-            )
-          }
-      }]
-    });
-    this.nav.present(alert);
-  }
-
   showModal(venue:Venue) {
     let modal = Modal.create(RevealedUserListModal, { venue: venue });
     this.nav.present(modal);
-  } 
+  }
+
+
+  debug(){
+    this.venueService.checkintoVenue({lat: 40.741139, lng: -74.002845}).subscribe(
+      i=>{},
+      e=>{},
+      ()=>{}
+    )
+  }
+
 }

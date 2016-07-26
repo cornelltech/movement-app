@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {ViewController, NavParams} from 'ionic-angular';
+import {NavController, ViewController, NavParams, Alert} from 'ionic-angular';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {GeoService} from '../../services/geo';
+import {AccountService} from '../../services/account';
 
 import {VenueService} from '../../services/venues';
 import {Venue} from '../../models/venue';
@@ -53,15 +54,31 @@ import {Venue} from '../../models/venue';
 
     </div>
 
-    <ion-list>
+    <ion-list no-lines>
       <ion-list-header>
         {{venue.reveals}} out of {{venue.checkins}} have revealed themselves
       </ion-list-header>
-      <ion-item *ngFor="let user of venue.revealed_users">
+
+      
+      <div *ngIf="haveIBeenHere(venue)">
+        <ion-item *ngIf="!venue.revealed">
+          <button block large outline (click)="signintoVenue(venue)">Reveal</button>
+        </ion-item>
+      </div>
+      
+      <div *ngIf="!haveIBeenHere(venue)">
+        <ion-item *ngIf="!venue.revealed">
+          You have not been here.
+        </ion-item>
+      </div>
+
+      <ion-item *ngFor="let user of venue.revealed_users" *ngIf="venue.revealed">
         {{user}}
       </ion-item>
+
     </ion-list>
   </ion-content>`,
+
   styles: [`
   .sebm-google-map-container {
        height: 150px;
@@ -91,11 +108,13 @@ export class RevealedUserListModal {
 
   dataLoaded:boolean = false
 
-  constructor(private viewCtrl: ViewController,
+  constructor(private nav: NavController,
+              private viewCtrl: ViewController,
               public params: NavParams,
               public venueService: VenueService,
+              public accountService: AccountService,
               public geoService:GeoService) {
-                //  console.log(params.data.venue);
+                 console.log(params.data.venue);
                  this.venue = params.data.venue;
 
                  this.chartLabels = ['Revealed', 'Visited'];
@@ -105,7 +124,43 @@ export class RevealedUserListModal {
 
 
   getFill(venue:Venue):string{
-    return this.venueService.calculateFillPercent(venue, 100) + 'px';
+    return this.venueService.calculateFillPercent(venue, 80) + 'px';
+  }
+
+  haveIBeenHere(venue:Venue):boolean{
+    let flag = false;
+    this.venueService.venues.forEach(v=>{ 
+      if(v.id == venue.id){ flag = true; }
+    });
+    return flag;      
+  }
+
+  signintoVenue() {
+    let alert = Alert.create({
+      title: `Sign in to ${this.venue.name}`,
+      subTitle: 'When you reveal, your signature will only be visible to other people who have also revealed themselves here.',
+      buttons: [{
+        text: 'Not now',
+        handler: data => {
+          
+        }
+      },{
+        text: 'Reveal',
+        handler: data => {
+            this.venueService.signintoVenue(this.venue).subscribe(
+              i => {
+                this.venue.revealed = true;
+                this.venue.reveals += 1;
+                this.venue.revealed_users.push(this.accountService.me.username);
+
+              },
+              e => console.log(e),
+              () => {}
+            )
+          }
+      }]
+    });
+    this.nav.present(alert);
   }
   
 
