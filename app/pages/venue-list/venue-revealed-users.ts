@@ -141,7 +141,7 @@ export class RevealedUserListModal {
   }
 
   openInMaps(){
-    InAppBrowser.open(`http://maps.apple.com/?ll=${this.venue.lat},${this.venue.lng}`, '_system');
+    InAppBrowser.open(`http://maps.apple.com/?daddr=${this.venue.lat},${this.venue.lng}`, '_system');
   }
 
   signintoVenue() {
