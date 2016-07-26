@@ -80,6 +80,9 @@ export class WelcomePage {
       }).subscribe(
         i => {
           if(this.signupMode){
+
+            this.accountService.logEvent('consent_given');
+
             this.slideNext();
           }else{
             this.goToApp()

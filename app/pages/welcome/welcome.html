@@ -27,12 +27,52 @@
       </p>
 
       <button outline light (click)="slideNext()">Next</button>
-      
+    </ion-slide>
 
+    <!--Consent-->
+    <ion-slide padding text-wrap>
+      <h2>Consent</h2>
+      <div style="height: 50vh; overflow-y:auto; background-color:white;">
+        <p style="color:black;text-align:left;">
+          Consent Form
+          MovemMeant: A Field Study of Anonymous Location Sharing
+          Principal Investigators: Ross McLachlan, Emily Sun
+          Faculty Advisor: Mor Naaman
+
+          MoveMeant is part of a research project on community awareness from the Social Technologies Lab at Cornell Tech. By agreeing to this form by clicking Agree below, you are consenting to  grant us permission to use your anonymized data for research purposes. 
+          Purpose of the Study
+          This study seeks to explore the possibilities of utilizing anonymized location data for community-building purposes. 
+          Expected Duration
+          We will continue to collect data for as long as you use the app. If you wish to stop participating in the study, and have us stop collecting data, you can delete the app at any time. If you agree to be interviewed by a member of the research team, it is expected to take 30 minutes, and the exit survey is approximated to take 10 minutes. 
+          Audio/Video Recording 
+          Audio devices will be used to record the interviews for transcribing and further analysis. Upon completion of the transcribing process, audio files will be archived on a secure server and destroyed before three years. The raw audio file will not be used for activities beyond research analysis.
+          Data Collection
+          We will collect the following data during the study: the total number of venues you visit, the total number of times you open the app and the total number of times you sign and/or view the guestbook for a particular venue. We also collect anonymized aggregates across all participants in the study of the total number of visits and the guestbook signatures for each venue. 
+          It is not possible for us to reconstruct your complete location history from the data we receive. Your complete location history is only stored on your own device and can be removed by deleting the app after the study has finished. You can turn off the location tracking at any time from the settings menu in the app and you can delete a tracked venue at any time from the venues page of the app. 
+          After the study is complete you should delete the app from your phone. This will complete stop the app from tracking your location and collecting your data. After the study is compete we will turn off our server which will stop your data being collected even if you forget to delete the app. 
+          Confidentiality
+          Your consent form and data will be confidential. Your identity will be kept confidential throughout the study, including your name and responses. The record of the collected information will be kept until publication of the data. They will be kept in a locked, secured place. Any data, records or tapes collected in the study will only be accessible to the researchers involved. When publishing the results, we will not include any information that will make it possible to identify you.
+          Risks
+          The risks and discomfort associated with participation in this study are no greater than those ordinarily encountered in daily life. Your location information will be stored anonymously on our server, so that even the server is not able to associate your locations with your identity.
+          Rights
+          Your participation is voluntary. You are free to stop your participation at any point of the experiment. Refusal to participate or withdrawal of your consent or discontinued participation in the study will not result in any penalty or loss of benefits or rights to which you might otherwise be entitled. The investigators may remove you from the study for any of a number of reasons. If such event should occur, you will not suffer any penalty or loss of benefits or rights, which you might otherwise be entitled. It will not affect your current or future relationship with Cornell University.
+          Compensation
+          By completing the exit survey, you will have the option of entering a raffle to win an iPad (we expect about 80 people to take part, so you have a 1/80 chance of winning). You will be compensated $10 if you agree to be interviewed by a member of the research team. 
+          Right to Ask Questions & Contact Information
+          Please feel free to ask questions at any point during the interview. If you have any questions after completing the interview, you may contact Emily Sun (es765@cornell.edu).
+          If you have any questions or concerns regarding your rights as a subject in this study, you may contact the Institutional Review Board (IRB) at 607-255-5138 or access their website at http://www.irb.cornell.edu. You may also report your concerns or complaints anonymously through Ethicspoint (http://www.hotline.cornell.edu) or by calling toll free at 1-866-384-4277. Ethicspoint is an independent organization that serves as a liaison between the University and the person bringing the complaint so that anonymity can be ensured.
+          Statement of Consent
+          I have read the above information, and have received answers to any questions I asked. I consent to take part in the study.         
+        </p>
+      </div>
+      <button outline light>Decline</button>
+      <button outline light (click)="slideNext()">Accept</button>
     </ion-slide>
 
     <!--Authenticate-->
     <ion-slide padding text-wrap>
+      <h2 *ngIf="signupMode">Create Account</h2>
+      <h2 *ngIf="!signupMode">Sign in</h2>
 
       <form (ngSubmit)="submitForm()" #loginForm="ngForm">
         <ion-list class="welcome-form">
