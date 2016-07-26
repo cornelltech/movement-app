@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, enableProdMode} from '@angular/core';
 import {Platform, ionicBootstrap, Modal, NavController} from 'ionic-angular';
 import {StatusBar, Keyboard, BackgroundGeolocation} from 'ionic-native';
 
@@ -14,6 +14,8 @@ import {VenueService} from './services/venues';
 import {GeoService} from './services/geo';
 
 import {Storage, SqlStorage} from 'ionic-angular';
+
+// enableProdMode();
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'

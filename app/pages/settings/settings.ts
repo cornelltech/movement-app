@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform, NavController, Alert} from 'ionic-angular';
-import {LocalNotifications, EmailComposer} from 'ionic-native';
+import {InAppBrowser, LocalNotifications, EmailComposer} from 'ionic-native';
 
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
@@ -82,7 +82,11 @@ export class SettingsPage {
 
 
   sendFeedback(){
+    console.log("CLICK");
     EmailComposer.isAvailable().then((available: boolean) =>{
+      console.log("EMAIL COMPOSER");
+      console.log(available);
+
       if(available) {
         let email = {
           to: 's.tech.cornell@gmail.com',
@@ -96,7 +100,7 @@ export class SettingsPage {
   }  
 
   goToSite(){
-    window.open('http://cornelltech.io/')
+    InAppBrowser.open('http://cornelltech.io/', '_system');
   }
 
   confirmSignout( ){

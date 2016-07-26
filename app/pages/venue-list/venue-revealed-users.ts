@@ -114,7 +114,7 @@ export class RevealedUserListModal {
               public venueService: VenueService,
               public accountService: AccountService,
               public geoService:GeoService) {
-                 console.log(params.data.venue);
+                //  console.log(params.data.venue);
                  this.venue = params.data.venue;
 
                  this.chartLabels = ['Revealed', 'Visited'];

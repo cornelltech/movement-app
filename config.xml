@@ -6,6 +6,9 @@
   <content src="index.html"/>
   <access origin="*"/>
   <allow-navigation href="https://maps.googleapis.com/*" />
+  <allow-navigation href="http://cornelltech.io/*" />
+  <allow-navigation href="http://maps.apple.com/*" />  
+
   <allow-navigation href="about:blank" />
 
   <preference name="cordova-background-geolocation-license" value="c6625e7b4c391ecf675b8915b2db5f2c74c3a66f985722b190bc07d8ba9d9886" />
