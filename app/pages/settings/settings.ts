@@ -38,17 +38,17 @@ export class SettingsPage {
 
   checkGeoPermissions(){
     if(this.geoService.state){
-      console.log("Plugin is initiated so get the coords");
+      // console.log("Plugin is initiated so get the coords");
       this.enabled = this.geoService.state.enabled;
     }else{
-      console.log("Plugin is not initiated");
+      // console.log("Plugin is not initiated");
     }
   }
 
   toggleGeoPermissions(){
 
     this.platform.ready().then(()=>{
-      console.log("===========toggleGeoPermissions===========");
+      // console.log("===========toggleGeoPermissions===========");
 
       if(this.geoService.state){
 
@@ -59,7 +59,7 @@ export class SettingsPage {
         }
 
       }else{
-        console.log("Plugin is not initiated");
+        // console.log("Plugin is not initiated");
       }
 
     });

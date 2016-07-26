@@ -33,7 +33,7 @@ export class MyApp {
     this.routeToRootPage();
 
     platform.ready().then(() => {
-      console.log("PLATFORM IS READY");
+      // console.log("PLATFORM IS READY");
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
