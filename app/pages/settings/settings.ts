@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform, NavController, Alert} from 'ionic-angular';
-import {LocalNotifications} from 'ionic-native';
+import {LocalNotifications, EmailComposer} from 'ionic-native';
 
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
@@ -80,7 +80,24 @@ export class SettingsPage {
     
   }
 
-  
+
+  sendFeedback(){
+    EmailComposer.isAvailable().then((available: boolean) =>{
+      if(available) {
+        let email = {
+          to: 's.tech.cornell@gmail.com',
+          subject: 'MoveMeant Feedback',
+          isHtml: true
+        };
+        // Send a text message using default options
+        EmailComposer.open(email);
+      }
+    });
+  }  
+
+  goToSite(){
+    window.open('http://cornelltech.io/')
+  }
 
   confirmSignout( ){
     let alert = Alert.create({

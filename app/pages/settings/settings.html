@@ -28,7 +28,7 @@
 
     <ion-item>
       Feedback
-      <button secondary outline item-right>Send Feedback</button>
+      <button (click)="sendFeedback()" secondary outline item-right>Send Feedback</button>
     </ion-item>
   </ion-list>
 
@@ -78,7 +78,7 @@
 
     <ion-item>
       Made by
-      <img item-right src="imgs/foundry.png" style="width:15%;" />
+      <img (click)="goToSite()" item-right src="imgs/foundry.png" style="width:15%;" />
     </ion-item>
 
     <ion-item>
