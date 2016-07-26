@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController, NavParams, Alert} from 'ionic-angular';
+import {InAppBrowser} from 'ionic-native';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {GeoService} from '../../services/geo';
@@ -42,8 +43,8 @@ import {Venue} from '../../models/venue';
       </sebm-google-map>
 
     <div padding style="display: flex;
-    align-items: center;
-    justify-content: center;">
+      align-items: center;
+      justify-content: center;">
       
       <div item-center class="progress-container" style="height:120px; width:120px; border-radius:60px;">
         <div class="progress-indicator animated fadeIn" style="height:100px; width:100px; border-radius:60px;">
@@ -52,6 +53,10 @@ import {Venue} from '../../models/venue';
       </div>  
 
 
+    </div>
+
+    <div padding>
+      <button block outline (click)="openInMaps()">Open in Maps</button>
     </div>
 
     <ion-list no-lines>
@@ -133,6 +138,10 @@ export class RevealedUserListModal {
       if(v.id == venue.id){ flag = true; }
     });
     return flag;      
+  }
+
+  openInMaps(){
+    InAppBrowser.open(`http://maps.apple.com/?ll=${this.venue.lat},${this.venue.lng}`, '_system');
   }
 
   signintoVenue() {
