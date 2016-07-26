@@ -125,6 +125,7 @@ export class RevealedUserListModal {
                  this.chartLabels = ['Revealed', 'Visited'];
                  this.chartData = [this.venue.reveals, this.venue.checkins];
                  
+                 this.accountService.logEvent(`page_enter_venueDetails_${this.venue.id}`);
   }
 
 
@@ -141,6 +142,7 @@ export class RevealedUserListModal {
   }
 
   openInMaps(){
+    this.accountService.logEvent(`open_maps_venueDetails_${this.venue.id}`);
     InAppBrowser.open(`http://maps.apple.com/?daddr=${this.venue.lat},${this.venue.lng}`, '_system');
   }
 
@@ -151,7 +153,7 @@ export class RevealedUserListModal {
       buttons: [{
         text: 'Not now',
         handler: data => {
-          
+          this.accountService.logEvent(`reveal_dismiss_venueDetails_${this.venue.id}`);
         }
       },{
         text: 'Reveal',
@@ -161,6 +163,8 @@ export class RevealedUserListModal {
                 this.venue.revealed = true;
                 this.venue.reveals += 1;
                 this.venue.revealed_users.push(this.accountService.me.username);
+
+                this.accountService.logEvent(`reveal_pass_venueDetails_${this.venue.id}`);
 
               },
               e => console.log(e),

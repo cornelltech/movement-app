@@ -28,6 +28,8 @@ export class SettingsPage {
                 this.nav = nav;
                 this.APP_VERSION = SettingsService.APP_VERSION;
                 this.accountService.loadLoggedInUser();
+
+                this.accountService.logEvent("page_enter_settings")
   }
 
   onPageWillEnter() {

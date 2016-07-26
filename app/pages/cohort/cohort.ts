@@ -63,6 +63,9 @@ export class CohortPage {
     // console.log("onPageWillEnter");
     this.getCurrentCoords();
     this.loadData();
+
+    this.accountService.logEvent("page_enter_cohort")
+
   }
 
   syncCoords(){

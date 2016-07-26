@@ -41,4 +41,15 @@ export class AccountService {
         );
     }
 
+    logEvent(msg:string){
+        let options = this.auth.getProtectedHeader()
+        this.http.post(`${SettingsService.API_ENDPOINT}/events/`, JSON.stringify({ trigger: msg }), options)
+            .map(r => r.json())
+            .subscribe(
+                i=>{},
+                e=>{},
+                ()=>{}
+            )
+    }
+
 }
