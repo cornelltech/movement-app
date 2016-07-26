@@ -15,7 +15,7 @@ import {GeoService} from './services/geo';
 
 import {Storage, SqlStorage} from 'ionic-angular';
 
-// enableProdMode();
+enableProdMode();
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'

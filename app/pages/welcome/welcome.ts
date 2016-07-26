@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController, Slides, Alert} from 'ionic-angular';
-import {LocalNotifications} from 'ionic-native';
+import {InAppBrowser, LocalNotifications} from 'ionic-native';
 
 import {AuthService} from '../../services/auth';
 import {AccountService} from '../../services/account';
@@ -91,6 +91,13 @@ export class WelcomePage {
     }else{
       this.presentImpartialDataAlert();
     }
+  }
+
+  openPrivacy(){
+    InAppBrowser.open('https://s.tech.cornell.edu/MoveMeant/privacy.html', '_system');
+  }
+  openTerms(){ 
+    InAppBrowser.open('https://s.tech.cornell.edu/MoveMeant/terms.html', '_system');
   }
 
   doSignup(){
