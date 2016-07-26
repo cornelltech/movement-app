@@ -44,7 +44,8 @@
     {
       "locator": "https://github.com/transistorsoft/cordova-background-geolocation.git",
       "id": "com.transistorsoft.cordova.background-geolocation"
-    }
+    },
+    "cordova-plugin-email-composer"
   ],
   "cordovaPlatforms": [
     "ios"
