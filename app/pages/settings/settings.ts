@@ -82,21 +82,7 @@ export class SettingsPage {
 
 
   sendFeedback(){
-    console.log("CLICK");
-    EmailComposer.isAvailable().then((available: boolean) =>{
-      console.log("EMAIL COMPOSER");
-      console.log(available);
-
-      if(available) {
-        let email = {
-          to: 's.tech.cornell@gmail.com',
-          subject: 'MoveMeant Feedback',
-          isHtml: true
-        };
-        // Send a text message using default options
-        EmailComposer.open(email);
-      }
-    });
+    InAppBrowser.open(`mailto:s.tech.cornell@gmail.com?Subject=MoveMeant%20Feedback`, '_system');
   }  
 
   goToSite(){
