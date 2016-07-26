@@ -134,4 +134,16 @@ export class CohortPage {
     this.nav.present(modal);
   } 
 
+  haveIBeenThere(venue:Venue){
+    let flag = false;
+    this.venueService.venues.forEach(v=>{ 
+      if(v.id == venue.id){ flag = true; }
+    });
+    if(flag){
+      return "1.0";
+    }else{
+      return "0.5";
+    }
+  }
+
 }
