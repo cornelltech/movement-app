@@ -11,7 +11,7 @@
 
   <ion-list style="margin-bottom:0px; height: 38vh;">
       <ion-list-header style="text-align:center;" text-wrap >
-        These are the places you and your neighbors hangout
+        These are the places people in your neighborhood hangout
       </ion-list-header>
 
       
@@ -69,6 +69,10 @@
       <div *ngSwitchCase="'list'">
 
         <ion-list>
+          <ion-item text-wrap *ngIf="venueService.cohortVenues.length==0">
+            <p>Venues will only show up here when they have 2 or more visitors from people in your neighborhood! Spread the word about MoveMeant to see your neighborhood’s activity here!</p>
+          </ion-item>
+
           <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="showModal(venue)" [style.opacity]="haveIBeenThere(venue)">
             
             <div item-left class="progress-container">

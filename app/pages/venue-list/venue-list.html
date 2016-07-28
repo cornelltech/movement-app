@@ -16,7 +16,7 @@
       </div>
 
       <ion-list no-lines>
-        <ion-card *ngFor="let venue of venueService.venues" (click)="showModal(venue)">
+        <ion-card *ngFor="let venue of venueService.venues" (click)="showModal(venue)" [style.opacity]="haveIBeenThere(venue)">
         <ion-item text-wrap>
           
           <div item-left class="progress-container">
@@ -30,7 +30,7 @@
 
           <button *ngIf="venue.revealed" clear item-right>
             <ion-icon name="globe"></ion-icon>
-            <span style="color:black;">Public</span>
+            <span style="color:black;">Revealed</span>
           </button>
           <!--<button *ngIf="!venue.revealed" ouline item-right>
             <ion-icon name="navigate"></ion-icon>

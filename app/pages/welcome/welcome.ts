@@ -187,4 +187,14 @@ export class WelcomePage {
     this.nav.present(alert);
   }
 
+
+  presentConsentAlert(){
+    let alert = Alert.create({
+      title: 'Sorry',
+      subTitle: 'MoveMeant is a research project from Cornell Tech. We require informed consent for you to use the app. You can delete the app if you do not wish to take part',
+      buttons: ['OK']
+    });
+    this.nav.present(alert);
+  }
+
 }

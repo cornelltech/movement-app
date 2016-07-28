@@ -38,6 +38,14 @@ export class VenueListPage {
     this.nav.present(modal);
   }
 
+  haveIBeenThere(venue:Venue){
+    if(venue.revealed){
+      return "1.0";
+    }else{
+      return "0.5";
+    }
+  }
+
 
   debug(){
     this.venueService.checkintoVenue({lat: 40.741139, lng: -74.002845}).subscribe(

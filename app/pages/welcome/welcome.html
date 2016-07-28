@@ -82,7 +82,7 @@
 <p>Statement of Consent</p>
 <p>I have read the above information, and have received answers to any questions I asked. I consent to take part in the study. </p>
       </div>
-      <button outline light>Decline</button>
+      <button outline light (click)="presentConsentAlert()">Decline</button>
       <button outline light (click)="slideNext()">Accept</button>
     </ion-slide>
 
