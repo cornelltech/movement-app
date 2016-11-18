@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController, NavParams, Alert} from 'ionic-angular';
 import {InAppBrowser} from 'ionic-native';
-// import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
+import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {GeoService} from '../../services/geo';
 import {AccountService} from '../../services/account';
@@ -90,26 +90,26 @@ import {Venue} from '../../models/venue';
        touch-action: none;
        pointer-events: none;
     }`],
-  directives: [GOOGLE_MAPS_DIRECTIVES]
+  directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class RevealedUserListModal {
   venue:Venue;
   iconUrl:string ="imgs/venue.png";
-  // chartType:string = 'pie';
-  // chartLabels:string[] =[];
-  // chartData:number[] = [];
-  // chartOptions:any = {
-  //   animation: {
-  //     animateRotate: true,
-  //     animateScale: true,
-  //   },
-  //   responsive: false,
-  //   legend: {
-  //     display: true,
-  //     position: 'bottom',
-  //     fullWidth: true
-  //   }
-  // };
+  chartType:string = 'pie';
+  chartLabels:string[] =[];
+  chartData:number[] = [];
+  chartOptions:any = {
+    animation: {
+      animateRotate: true,
+      animateScale: true,
+    },
+    responsive: false,
+    legend: {
+      display: true,
+      position: 'bottom',
+      fullWidth: true
+    }
+  };
 
   dataLoaded:boolean = false
 
@@ -122,8 +122,8 @@ export class RevealedUserListModal {
                 //  console.log(params.data.venue);
                  this.venue = params.data.venue;
 
-                //  this.chartLabels = ['Revealed', 'Visited'];
-                //  this.chartData = [this.venue.reveals, this.venue.checkins];
+                 this.chartLabels = ['Revealed', 'Visited'];
+                 this.chartData = [this.venue.reveals, this.venue.checkins];
                  
                  this.accountService.logEvent(`page_enter_venueDetails_${this.venue.id}`);
   }
