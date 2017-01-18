@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, Modal} from 'ionic-angular';
+import {NavController, ModalController} from 'ionic-angular';
 
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
@@ -52,7 +52,8 @@ export class CohortPage {
   constructor(private nav: NavController,
               public venueService:VenueService,
               public accountService: AccountService,
-              public geoService:GeoService) {
+              public geoService:GeoService,
+              public modalCtrl: ModalController) {
                 this.nav = nav;
                 
                 this.accountService.loadLoggedInUser();
@@ -130,8 +131,8 @@ export class CohortPage {
   }
 
   showModal(venue:Venue) {
-    let modal = Modal.create(RevealedUserListModal, { venue: venue });
-    this.nav.present(modal);
+    let modal = this.modalCtrl.create(RevealedUserListModal, { venue: venue });
+    modal.present();
   } 
 
   haveIBeenThere(venue:Venue){

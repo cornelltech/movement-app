@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, ViewController, NavParams, Alert} from 'ionic-angular';
+import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
 import {InAppBrowser} from 'ionic-native';
 import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
@@ -114,6 +114,7 @@ export class RevealedUserListModal {
   dataLoaded:boolean = false
 
   constructor(private nav: NavController,
+              public alertCtrl: AlertController,
               private viewCtrl: ViewController,
               public params: NavParams,
               public venueService: VenueService,
@@ -147,7 +148,7 @@ export class RevealedUserListModal {
   }
 
   signintoVenue() {
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: `Sign in to ${this.venue.name}`,
       subTitle: 'When you reveal, your signature will only be visible to other people who have also revealed themselves here.',
       buttons: [{
@@ -173,7 +174,7 @@ export class RevealedUserListModal {
           }
       }]
     });
-    this.nav.present(alert);
+    alert.present(alert);
   }
   
 

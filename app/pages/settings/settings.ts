@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Platform, NavController, Alert} from 'ionic-angular';
+import {Platform, NavController, AlertController} from 'ionic-angular';
 import {InAppBrowser, LocalNotifications, EmailComposer} from 'ionic-native';
 
 import {SettingsService} from '../../services/settings';
@@ -20,6 +20,7 @@ export class SettingsPage {
   enabled:boolean = false;
 
   constructor(private nav: NavController,
+              public alertCtrl: AlertController,
               private platform:Platform,
               public authService: AuthService,
               public venueService: VenueService,
@@ -77,8 +78,7 @@ export class SettingsPage {
     }
     this.clear()
     this.authService.removeToken();
-    
-    this.nav.rootNav.setRoot(WelcomePage);
+    this.nav.popToRoot(WelcomePage)
     
   }
 
@@ -92,7 +92,7 @@ export class SettingsPage {
   }
 
   confirmSignout( ){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Are you sure?',
       subTitle: 'Are you sure you want to sign out?',
       buttons: [{
@@ -105,11 +105,11 @@ export class SettingsPage {
         }
       }]
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
   confirmLogsClear( ){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Are you sure?',
       subTitle: `If you erase your local logs, you won't be able to recover them.`,
       buttons: [{
@@ -122,7 +122,7 @@ export class SettingsPage {
         }
       }]
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
 }

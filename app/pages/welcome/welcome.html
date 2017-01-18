@@ -96,15 +96,15 @@
 
           <ion-item>
             <ion-label floating>Username</ion-label>
-            <ion-input [(ngModel)]="credentials.username" type="text" value=""></ion-input>
+            <ion-input [(ngModel)]="credentials.username" name="username" type="text" value=""></ion-input>
           </ion-item>
           <ion-item *ngIf="signupMode">
             <ion-label floating>Email</ion-label>
-            <ion-input [(ngModel)]="credentials.email" type="email" value=""></ion-input>
+            <ion-input [(ngModel)]="credentials.email" name="email" type="email" value=""></ion-input>
           </ion-item>
           <ion-item>
             <ion-label floating>Password</ion-label>
-            <ion-input [(ngModel)]="credentials.password" type="password" value=""></ion-input>
+            <ion-input [(ngModel)]="credentials.password" name="password" type="password" value=""></ion-input>
           </ion-item>
 
         </ion-list>
@@ -149,7 +149,7 @@
         <ion-list class="welcome-form">
           <ion-list>
               <ion-item class="zipcode">
-                <ion-input [(ngModel)]="zipcode" type="text" value="" placeholder="Zipcode"></ion-input>
+                <ion-input [(ngModel)]="zipcode" name="zipcode" type="text" value="" placeholder="Zipcode"></ion-input>
               </ion-item>
             </ion-list>
         </ion-list>

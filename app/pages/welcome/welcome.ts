@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {NavController, Slides, Alert} from 'ionic-angular';
+import {NavController, Slides, AlertController} from 'ionic-angular';
 import {InAppBrowser, LocalNotifications} from 'ionic-native';
 
 import {AuthService} from '../../services/auth';
@@ -32,6 +32,7 @@ export class WelcomePage {
   signupMode:boolean=true;
 
   constructor(private nav: NavController,
+              public alertCtrl: AlertController,
               public authService: AuthService,
               public accountService: AccountService,
               public geoService: GeoService) {
@@ -151,50 +152,50 @@ export class WelcomePage {
   }
 
   presentLoginAlert( ){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Sorry',
       subTitle: 'We were unable to sign you in, please try again.',
       buttons: ['OK']
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
   presentSignupAlert( ){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Sorry',
       subTitle: 'This username seems to be taken.',
       buttons: ['OK']
     });
-    this.nav.present(alert);
+    alert.present();
   }
   
 
   presentInvalidZipcodeAlert(){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Sorry',
       subTitle: 'Movemeant is not availible in your region at the moment',
       buttons: ['OK']
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
   presentImpartialDataAlert( ){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Sorry',
       subTitle: 'Please fill out all the fields.',
       buttons: ['OK']
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
 
   presentConsentAlert(){
-    let alert = Alert.create({
+    let alert = this.alertCtrl.create({
       title: 'Sorry',
       subTitle: 'MoveMeant is a research project from Cornell Tech. We require informed consent for you to use the app. You can delete the app if you do not wish to take part',
       buttons: ['OK']
     });
-    this.nav.present(alert);
+    alert.present();
   }
 
 }
