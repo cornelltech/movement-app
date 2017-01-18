@@ -10,7 +10,7 @@
   <allow-navigation href="https://s.tech.cornell.edu/*"/>
   <allow-navigation href="http://maps.apple.com/*"/>
   <allow-navigation href="about:blank"/>
-  <preference name="cordova-background-geolocation-license" value="c6625e7b4c391ecf675b8915b2db5f2c74c3a66f985722b190bc07d8ba9d9886"/>
+  <preference name="cordova-background-geolocation-license" value="cb8d53f71b4647fcc90836e3488604a7e387d6e5260ccc7ec3875e10727bf3a4"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
