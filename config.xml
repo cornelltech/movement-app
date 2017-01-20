@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="edu.foundry.movemeant" version="0.9.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="edu.foundry.movemeant" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Movemeant</name>
   <description>Cornell Tech Foundry + Social Technologies Lab</description>
   <author email="s.tech.cornell@gmail.com" href="https://s.tech.cornell.edu/">foundry at Cornell Tech</author>
