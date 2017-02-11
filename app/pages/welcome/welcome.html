@@ -142,14 +142,14 @@
     <ion-slide padding text-wrap>
       <h2>Connect</h2>
       <p>
-         MoveMeant connects with people who live near you, please enter your zip code.
+         MoveMeant connects with people who live near you, please enter your group name.
       </p>
 
       <form (ngSubmit)="setZipCode()" #zipForm="ngForm">
         <ion-list class="welcome-form">
           <ion-list>
               <ion-item class="zipcode">
-                <ion-input [(ngModel)]="zipcode" name="zipcode" type="text" value="" placeholder="Cohort"></ion-input>
+                <ion-input [(ngModel)]="zipcode" name="zipcode" type="text" value="" placeholder="Group Name"></ion-input>
               </ion-item>
             </ion-list>
         </ion-list>
