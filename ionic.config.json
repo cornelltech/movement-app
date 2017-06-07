@@ -1,11 +1,11 @@
 {
   "name": "Movemeant",
   "app_id": "",
-  "v2": true,
   "proxies": [
-  {
-    "path": "/api/v1",
-    "proxyUrl": "http://ec2-107-23-148-64.compute-1.amazonaws.com/api/v1"
-  }
-]
+    {
+      "path": "/api/v1",
+      "proxyUrl": "http://ec2-107-23-148-64.compute-1.amazonaws.com/api/v1"
+    }
+  ],
+  "type": "ionic-angular"
 }
