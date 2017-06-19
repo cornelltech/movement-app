@@ -18,6 +18,7 @@ declare var window: any;
   directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class CohortPage {
+  recentVenues:Venue[] = [];
   coords ={
             lat: 40.740837,
             lng: -74.001806
@@ -48,15 +49,17 @@ export class CohortPage {
        }		
    };		
    dataLoaded:boolean = false
-
+   
   constructor(private nav: NavController,
               public venueService:VenueService,
               public accountService: AccountService,
               public geoService:GeoService,
               public modalCtrl: ModalController) {
+                
                 this.nav = nav;
                 
                 this.accountService.loadLoggedInUser();
+
   }
 
 
@@ -66,7 +69,6 @@ export class CohortPage {
     this.loadData();
 
     this.accountService.logEvent("page_enter_cohort")
-
   }
 
   syncCoords(){
@@ -112,13 +114,37 @@ export class CohortPage {
     this.venueService.loadCohortVenues();
     this.venueService.loadVenues();
     this.chartLabels = this.venueService.categories;		
-     this.chartData = this.venueService.data;		
+    this.chartData = this.venueService.data;
  		
      // PATCH-JOB		
      setTimeout(()=>{		
-       this.dataLoaded = true;		
+       this.dataLoaded = true;	
      }, 1000)
+
     
+  }
+
+  onSelectChange(type:any){
+    console.log("type is: "+type);
+    if(type == "pop"){
+      this.venueService.cohortVenues = this.venueService.cohortVenues.sort(function(a,b){if(a.checkins < b.checkins) return 1; else if(a.checkins > b.checkins) return -1; else return 0;});
+      console.log("pop sort");
+    }
+    else if(type == "loc"){
+      for(let venue of this.venueService.cohortVenues){
+      venue.distance = ((venue.lat-this.meCoords.lat)*(venue.lat-this.meCoords.lat)+(venue.lng-this.meCoords.lng)*(venue.lng-this.meCoords.lng));
+      }
+      this.venueService.cohortVenues = this.venueService.cohortVenues.sort(function(a,b){if(a.distance < b.distance) return -1; else if(a.distance > b.distance) return 1; else return 0;});
+      console.log("dist sort");
+    }
+    else if(type == "type"){
+      this.venueService.cohortVenues = this.venueService.cohortVenues.sort(function(a,b){if(a.category < b.category) return -1; else if(a.category > b.category) return 1; else return 0;});
+      console.log("type sort");
+    }
+
+    else if(type == "recent"){
+      this.venueService.cohortVenues = this.recentVenues;
+    }
   }
 
   clickedMarker(venue:Venue){
