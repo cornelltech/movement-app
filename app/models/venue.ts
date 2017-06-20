@@ -15,6 +15,9 @@ export class Venue{
     revealed:boolean;
     reveals:number;
     revealed_users:string[];
+
+    //liked: boolean;
+    distance:number;
     
     constructor(){}
 }
