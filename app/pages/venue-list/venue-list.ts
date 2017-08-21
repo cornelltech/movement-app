@@ -21,7 +21,11 @@ export class VenueListPage {
               public geoService:GeoService,
               public modalCtrl: ModalController) {
                 this.nav = nav;
-                this.loadVenues();                
+                this.loadVenues();
+
+                console.log("------------------------")
+                console.log("Hello World")
+
   }
   
   iconUrl:string ="imgs/venue.png";
