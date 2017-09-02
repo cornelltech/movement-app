@@ -1,1 +1,0 @@
-node_modules/ionic/bin/ionic serve
