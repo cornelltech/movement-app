@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-navbar primary>
+      <ion-title>
+        Settings
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="settings">
+  
+    <ion-list>
+      <ion-list-header>
+        Me
+      </ion-list-header>
+      <ion-item>
+        Username
+        <p item-right>{{accountService.me.username}}</p>
+      </ion-item>
+      <ion-item>
+        Email
+        <p item-right>{{accountService.me.email}}</p>
+      </ion-item>
+      <ion-item>
+             Cohort
+        <p item-right>{{accountService.me.cohort}}</p>
+      </ion-item>
+      <ion-item>
+        Feedback
+        <button (click)="sendFeedback()" secondary outline item-right>Send Feedback</button>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list>
+      <ion-list-header>
+        Location Services
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Enabled Location Services</ion-label>
+        <ion-toggle (click)="toggleGeoPermissions()" [ngModel]="enabled"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list>
+      <ion-list-header>
+        Controls
+      </ion-list-header>
+      <ion-item (click)="confirmLogsClear()">
+         Clear Logs
+        <ion-icon name="trash" item-right></ion-icon>
+      </ion-item>
+      <ion-item (click)="confirmSignout()">
+         Sign out
+        <ion-icon name="log-out" item-right></ion-icon>
+      </ion-item>
+    </ion-list>
+  
+  
+    <ion-list>
+  
+      <ion-list-header>
+        Contributors
+      </ion-list-header>
+  
+      <ion-item>
+        Brought to you by
+        <img item-right src="imgs/cornell.png" style="width:45%;" />
+      </ion-item>
+  
+      <ion-item>
+        Made by
+        <img (click)="goToSite()" item-right src="imgs/foundry.png" style="width:15%;" />
+      </ion-item>
+  
+      <ion-item>
+        Supported by
+        <img item-right src="imgs/aol.png" style="width:15%;" />
+      </ion-item>
+  
+  
+    </ion-list>
+  
+  
+    <ion-list>
+      <ion-list-header>
+        Application
+      </ion-list-header>
+      
+      <ion-item>Version: {{APP_VERSION}}</ion-item>
+      
+    </ion-list>
+  
+  
+  </ion-content>

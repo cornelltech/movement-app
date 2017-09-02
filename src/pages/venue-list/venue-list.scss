@@ -1,0 +1,41 @@
+.venue-list{
+    .sebm-google-map-container {
+       height: 150px;
+    }
+
+    ion-card.adv-map p {
+        font-size: 0.7em !important;
+    }
+
+    
+    .guestbook-button{
+        z-index: 1000;
+    }
+
+    .ios .guestbook-button {
+        text-transform: uppercase;
+        display: block;  
+    }
+
+    .item-bold {
+        font-weight: bold;
+    }
+
+    ion-content.cards-bg {
+        background-color: #f4f4f7;
+    }
+
+    .placeholder-container{
+        padding-top: 35%;
+        h3{
+            text-align: center;
+            font-size: 1.0em;
+            color: #6d6d6d;
+        }
+    }
+
+    sebm-google-map{
+        pointer-events: none;
+        touch-action: none;
+    }
+}

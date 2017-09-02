@@ -1,0 +1,13 @@
+.cohort{
+    scroll-content{
+        overflow-y:hidden;
+    }
+    .sebm-google-map-container {
+       height: 31vh;
+    }
+
+    .chart-container{
+        pointer-events: none;
+        touch-action: none;
+    }
+}

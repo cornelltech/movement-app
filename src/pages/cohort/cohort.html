@@ -1,0 +1,109 @@
+<ion-header>
+    <ion-navbar primary style="text-align:center;" text-wrap>
+      <ion-title style="text-align:center;" text-wrap>
+        <!--{{ venueService.cohort }}-->
+        Discover Your Neighborhood
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="cohort" scroll="false">
+  
+    <ion-list style="margin-bottom:0px; height: 38vh;">
+        <ion-list-header style="text-align:center;" text-wrap >
+          These are the places people in your neighborhood hangout
+        </ion-list-header>
+  
+        
+        <!-- <sebm-google-map  [latitude]="coords.lat" 
+                          [longitude]="coords.lng" 
+                          [zoom]="15" 
+                          [zoomControl]="false"
+                          [usePanning]="true"
+                          [disableDefaultUI]="true"
+                          [streetViewControl]="false"
+                          [scrollwheel]="false"
+                          [styles]="geoService.mapStyle">
+          
+          <sebm-google-map-marker [iconUrl]="youUrl"
+                                  [latitude]="meCoords.lat"  
+                                  [longitude]="meCoords.lng"></sebm-google-map-marker>
+          <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues"
+                                  [iconUrl]="iconUrl"
+                                  [latitude]="venue.lat" 
+                                  [longitude]="venue.lng"
+                                  (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
+  
+        </sebm-google-map> -->
+    </ion-list>
+  
+    <div padding>
+      <ion-segment [(ngModel)]="view_type">
+        <ion-segment-button value="list">
+          Venue List
+        </ion-segment-button>
+        <ion-segment-button value="chart">
+          Overview
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+  
+    <div no-padding >
+      <ion-item>
+        <ion-label>Sort by</ion-label>
+        <ion-select [(ngModel)]="sortBy" (ionChange)="onSelectChange($event)">
+          <ion-option value="pop">Popularity</ion-option>
+          <ion-option value="loc">Closest to you</ion-option>
+          <ion-option value="type">Type of venue</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+  
+    <ion-scroll scrollY="true" style="height:42vh;">  
+  
+      <div [ngSwitch]="view_type">
+        
+        <div padding *ngSwitchCase="'chart'">
+  
+          <div class="chart-container">
+           <!-- <base-chart *ngIf="dataLoaded" class="chart"  
+                     [iconUrl]="iconUrl"
+                     [data]="chartData"
+                     [labels]="chartLabels"		
+                     [chartType]="chartType"		
+                     [options]="chartOptions"></base-chart>		 -->
+          </div>
+  
+        </div>
+  
+        <div *ngSwitchCase="'list'">
+  
+          <ion-list #reload>
+            <ion-item text-wrap *ngIf="venueService.cohortVenues.length==0">
+              <p>Venues will only show up here when they have 2 or more visitors from people in your neighborhood! Spread the word about MoveMeant to see your neighborhood’s activity here!</p>
+            </ion-item>
+  
+  
+            <ion-item text-wrap *ngFor="let venue of venueService.cohortVenues" (click)="showModal(venue)" [style.opacity]="haveIBeenThere(venue)">
+              
+              <div item-left class="progress-container">
+                <div class="progress-indicator">
+                  <div class="progress-filled" 
+                    [style.height]="getFill(venue)"></div>
+                </div>
+              </div>
+  
+              <h2>{{venue.name}}</h2>
+              <h3>{{venue.category}}</h3>
+              <p item-right>{{venue.checkins}} ppl</p>
+            </ion-item>
+          </ion-list>
+  
+        </div>
+      </div>
+  
+      
+    </ion-scroll>    
+  
+  
+  </ion-content>
