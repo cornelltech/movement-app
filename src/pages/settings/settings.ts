@@ -13,7 +13,7 @@ import {WelcomePage} from '../welcome/welcome';
 declare var window: any;
 
 @Component({
-  templateUrl: 'build/pages/settings/settings.html'
+  templateUrl: 'settings.html'
 })
 export class SettingsPage {
   APP_VERSION:string;

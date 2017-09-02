@@ -7,7 +7,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { CohortPage } from '../pages/cohort/cohort';
+import { SettingsPage } from '../pages/settings/settings';
+import { TabsPage } from '../pages/tabs/tabs';
+import { VenueListPage } from '../pages/venue-list/venue-list';
+import { RevealedUserListModal } from '../pages/venue-list/venue-revealed-users';
+import { WelcomePage } from '../pages/welcome/welcome';
+
 
 import {SettingsService} from './../services/settings';
 import {AuthService} from './../services/auth';
@@ -19,7 +25,12 @@ import {GeoService} from './../services/geo';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    CohortPage,
+    SettingsPage,
+    TabsPage,
+    VenueListPage,
+    RevealedUserListModal,
+    WelcomePage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +41,12 @@ import {GeoService} from './../services/geo';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    CohortPage,
+    SettingsPage,
+    TabsPage,
+    VenueListPage,
+    RevealedUserListModal,
+    WelcomePage
   ],
   providers: [
     StatusBar,

@@ -11,54 +11,8 @@ import {Venue} from '../../models/venue';
 
 @Component({
   template: `
-  
-  
-  <ion-toolbar primary style="padding-top:20px">
-    <ion-title style="padding-top:20px">{{venue.name}}</ion-title>
-    
-    <ion-buttons end>
-      <button (click)="close()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-  <ion-content style="margin-top:44px;">
-    
-    
-    <div padding style="display: flex;
-      align-items: center;
-      justify-content: center;">
-      
-      <div item-center class="progress-container" style="height:120px; width:120px; border-radius:60px;">
-        <div class="progress-indicator animated fadeIn" style="height:100px; width:100px; border-radius:60px;">
-          <div class="progress-filled" [style.height]="getFill(venue)" style="border-top-right-radius:60px; border-top-left-radius:60px;"></div>
-        </div>
-      </div>  
-    </div>
-    <div padding>
-      <button block outline (click)="openInMaps()">Open in Maps</button>
-    </div>
-    <ion-list no-lines>
-      <ion-list-header>
-        {{venue.reveals}} out of {{venue.checkins}} have revealed themselves
-      </ion-list-header>
-      
-      <div *ngIf="haveIBeenHere(venue)">
-        <ion-item *ngIf="!venue.revealed">
-          <button block large outline (click)="signintoVenue(venue)">Reveal</button>
-        </ion-item>
-      </div>
-      
-      <div *ngIf="!haveIBeenHere(venue)">
-        <ion-item *ngIf="!venue.revealed">
-          You have not been here.
-        </ion-item>
-      </div>
-      <ion-item *ngFor="let user of venue.revealed_users" *ngIf="venue.revealed">
-        {{user}}
-      </ion-item>
-    </ion-list>
-  </ion-content>`,
+    <h1>Hello World</h1>
+  `,
 
   styles: [`
   .sebm-google-map-container {
@@ -120,7 +74,7 @@ export class RevealedUserListModal {
 
   openInMaps(){
     this.accountService.logEvent(`open_maps_venueDetails_${this.venue.id}`);
-    InAppBrowser.open(`http://maps.apple.com/?daddr=${this.venue.lat},${this.venue.lng}`, '_system');
+    // InAppBrowser.open(`http://maps.apple.com/?daddr=${this.venue.lat},${this.venue.lng}`, '_system');
   }
 
   signintoVenue() {
