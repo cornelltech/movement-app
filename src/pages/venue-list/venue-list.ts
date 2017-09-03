@@ -25,7 +25,7 @@ export class VenueListPage {
 
   }
   
-  iconUrl:string ="imgs/venue.png";
+  iconUrl:string ="assets/branding/venue.png";
 
   loadVenues(){
     this.venueService.loadVenues()

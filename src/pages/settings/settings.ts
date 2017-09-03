@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {Platform, NavController, AlertController} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 
+import {WelcomePage} from '../welcome/welcome';
+
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
 import {VenueService} from '../../services/venues';
@@ -76,7 +78,7 @@ export class SettingsPage {
     }
     this.clear()
     this.authService.removeToken();
-    this.nav.popToRoot();
+    this.nav.setRoot(WelcomePage);
     
   }
 

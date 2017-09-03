@@ -24,8 +24,8 @@ export class CohortPage {
             lat: 40.740837,
             lng: -74.001806
           }; 
-  youUrl:string = "imgs/location.png";
-  iconUrl:string ="imgs/venue.png";
+  youUrl:string = "assets/branding/location.png";
+  iconUrl:string ="assets/branding/venue.png";
   view_type:string = 'list';
 
   chartType:string = 'doughnut';		

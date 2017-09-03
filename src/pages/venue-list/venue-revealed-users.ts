@@ -20,11 +20,10 @@ import {Venue} from '../../models/venue';
        touch-action: none;
        pointer-events: none;
     }`],
-//   directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class RevealedUserListModal {
   venue:Venue;
-  iconUrl:string ="imgs/venue.png";
+  iconUrl:string ="assets/branding/venue.png";
   chartType:string = 'pie';
   chartLabels:string[] =[];
   chartData:number[] = [];
