@@ -7,35 +7,38 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
         "cordova-background-geolocation": {
             "LICENSE": "4bbb513c013111eae951647fd4f9e79f127fce6f7a00e9d327db9ea2a053a0df",
-            "PACKAGE_NAME": "io.ionic.starter"
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "io.ionic.starter"
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-background-fetch": {
-            "PACKAGE_NAME": "io.ionic.starter"
+            "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "cordova-plugin-cocoalumberjack": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
         }
     }
 }

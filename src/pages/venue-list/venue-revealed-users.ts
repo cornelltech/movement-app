@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
+import {ViewController, NavParams, AlertController} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 // import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 // import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
