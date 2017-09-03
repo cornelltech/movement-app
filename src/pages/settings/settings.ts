@@ -8,10 +8,6 @@ import {VenueService} from '../../services/venues';
 import {GeoService} from '../../services/geo';
 import {AccountService} from '../../services/account';
 
-import {WelcomePage} from '../welcome/welcome';
-
-declare var window: any;
-
 @Component({
   templateUrl: 'settings.html'
 })

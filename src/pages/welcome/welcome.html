@@ -15,7 +15,7 @@
             <!--<p>Brought to you by</p>-->
             <img src="imgs/cornell_wt.png" style="width:55%; padding-bottom:15px;" />
           </div>
-          <button outline light (click)="slideNext()">Start</button>
+          <button ion-button outline color="light" (click)="slideNext()">Start</button>
         </ion-slide>
     
         <!--About-->
@@ -25,7 +25,7 @@
             MoveMeant uses automatically generated location data to increase local community awareness and connect people through shared location histories.
           </p>
     
-          <button outline light (click)="slideNext()">Next</button>
+          <button ion-button outline color="light" (click)="slideNext()">Next</button>
         </ion-slide>
     
         <!--Consent-->
@@ -81,8 +81,8 @@
     <p>Statement of Consent</p>
     <p>I have read the above information, and have received answers to any questions I asked. I consent to take part in the study. </p>
           </div>
-          <button outline light (click)="presentConsentAlert()">Decline</button>
-          <button outline light (click)="slideNext()">Accept</button>
+          <button ion-button outline color="light" (click)="presentConsentAlert()">Decline</button>
+          <button ion-button outline color="light" (click)="slideNext()">Accept</button>
         </ion-slide>
     
         <!--Authenticate-->
@@ -111,12 +111,12 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <button type="submit" outline light>Next</button>
+                  <button type="submit" ion-button outline color="light">Next</button>
                 </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
-                  <button clear light (click)="toggleMode()">
+                  <button ion-button clear color="light" (click)="toggleMode()">
                     <span *ngIf="signupMode">Or, sign in</span>
                     <span *ngIf="!signupMode">Or, sign up</span>
                   </button>
@@ -124,10 +124,10 @@
               </ion-row>
               <ion-row>
                 <ion-col>
-                  <button (click)="openPrivacy()" clear light small>Privacy Policy</button>
+                  <button (click)="openPrivacy()" ion-button clear color="light" small>Privacy Policy</button>
                 </ion-col>
                 <ion-col>
-                  <button (click)="openTerms()" clear light small>Terms of Use</button>
+                  <button (click)="openTerms()" ion-button clear color="light" small>Terms of Use</button>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -156,7 +156,7 @@
             <ion-grid>
               <ion-row>
                 <ion-col>
-                  <button type="submit" outline light>Next</button>
+                  <button type="submit" ion-button outline color="light">Next</button>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -169,7 +169,7 @@
     
           <h2>Location Permissions</h2>
           <p>To make sure MoveMeant works and records venue visits, please give us location permissions</p>
-          <button outline light (click)="enableVisitTracking()">Turn on Location</button>
+          <button ion-button outline color="light" (click)="enableVisitTracking()">Turn on Location</button>
     
         </ion-slide>
     
@@ -178,7 +178,7 @@
     
             <!--<h2>Welcome to <span *ngIf="cohort">{{ cohort }}</span> <span *ngIf="!cohort">your neighborhood</span>!</h2>-->
             <h2>All set!</h2>
-            <button outline light (click)="goToApp()">Start using MoveMeant</button>
+            <button ion-button outline color="light" (click)="goToApp()">Start using MoveMeant</button>
     
         </ion-slide> 
     

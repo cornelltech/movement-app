@@ -1,0 +1,68 @@
+{
+  "_from": "git+https://github.com/transistorsoft/cordova-background-geolocation.git",
+  "_id": "cordova-background-geolocation@2.8.2",
+  "_inBundle": false,
+  "_integrity": "sha1-OkoCP1Zcte8BE4n5PTp3G8i5YZk=",
+  "_location": "/cordova-background-geolocation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/transistorsoft/cordova-background-geolocation.git",
+    "rawSpec": "https://github.com/transistorsoft/cordova-background-geolocation.git",
+    "saveSpec": "git+https://github.com/transistorsoft/cordova-background-geolocation.git",
+    "fetchSpec": "https://github.com/transistorsoft/cordova-background-geolocation.git",
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/transistorsoft/cordova-background-geolocation.git#ffeab88a6a8d6a0b0c43dcf87fe9b00aa438d607",
+  "_spec": "https://github.com/transistorsoft/cordova-background-geolocation.git",
+  "_where": "/Users/avatchinsky/Development/movemeant-app/node_modules",
+  "author": {
+    "name": "Chris Scott, Transistor Software"
+  },
+  "bugs": {
+    "url": "https://github.com/transistorsoft/cordova-background-geolocation/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-background-geolocation",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "The most sophisticated cross-platform background location tracking & geofencing plugin with battery-conscious motion-detection",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/transistorsoft/cordova-background-geolocation#README",
+  "keywords": [
+    "gps",
+    "location",
+    "tracking",
+    "geolocation",
+    "geofence",
+    "geofencing",
+    "background",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-wp8",
+    "cordova",
+    "phonegap"
+  ],
+  "license": "Commercial (http://www.binpress.com/license/view/l/7bbff78c0e0f33e865b4f83333a54bdf)",
+  "name": "cordova-background-geolocation",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transistorsoft/cordova-background-geolocation.git"
+  },
+  "version": "2.8.2"
+}

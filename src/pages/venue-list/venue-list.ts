@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, ModalController, ViewController, NavParams, Alert, Modal} from 'ionic-angular';
+import {NavController, ModalController} from 'ionic-angular';
 // import {LocalNotifications} from 'ionic-native';
 // import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 
@@ -22,9 +22,6 @@ export class VenueListPage {
               public modalCtrl: ModalController) {
                 this.nav = nav;
                 this.loadVenues();
-
-                console.log("------------------------")
-                console.log("Hello World")
 
   }
   

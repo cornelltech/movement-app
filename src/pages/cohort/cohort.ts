@@ -10,9 +10,6 @@ import {AccountService} from '../../services/account';
 import {GeoService} from '../../services/geo';
 import {RevealedUserListModal} from '../venue-list/venue-revealed-users';
 
-
-declare var window: any;
-
 @Component({
   templateUrl: 'cohort.html',
 //   directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]

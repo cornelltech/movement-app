@@ -43,8 +43,7 @@ export class RevealedUserListModal {
 
   dataLoaded:boolean = false
 
-  constructor(private nav: NavController,
-              public alertCtrl: AlertController,
+  constructor(public alertCtrl: AlertController,
               private viewCtrl: ViewController,
               public params: NavParams,
               public venueService: VenueService,

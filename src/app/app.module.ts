@@ -4,7 +4,10 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+
 import { IonicStorageModule } from '@ionic/storage';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 
 import { MyApp } from './app.component';
 import { CohortPage } from '../pages/cohort/cohort';
@@ -51,11 +54,14 @@ import {GeoService} from './../services/geo';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
+
     SettingsService, 
     AuthService, 
     AccountService, 
     VenueService,
     GeoService,
+    
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
