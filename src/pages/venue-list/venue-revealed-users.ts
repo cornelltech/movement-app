@@ -11,11 +11,65 @@ import {Venue} from '../../models/venue';
 
 @Component({
   template: `
-    <h1>Hello World</h1>
+<ion-toolbar primary style="padding-top:20px">
+  <ion-title style="padding-top:20px">{{venue.name}}</ion-title>
+  
+  <ion-buttons end>
+    <button ion-button icon-only (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content style="margin-top:44px;">
+  <agm-map 
+    [latitude]="venue.lat" 
+    [longitude]="venue.lng" 
+    [zoom]="15" 
+    [zoomControl]="false"
+    [usePanning]="true"
+    [disableDefaultUI]="true"
+    [streetViewControl]="false"
+    [scrollwheel]="false"
+    [styles]="geoService.mapStyle">
+
+      <agm-marker 
+        [iconUrl]="iconUrl"
+        [latitude]="venue.lat"  
+        [longitude]="venue.lng">
+      </agm-marker>
+
+    </agm-map>
+  
+  <div padding>
+    <button ion-button block outline (click)="openInMaps()">Open in Maps</button>
+  </div>
+  <ion-list no-lines>
+    <ion-list-header>
+      {{venue.reveals}} out of {{venue.checkins}} have revealed themselves
+    </ion-list-header>
+    
+    <div *ngIf="haveIBeenHere(venue)">
+      <ion-item *ngIf="!venue.revealed">
+        <button ion-button block outline (click)="signintoVenue(venue)">Reveal</button>
+      </ion-item>
+    </div>
+    
+    <div *ngIf="!haveIBeenHere(venue)">
+      <ion-item *ngIf="!venue.revealed">
+        You have not been here.
+      </ion-item>
+    </div>
+    <div *ngIf="venue.revealed">
+      <ion-item *ngFor="let user of venue.revealed_users">
+        {{user}}
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>
   `,
 
   styles: [`
-  .sebm-google-map-container {
+  agm-map {
        height: 150px;
        touch-action: none;
        pointer-events: none;

@@ -10,6 +10,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
+import { ChartsModule } from 'ng2-charts';
 import {AgmCoreModule} from '@agm/core';
 
 import { MyApp } from './app.component';
@@ -58,6 +59,7 @@ const cloudSettings: CloudSettings = {
   imports: [
     BrowserModule,
     HttpModule,
+    ChartsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBa7UgG0KAlZShxva2Dyhg1Hhu7lh0BLSc'
     }),
