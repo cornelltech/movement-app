@@ -14,27 +14,33 @@
           These are the places people in your neighborhood hangout
         </ion-list-header>
   
-        
-        <!-- <sebm-google-map  [latitude]="coords.lat" 
-                          [longitude]="coords.lng" 
-                          [zoom]="15" 
-                          [zoomControl]="false"
-                          [usePanning]="true"
-                          [disableDefaultUI]="true"
-                          [streetViewControl]="false"
-                          [scrollwheel]="false"
-                          [styles]="geoService.mapStyle">
-          
-          <sebm-google-map-marker [iconUrl]="youUrl"
-                                  [latitude]="meCoords.lat"  
-                                  [longitude]="meCoords.lng"></sebm-google-map-marker>
-          <sebm-google-map-marker *ngFor="let venue of venueService.cohortVenues"
-                                  [iconUrl]="iconUrl"
-                                  [latitude]="venue.lat" 
-                                  [longitude]="venue.lng"
-                                  (markerClick)="clickedMarker(venue)"></sebm-google-map-marker>
-  
-        </sebm-google-map> -->
+        <agm-map 
+          [latitude]="coords.lat" 
+          [longitude]="coords.lng" 
+          [zoom]="15" 
+          [zoomControl]="false"
+          [usePanning]="true"
+          [disableDefaultUI]="true"
+          [streetViewControl]="false"
+          [scrollwheel]="false"
+          [styles]="geoService.mapStyle">
+
+          <agm-marker 
+            [iconUrl]="youUrl"
+            [latitude]="meCoords.lat"  
+            [longitude]="meCoords.lng">
+          </agm-marker>
+
+          <agm-marker 
+            *ngFor="let venue of venueService.cohortVenues"
+            [iconUrl]="iconUrl"
+            [latitude]="venue.lat" 
+            [longitude]="venue.lng"
+            (markerClick)="clickedMarker(venue)">
+          </agm-marker>
+
+        </agm-map>
+
     </ion-list>
   
     <div padding>

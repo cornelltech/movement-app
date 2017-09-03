@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+import {AgmCoreModule} from '@agm/core';
 
 import { MyApp } from './app.component';
 import { CohortPage } from '../pages/cohort/cohort';
@@ -38,6 +39,9 @@ import {GeoService} from './../services/geo';
   imports: [
     BrowserModule,
     HttpModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBa7UgG0KAlZShxva2Dyhg1Hhu7lh0BLSc'
+    }),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
