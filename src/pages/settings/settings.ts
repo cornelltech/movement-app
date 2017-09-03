@@ -1,7 +1,10 @@
 import {Component} from '@angular/core';
 import {Platform, NavController, AlertController} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
-
+import {
+  Push,
+  PushToken
+} from '@ionic/cloud-angular';
 import {WelcomePage} from '../welcome/welcome';
 
 import {SettingsService} from '../../services/settings';
@@ -15,10 +18,12 @@ import {AccountService} from '../../services/account';
 })
 export class SettingsPage {
   APP_VERSION:string;
-  enabled:boolean = false;
+  enabledGeo:boolean = false;
+  enabledPush:boolean = false;
 
   constructor(private nav: NavController,
               private iab: InAppBrowser,
+              public push: Push,
               public alertCtrl: AlertController,
               private platform:Platform,
               public authService: AuthService,
@@ -41,7 +46,7 @@ export class SettingsPage {
   checkGeoPermissions(){
     if(this.geoService.state){
       // console.log("Plugin is initiated so get the coords");
-      this.enabled = this.geoService.state.enabled;
+      this.enabledGeo = this.geoService.state.enabled;
     }else{
       // console.log("Plugin is not initiated");
     }
@@ -64,6 +69,19 @@ export class SettingsPage {
         console.log("Plugin is not initiated, starting it");
         this.geoService.initBackgroundLocation();
       }
+
+    });
+  }
+
+  togglePushPermissions(){
+    this.platform.ready().then(()=>{
+
+      this.push.register().then((t: PushToken) => {
+        return this.push.saveToken(t);
+      }).then((t: PushToken) => {
+        console.log('Token saved:', t.token);
+        this.accountService.registerDevice(t.token);
+      });
 
     });
   }

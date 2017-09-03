@@ -1,18 +1,17 @@
 import {Component} from '@angular/core';
-import {NavController, ModalController} from 'ionic-angular';
-
-// import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
-// import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
-
+import {Platform, NavController, ModalController} from 'ionic-angular';
+import {
+  Push,
+  PushToken
+} from '@ionic/cloud-angular';
 import {Venue} from '../../models/venue';
 import {VenueService} from '../../services/venues';
-import {AccountService} from '../../services/account';
 import {GeoService} from '../../services/geo';
 import {RevealedUserListModal} from '../venue-list/venue-revealed-users';
+import {AccountService} from '../../services/account';
 
 @Component({
   templateUrl: 'cohort.html',
-//   directives: [CHART_DIRECTIVES, GOOGLE_MAPS_DIRECTIVES]
 })
 export class CohortPage {
   recentVenues:Venue[] = [];
@@ -48,9 +47,11 @@ export class CohortPage {
    dataLoaded:boolean = false
    
   constructor(private nav: NavController,
+              public push: Push,
               public venueService:VenueService,
               public accountService: AccountService,
               public geoService:GeoService,
+              private platform:Platform,
               public modalCtrl: ModalController) {
                 
                 this.nav = nav;
@@ -168,6 +169,19 @@ export class CohortPage {
     }else{
       return "0.5";
     }
+  }
+
+  setupPush() {
+    this.platform.ready().then(()=>{
+      
+        this.push.register().then((t: PushToken) => {
+          return this.push.saveToken(t);
+        }).then((t: PushToken) => {
+          console.log('Token saved:', t.token);
+          this.accountService.registerDevice(t.token);
+        });
+  
+      });
   }
 
 }

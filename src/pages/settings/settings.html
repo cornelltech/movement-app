@@ -36,7 +36,17 @@
       </ion-list-header>
       <ion-item>
         <ion-label>Enabled Location Services</ion-label>
-        <ion-toggle (click)="toggleGeoPermissions()" [ngModel]="enabled"></ion-toggle>
+        <ion-toggle (click)="toggleGeoPermissions()" [ngModel]="enabledGeo"></ion-toggle>
+      </ion-item>
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>
+        Notifications
+      </ion-list-header>
+      <ion-item>
+        <ion-label>Enabled Push Notifications</ion-label>
+        <button ion-button outline item-end (click)="togglePushPermissions()">Enable</button>
       </ion-item>
     </ion-list>
     
@@ -63,7 +73,7 @@
   
       <ion-item>
         Brought to you by
-        <img item-right src="imgassets/branding/cornell.png" style="width:45%;" />
+        <img item-right src="assets/branding/cornell.png" style="width:45%;" />
       </ion-item>
   
       <ion-item>

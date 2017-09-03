@@ -19,7 +19,6 @@ export class AccountService {
 
     }
 
-
     associateZipcode(zipcode:number):Observable<any>{
         let options = this.auth.getProtectedHeader()
         let body = JSON.stringify({ zipcode: zipcode });
@@ -31,6 +30,17 @@ export class AccountService {
         let options = this.auth.getProtectedHeader()
         return this.http.get(`${SettingsService.API_ENDPOINT}/me/`, options)
                         .map(r => r.json())
+    }
+
+    registerDevice(token:string) {
+        let options = this.auth.getProtectedHeader()
+        this.http.post(`${SettingsService.API_ENDPOINT}/devices/create/`, JSON.stringify({ device: token }), options)
+            .map(r => r.json())
+            .subscribe(
+                i=>{},
+                e=>{},
+                ()=>{}
+            )
     }
 
     loadLoggedInUser(){
