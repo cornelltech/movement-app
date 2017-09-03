@@ -60,8 +60,8 @@ export class CohortPage {
   }
 
 
-  onPageWillEnter() {
-    // console.log("onPageWillEnter");
+  ionViewWillEnter() {
+    console.log("onPageWillEnter");
     this.getCurrentCoords();
     this.loadData();
 
@@ -90,18 +90,18 @@ export class CohortPage {
   }
 
   getCurrentCoords(){
-    // console.log("getCurrentCoords()");
+    console.log("getCurrentCoords()");
     if(this.geoService.state){
-      // console.log("Plugin is initiated so get the coords");
+      console.log("Plugin is initiated so get the coords");
       this.syncCoords();
     }else{
-      // console.log("Plugin is not initiated so intiate it")
+      console.log("Plugin is not initiated so intiate it")
       this.geoService.initBackgroundLocation().then(()=>{
-        this.syncCoords();
-        // console.log("Plugin configured and initialized");
+      this.syncCoords();
+        console.log("Plugin configured and initialized");
       }, 
       ()=>{
-        // console.log("Unable to initializing the plugin");
+        console.log("Unable to initializing the plugin");
       });
     }
   }

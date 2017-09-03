@@ -5,8 +5,10 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -25,6 +27,23 @@ import {AccountService} from './../services/account';
 import {VenueService} from './../services/venues';
 import {GeoService} from './../services/geo';
 
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'f37ad9eb'
+  },
+  'push': {
+    'sender_id': 'SENDER_ID',
+    'pluginConfig': {
+      'ios': {
+        'badge': true,
+        'sound': true
+      },
+      'android': {
+        'iconColor': '#343434'
+      }
+    }
+  }
+};
 
 @NgModule({
   declarations: [
@@ -43,6 +62,7 @@ import {GeoService} from './../services/geo';
       apiKey: 'AIzaSyBa7UgG0KAlZShxva2Dyhg1Hhu7lh0BLSc'
     }),
     IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
@@ -59,6 +79,7 @@ import {GeoService} from './../services/geo';
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    Push,
 
     SettingsService, 
     AuthService, 

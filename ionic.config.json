@@ -1,6 +1,6 @@
 {
   "name": "movemeant-app",
-  "app_id": "",
+  "app_id": "f37ad9eb",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

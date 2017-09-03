@@ -30,7 +30,7 @@ export class SettingsPage {
                 this.accountService.logEvent("page_enter_settings")
   }
 
-  onPageWillEnter() {
+  ionViewWillEnter() {
     this.platform.ready().then(()=>{
         this.checkGeoPermissions();
     });

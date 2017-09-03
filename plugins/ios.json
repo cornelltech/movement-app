@@ -35,6 +35,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "edu.foundry.movemeant"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "edu.foundry.movemeant"
         }
     },
     "dependent_plugins": {
