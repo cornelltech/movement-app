@@ -48,7 +48,7 @@ export class SettingsPage {
   toggleGeoPermissions(){
 
     this.platform.ready().then(()=>{
-      // console.log("===========toggleGeoPermissions===========");
+      console.log("===========toggleGeoPermissions===========");
 
       if(this.geoService.state){
 
@@ -59,7 +59,8 @@ export class SettingsPage {
         }
 
       }else{
-        // console.log("Plugin is not initiated");
+        console.log("Plugin is not initiated, starting it");
+        this.geoService.initBackgroundLocation();
       }
 
     });
