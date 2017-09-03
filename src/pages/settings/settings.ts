@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Platform, NavController, AlertController} from 'ionic-angular';
-// import {InAppBrowser, LocalNotifications, EmailComposer} from 'ionic-native';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 import {SettingsService} from '../../services/settings';
 import {AuthService} from '../../services/auth';
@@ -16,6 +16,7 @@ export class SettingsPage {
   enabled:boolean = false;
 
   constructor(private nav: NavController,
+              private iab: InAppBrowser,
               public alertCtrl: AlertController,
               private platform:Platform,
               public authService: AuthService,
@@ -80,11 +81,11 @@ export class SettingsPage {
 
 
   sendFeedback(){
-    // InAppBrowser.open(`mailto:s.tech.cornell@gmail.com?Subject=MoveMeant%20Feedback`, '_system');
+    this.iab.create(`mailto:s.tech.cornell@gmail.com?Subject=MoveMeant%20Feedback`, '_system');
   }  
 
   goToSite(){
-    // InAppBrowser.open('http://cornelltech.io/', '_system');
+    this.iab.create('http://cornelltech.io/', '_system');
   }
 
   confirmSignout( ){

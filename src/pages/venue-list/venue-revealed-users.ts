@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, ViewController, NavParams, AlertController} from 'ionic-angular';
-// import {InAppBrowser} from 'ionic-native';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 // import {CHART_DIRECTIVES} from 'ng2-charts/ng2-charts';
 // import {GOOGLE_MAPS_DIRECTIVES} from 'angular2-google-maps/core';
 import {GeoService} from '../../services/geo';
@@ -45,6 +45,7 @@ export class RevealedUserListModal {
 
   constructor(public alertCtrl: AlertController,
               private viewCtrl: ViewController,
+              private iab: InAppBrowser,
               public params: NavParams,
               public venueService: VenueService,
               public accountService: AccountService,
@@ -73,7 +74,7 @@ export class RevealedUserListModal {
 
   openInMaps(){
     this.accountService.logEvent(`open_maps_venueDetails_${this.venue.id}`);
-    // InAppBrowser.open(`http://maps.apple.com/?daddr=${this.venue.lat},${this.venue.lng}`, '_system');
+    this.iab.create(`http://maps.apple.com/?daddr=${this.venue.lat},${this.venue.lng}`, '_system');
   }
 
   signintoVenue() {

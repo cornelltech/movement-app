@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {NavController, Slides, AlertController} from 'ionic-angular';
-// import {InAppBrowser} from 'ionic-native';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 import {AuthService} from '../../services/auth';
 import {AccountService} from '../../services/account';
@@ -33,6 +33,7 @@ export class WelcomePage {
 
   constructor(private nav: NavController,
               public alertCtrl: AlertController,
+              private iab: InAppBrowser,
               public authService: AuthService,
               public accountService: AccountService,
               public geoService: GeoService) {
@@ -98,10 +99,10 @@ export class WelcomePage {
   }
 
   openPrivacy(){
-    // InAppBrowser.open('https://s.tech.cornell.edu/MoveMeant/privacy.html', '_system');
+    this.iab.create('https://s.tech.cornell.edu/MoveMeant/privacy.html', '_system');
   }
   openTerms(){ 
-    // InAppBrowser.open('https://s.tech.cornell.edu/MoveMeant/terms.html', '_system');
+    this.iab.create('https://s.tech.cornell.edu/MoveMeant/terms.html', '_system');
   }
 
   doSignup(){
