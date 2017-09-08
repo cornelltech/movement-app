@@ -1,6 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import {NavController, Slides, AlertController} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import {AuthService} from '../../services/auth';
 import {AccountService} from '../../services/account';
@@ -12,7 +13,7 @@ import {TabsPage} from '../tabs/tabs';
 @Component({
   templateUrl: 'welcome.html'
 })
-export class WelcomePage {
+export class WelcomePage implements OnInit {
   currentSlide = 0;
   swiper:any;
 
@@ -31,7 +32,8 @@ export class WelcomePage {
 
   signupMode:boolean=true;
 
-  constructor(private nav: NavController,
+  constructor(private keyboard: Keyboard,
+              private nav: NavController,
               public alertCtrl: AlertController,
               private iab: InAppBrowser,
               public authService: AuthService,
@@ -40,7 +42,9 @@ export class WelcomePage {
                 this.nav = nav;
                }
   
-    
+  ngOnInit(){
+    this.keyboard.disableScroll(true);
+  }
   
   onSlideWillChange(event){
     

@@ -9,6 +9,7 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { Keyboard } from '@ionic-native/keyboard';
 
 import { ChartsModule } from 'ng2-charts';
 import {AgmCoreModule} from '@agm/core';
@@ -82,6 +83,7 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     InAppBrowser,
     Push,
+    Keyboard,
 
     SettingsService, 
     AuthService, 

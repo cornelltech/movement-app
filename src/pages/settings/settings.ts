@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Platform, NavController, AlertController} from 'ionic-angular';
+import {Platform, NavController, AlertController, App} from 'ionic-angular';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {
   Push,
@@ -23,6 +23,7 @@ export class SettingsPage {
 
   constructor(private nav: NavController,
               private iab: InAppBrowser,
+              public app: App,
               public push: Push,
               public alertCtrl: AlertController,
               private platform:Platform,
@@ -96,8 +97,7 @@ export class SettingsPage {
     }
     this.clear()
     this.authService.removeToken();
-    this.nav.setRoot(WelcomePage);
-    
+    this.app.getRootNav().setRoot(WelcomePage);
   }
 
 
