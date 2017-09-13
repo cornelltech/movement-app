@@ -82,10 +82,10 @@
     <plugin name="cordova-background-geolocation" spec="git+https://github.com/transistorsoft/cordova-background-geolocation.git">
         <variable name="LICENSE" value="4bbb513c013111eae951647fd4f9e79f127fce6f7a00e9d327db9ea2a053a0df" />
         <variable name="BACKGROUND_MODE_LOCATION" value="&lt;string&gt;location&lt;/string&gt;" />
-        <variable name="LOCATION_ALWAYS_AND_WHEN_IN_USE_USAGE_DESCRIPTION" value="We require background location tracking to know what venues you stop at to provide you with useful tips. This information is anonymous. You can opt out at any time by going into the app settings" />
-        <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="We require background location tracking to know what venues you stop at to provide you with useful tips. This information is anonymous. You can opt out at any time by going into the app settings" />
-        <variable name="LOCATION_WHEN_IN_USE_USAGE_DESCRIPTION" value="We require background location tracking to know what venues you stop at to provide you with useful tips. This information is anonymous. You can opt out at any time by going into the app settings" />
-        <variable name="MOTION_USAGE_DESCRIPTION" value="We require background location tracking to know what venues you stop at to provide you with useful tips. This information is anonymous. You can opt out at any time by going into the app settings" />
+        <variable name="LOCATION_ALWAYS_AND_WHEN_IN_USE_USAGE_DESCRIPTION" value="Always use is required for constant background location-tracking" />
+        <variable name="LOCATION_ALWAYS_USAGE_DESCRIPTION" value="Background location-tracking is required" />
+        <variable name="LOCATION_WHEN_IN_USE_USAGE_DESCRIPTION" value="Background location-tracking is required" />
+        <variable name="MOTION_USAGE_DESCRIPTION" value="Using the accelerometer increases battery-efficiency by intelligently toggling location-tracking only when the device is detected to be moving" />
     </plugin>
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />

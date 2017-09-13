@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "699558123249",
+    "firebase_url": "https://movemeant-c1ae4.firebaseio.com",
+    "project_id": "movemeant-c1ae4",
+    "storage_bucket": "movemeant-c1ae4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699558123249:android:be26d5e332875df8",
+        "android_client_info": {
+          "package_name": "edu.foundry.movemeant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699558123249-cke2avnclijpeuegt4628c92mcih30kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeMUjQrkbscM5AiPdMsHzZCuxwsfbyCAA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
