@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { Push } from '@ionic-native/push';
 import { Keyboard } from '@ionic-native/keyboard';
 
 import { ChartsModule } from 'ng2-charts';
@@ -34,7 +34,7 @@ const cloudSettings: CloudSettings = {
     'app_id': 'f37ad9eb'
   },
   'push': {
-    'sender_id': 'SENDER_ID',
+    'sender_id': '',
     'pluginConfig': {
       'ios': {
         'badge': true,
@@ -84,13 +84,12 @@ const cloudSettings: CloudSettings = {
     InAppBrowser,
     Push,
     Keyboard,
-
-    SettingsService, 
-    AuthService, 
-    AccountService, 
+    SettingsService,
+    AuthService,
+    AccountService,
     VenueService,
     GeoService,
-    
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
